@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weekly Meal Planner</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/carousel.css">
+</head>
+
+<body>
+    <!-- Simple Tab Navigation -->
+    <nav class="tab-nav">
+        <button id="tab-recipes" class="tab active">Recipes</button>
+        <button id="tab-grocery" class="tab">Grocery List</button>
+    </nav>
+
+    <!-- Main Content Container -->
+    <main>
+        <!-- Recipes View -->
+        <section id="recipes-view" class="view active">
+            <!-- Filters Toggle Button -->
+            <button id="filters-toggle" class="filters-toggle">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+                </svg>
+                <span>Filters</span>
+            </button>
+
+            <!-- Filters Modal (hidden by default) -->
+            <div id="filters-modal" class="filters-modal">
+                <div class="filters-modal-content">
+                    <div class="filters-header">
+                        <h3>Filter Recipes</h3>
+                        <button id="close-filters" class="close-btn">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <line x1="18" y1="6" x2="6" y2="18"></line>
+                                <line x1="6" y1="6" x2="18" y2="18"></line>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div class="filter-groups">
+                        <div class="filter-group">
+                            <label for="max-prep-time">Prep Time: <span id="prep-time-value">30</span> min</label>
+                            <input type="range" id="max-prep-time" min="5" max="60" value="30" step="5">
+                        </div>
+
+                        <div class="filter-group">
+                            <label for="max-cook-time">Cook Time: <span id="cook-time-value">45</span> min</label>
+                            <input type="range" id="max-cook-time" min="5" max="120" value="45" step="5">
+                        </div>
+
+                        <div class="filter-group">
+                            <label for="cuisine-type">Cuisine Type</label>
+                            <select id="cuisine-type">
+                                <option value="">All Cuisines</option>
+                                <option value="italian">Italian</option>
+                                <option value="mexican">Mexican</option>
+                                <option value="asian">Asian</option>
+                                <option value="american">American</option>
+                                <option value="mediterranean">Mediterranean</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-group">
+                            <label for="protein-type">Protein Type</label>
+                            <select id="protein-type">
+                                <option value="">All Proteins</option>
+                                <option value="chicken">Chicken</option>
+                                <option value="beef">Beef</option>
+                                <option value="pork">Pork</option>
+                                <option value="fish">Fish</option>
+                                <option value="vegetarian">Vegetarian</option>
+                                <option value="vegan">Vegan</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-group">
+                            <label for="recipe-source">Recipe Source</label>
+                            <select id="recipe-source">
+                                <option value="">All Sources</option>
+                                <option value="halfbakedharvest">Half Baked Harvest</option>
+                                <option value="modernproper">The Modern Proper</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="filters-actions">
+                        <button id="reset-filters">Reset</button>
+                        <button id="apply-filters">Apply Filters</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recipe Carousel -->
+            <div class="carousel-container">
+                <div id="recipe-carousel" class="carousel">
+                    <!-- Recipe cards will be dynamically generated here -->
+                </div>
+
+                <!-- Carousel Navigation -->
+                <button id="prev-recipe" class="carousel-nav prev">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                </button>
+                <button id="next-recipe" class="carousel-nav next">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </button>
+
+                <!-- Simple Dots Navigation -->
+                <div class="carousel-dots" id="carousel-dots"></div>
+            </div>
+        </section>
+
+        <!-- Grocery List View (hidden by default) -->
+        <section id="grocery-view" class="view">
+            <div class="grocery-list-container">
+                <h2>Grocery List</h2>
+                <div id="grocery-list"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Weekly Plan Fixed Bottom Section -->
+    <section class="weekly-plan">
+        <div class="weekly-plan-header">
+            <h3>Weekly Meal Plan</h3>
+        </div>
+
+        <div class="day-cards-container">
+            <div class="day-cards">
+                <div class="day-card" data-day="monday">
+                    <h4>Mon</h4>
+                    <div class="day-card-content empty">
+                        <span>Tap to add</span>
+                    </div>
+                </div>
+                <div class="day-card" data-day="tuesday">
+                    <h4>Tue</h4>
+                    <div class="day-card-content empty">
+                        <span>Tap to add</span>
+                    </div>
+                </div>
+                <div class="day-card" data-day="wednesday">
+                    <h4>Wed</h4>
+                    <div class="day-card-content empty">
+                        <span>Tap to add</span>
+                    </div>
+                </div>
+                <div class="day-card" data-day="thursday">
+                    <h4>Thu</h4>
+                    <div class="day-card-content empty">
+                        <span>Tap to add</span>
+                    </div>
+                </div>
+                <div class="day-card" data-day="friday">
+                    <h4>Fri</h4>
+                    <div class="day-card-content empty">
+                        <span>Tap to add</span>
+                    </div>
+                </div>
+                <div class="day-card" data-day="saturday">
+                    <h4>Sat</h4>
+                    <div class="day-card-content empty">
+                        <span>Tap to add</span>
+                    </div>
+                </div>
+                <div class="day-card" data-day="sunday">
+                    <h4>Sun</h4>
+                    <div class="day-card-content empty">
+                        <span>Tap to add</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Day Selection Modal -->
+    <div id="day-selection-modal" class="day-selection-modal">
+        <div class="day-selection-content">
+            <h3>Add to which day?</h3>
+            <div class="day-selection-options">
+                <button data-day="monday">Monday</button>
+                <button data-day="tuesday">Tuesday</button>
+                <button data-day="wednesday">Wednesday</button>
+                <button data-day="thursday">Thursday</button>
+                <button data-day="friday">Friday</button>
+                <button data-day="saturday">Saturday</button>
+                <button data-day="sunday">Sunday</button>
+            </div>
+            <button id="cancel-day-selection" class="cancel-button">Cancel</button>
+        </div>
+    </div>
+
+    <!-- JavaScript Files -->
+    <script src="data/sample-recipes.js"></script>
+    <script src="js/utils/dom-helpers.js"></script>
+    <script src="js/recipes.js"></script>
+    <script src="js/carousel.js"></script>
+    <script src="js/meal-plan.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>
