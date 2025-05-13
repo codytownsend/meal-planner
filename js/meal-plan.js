@@ -1,84 +1,135 @@
 // Meal planning functionality
 const MealPlanManager = (() => {
-    // State
-    let mealPlan = {
-        monday: null,
-        tuesday: null,
-        wednesday: null,
-        thursday: null,
-        friday: null,
-        saturday: null,
-        sunday: null
+    // Constants
+    const DAYS = {
+        MONDAY: 'monday',
+        TUESDAY: 'tuesday',
+        WEDNESDAY: 'wednesday',
+        THURSDAY: 'thursday',
+        FRIDAY: 'friday',
+        SATURDAY: 'saturday',
+        SUNDAY: 'sunday'
     };
-    let currentRecipe = null;
     
-    // DOM Elements
-    const dayCards = document.querySelectorAll('.day-card');
-    const daySelectionModal = document.getElementById('day-selection-modal');
-    const daySelectionOptions = document.querySelector('.day-selection-options');
-    const cancelDaySelection = document.getElementById('cancel-day-selection');
-    const togglePlanBtn = document.getElementById('toggle-plan');
-    const weeklyPlan = document.querySelector('.weekly-plan');
+    const CLASSES = {
+        ACTIVE: 'active',
+        FILLED: 'filled',
+        EMPTY: 'empty',
+        COLLAPSED: 'collapsed'
+    };
+    
+    // State
+    const state = {
+        mealPlan: {
+            [DAYS.MONDAY]: null,
+            [DAYS.TUESDAY]: null,
+            [DAYS.WEDNESDAY]: null,
+            [DAYS.THURSDAY]: null,
+            [DAYS.FRIDAY]: null,
+            [DAYS.SATURDAY]: null,
+            [DAYS.SUNDAY]: null
+        },
+        currentRecipe: null
+    };
+    
+    // DOM elements
+    const elements = {
+        dayCards: null,
+        daySelectionModal: null,
+        daySelectionOptions: null,
+        cancelDaySelection: null,
+        togglePlanBtn: null,
+        weeklyPlan: null
+    };
     
     // Initialize
     const init = () => {
+        // Get DOM elements
+        elements.dayCards = document.querySelectorAll('.day-card');
+        elements.daySelectionModal = document.getElementById('day-selection-modal');
+        elements.daySelectionOptions = document.querySelector('.day-selection-options');
+        elements.cancelDaySelection = document.getElementById('cancel-day-selection');
+        elements.togglePlanBtn = document.getElementById('toggle-plan');
+        elements.weeklyPlan = document.querySelector('.weekly-plan');
+        
+        // Check if required elements exist
+        if (!elements.daySelectionModal || !elements.weeklyPlan) {
+            console.error('Required meal plan elements not found');
+            return;
+        }
+        
         setupEventListeners();
     };
     
     // Setup event listeners
     const setupEventListeners = () => {
         // Listen for "Add to Plan" button clicks
-        document.addEventListener('click', (e) => {
-            if (e.target.closest('.add-to-plan')) {
-                const recipeId = e.target.closest('.add-to-plan').dataset.recipeId;
-                currentRecipe = parseInt(recipeId);
+        domHelpers.addEventDelegate(document, 'click', '.add-to-plan', (event) => {
+            const target = event.target.closest('.add-to-plan');
+            const recipeId = target.dataset.recipeId;
+            if (recipeId) {
+                state.currentRecipe = parseInt(recipeId);
                 openDaySelectionModal();
             }
         });
         
         // Day selection options
-        daySelectionOptions.addEventListener('click', (e) => {
-            if (e.target.tagName === 'BUTTON') {
-                const day = e.target.dataset.day;
-                addToMealPlan(day, currentRecipe);
-                closeDaySelectionModal();
-            }
-        });
-        
-        // Cancel day selection
-        cancelDaySelection.addEventListener('click', closeDaySelectionModal);
-        
-        // Toggle weekly plan collapse/expand
-        togglePlanBtn.addEventListener('click', () => {
-            weeklyPlan.classList.toggle('collapsed');
-        });
-        
-        // Day card click for empty slots
-        dayCards.forEach(card => {
-            card.addEventListener('click', (e) => {
-                // Don't trigger if clicking the remove button
-                if (e.target.closest('.day-card-remove')) return;
-                
-                const day = card.dataset.day;
-                if (!mealPlan[day]) {
-                    currentRecipe = CarouselManager.getCurrentRecipe().id;
-                    addToMealPlan(day, currentRecipe);
+        if (elements.daySelectionOptions) {
+            domHelpers.addEventDelegate(elements.daySelectionOptions, 'click', 'button', (_, target) => {
+                const day = target.dataset.day;
+                if (day && Object.values(DAYS).includes(day)) {
+                    addToMealPlan(day, state.currentRecipe);
+                    closeDaySelectionModal();
                 }
             });
-        });
+        }
+        
+        // Cancel day selection
+        if (elements.cancelDaySelection) {
+            elements.cancelDaySelection.addEventListener('click', closeDaySelectionModal);
+        }
+        
+        // Toggle weekly plan collapse/expand
+        if (elements.togglePlanBtn) {
+            elements.togglePlanBtn.addEventListener('click', () => {
+                elements.weeklyPlan.classList.toggle(CLASSES.COLLAPSED);
+            });
+        }
+        
+        // Day card click for empty slots
+        if (elements.dayCards) {
+            elements.dayCards.forEach(card => {
+                card.addEventListener('click', (e) => {
+                    // Don't trigger if clicking the remove button
+                    if (e.target.closest('.day-card-remove')) return;
+                    
+                    const day = card.dataset.day;
+                    if (day && !state.mealPlan[day]) {
+                        // Get current recipe from carousel
+                        const currentRecipeObj = CarouselManager.getCurrentRecipe();
+                        if (currentRecipeObj && currentRecipeObj.id) {
+                            addToMealPlan(day, currentRecipeObj.id);
+                        }
+                    }
+                });
+            });
+        }
         
         // Listen for remove button clicks
-        document.addEventListener('click', (e) => {
-            if (e.target.closest('.day-card-remove')) {
-                const day = e.target.closest('.day-card').dataset.day;
-                removeFromMealPlan(day);
-                e.stopPropagation(); // Prevent the day card click from firing
+        domHelpers.addEventDelegate(document, 'click', '.day-card-remove', (event, target) => {
+            const dayCard = target.closest('.day-card');
+            if (dayCard) {
+                const day = dayCard.dataset.day;
+                if (day) {
+                    removeFromMealPlan(day);
+                    event.stopPropagation(); // Prevent the day card click from firing
+                }
             }
         });
         
         // Close modals when clicking outside
         window.addEventListener('click', (e) => {
-            if (e.target === daySelectionModal) {
+            if (e.target === elements.daySelectionModal) {
                 closeDaySelectionModal();
             }
         });
@@ -86,70 +137,110 @@ const MealPlanManager = (() => {
     
     // Open day selection modal
     const openDaySelectionModal = () => {
-        daySelectionModal.classList.add('active');
+        if (elements.daySelectionModal) {
+            elements.daySelectionModal.classList.add(CLASSES.ACTIVE);
+        }
     };
     
     // Close day selection modal
     const closeDaySelectionModal = () => {
-        daySelectionModal.classList.remove('active');
-        currentRecipe = null;
+        if (elements.daySelectionModal) {
+            elements.daySelectionModal.classList.remove(CLASSES.ACTIVE);
+            state.currentRecipe = null;
+        }
     };
     
     // Add recipe to meal plan
     const addToMealPlan = (day, recipeId) => {
+        if (!day || !Object.values(DAYS).includes(day)) {
+            console.error(`Invalid day: ${day}`);
+            return;
+        }
+        
+        if (!recipeId) {
+            console.error('No recipe ID provided');
+            return;
+        }
+        
         const recipe = findRecipeById(recipeId);
-        mealPlan[day] = recipe;
+        if (!recipe) {
+            console.error(`Recipe with ID ${recipeId} not found`);
+            return;
+        }
+        
+        state.mealPlan[day] = recipe;
         updateDayCard(day);
     };
     
     // Remove recipe from meal plan
     const removeFromMealPlan = (day) => {
-        mealPlan[day] = null;
+        if (!day || !Object.values(DAYS).includes(day)) {
+            console.error(`Invalid day: ${day}`);
+            return;
+        }
+        
+        state.mealPlan[day] = null;
         updateDayCard(day);
     };
     
     // Find recipe by ID
     const findRecipeById = (id) => {
-        return sampleRecipes.find(recipe => recipe.id === id);
+        if (!window.sampleRecipes || !Array.isArray(window.sampleRecipes)) {
+            console.error('No recipe data available');
+            return null;
+        }
+        
+        return window.sampleRecipes.find(recipe => recipe.id === id) || null;
     };
     
     // Update day card display
     const updateDayCard = (day) => {
         const card = document.querySelector(`.day-card[data-day="${day}"]`);
-        const contentElement = card.querySelector('.day-card-content');
+        if (!card) {
+            console.error(`Day card for ${day} not found`);
+            return;
+        }
         
-        if (mealPlan[day]) {
-            const recipe = mealPlan[day];
-            const sourceDisplay = recipe.source === 'halfbakedharvest' ? 'Half Baked Harvest' : 'The Modern Proper';
+        const contentElement = card.querySelector('.day-card-content');
+        if (!contentElement) {
+            console.error(`Content element for day ${day} not found`);
+            return;
+        }
+        
+        if (state.mealPlan[day]) {
+            const recipe = state.mealPlan[day];
             
             // Clear the content
-            contentElement.innerHTML = '';
+            domHelpers.clearElement(contentElement);
+            
             // Set filled class
-            contentElement.className = 'day-card-content filled';
+            contentElement.className = 'day-card-content ' + CLASSES.FILLED;
             
             // Create recipe title
-            const recipeTitle = document.createElement('div');
-            recipeTitle.className = 'recipe-title';
-            recipeTitle.textContent = recipe.title;
+            const recipeTitle = domHelpers.createElement('div', {
+                className: 'recipe-title',
+                textContent: recipe.title
+            });
             
             // Create remove button
-            const removeBtn = document.createElement('button');
-            removeBtn.className = 'day-card-remove';
-            removeBtn.innerHTML = '×';
-            removeBtn.title = 'Remove recipe';
+            const removeBtn = domHelpers.createElement('button', {
+                className: 'day-card-remove',
+                innerHTML: '×',
+                title: 'Remove recipe'
+            });
             
             // Add elements to the card
             contentElement.appendChild(recipeTitle);
             contentElement.appendChild(removeBtn);
         } else {
-            contentElement.className = 'day-card-content empty';
+            contentElement.className = 'day-card-content ' + CLASSES.EMPTY;
             contentElement.innerHTML = '<span>Tap to add</span>';
         }
     };
     
     // Get meal plan data (for grocery list generation)
     const getMealPlan = () => {
-        return mealPlan;
+        return {...state.mealPlan};
     };
     
     // Public API

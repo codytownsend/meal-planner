@@ -1,18 +1,48 @@
 // Simplified Carousel with Details Dropdown
 const CarouselManager = (() => {
-    // State
-    let recipes = [];
-    let currentIndex = 0;
+    // State management
+    const state = {
+        recipes: [],
+        currentIndex: 0
+    };
     
-    // DOM Elements
-    const carousel = document.getElementById('recipe-carousel');
-    const prevBtn = document.getElementById('prev-recipe');
-    const nextBtn = document.getElementById('next-recipe');
-    const dotsContainer = document.getElementById('carousel-dots');
+    // DOM Element references
+    const elements = {
+        carousel: null,
+        prevBtn: null,
+        nextBtn: null,
+        dotsContainer: null
+    };
+    
+    // Constants
+    const CLASSES = {
+        DOT: 'dot',
+        ACTIVE: 'active',
+        OPEN: 'open'
+    };
     
     // Initialize
     const init = (recipeData) => {
-        recipes = recipeData;
+        if (!recipeData || !Array.isArray(recipeData) || !recipeData.length) {
+            console.error('Invalid recipe data provided to CarouselManager');
+            return;
+        }
+        
+        state.recipes = recipeData;
+        
+        // Get DOM elements
+        elements.carousel = document.getElementById('recipe-carousel');
+        elements.prevBtn = document.getElementById('prev-recipe');
+        elements.nextBtn = document.getElementById('next-recipe');
+        elements.dotsContainer = document.getElementById('carousel-dots');
+        
+        // Verify elements exist
+        if (!elements.carousel || !elements.prevBtn || 
+            !elements.nextBtn || !elements.dotsContainer) {
+            console.error('Required carousel elements not found');
+            return;
+        }
+        
         renderCarousel();
         renderDots();
         setupEventListeners();
@@ -21,11 +51,11 @@ const CarouselManager = (() => {
     
     // Create carousel items with simple design
     const renderCarousel = () => {
-        carousel.innerHTML = '';
+        domHelpers.clearElement(elements.carousel);
         
-        recipes.forEach(recipe => {
+        state.recipes.forEach(recipe => {
             const card = createRecipeCard(recipe);
-            carousel.appendChild(card);
+            elements.carousel.appendChild(card);
         });
         
         updateCarouselPosition();
@@ -33,79 +63,83 @@ const CarouselManager = (() => {
     
     // Create navigation dots
     const renderDots = () => {
-        dotsContainer.innerHTML = '';
+        domHelpers.clearElement(elements.dotsContainer);
         
-        recipes.forEach((_, index) => {
-            const dot = document.createElement('div');
-            dot.className = `dot ${index === currentIndex ? 'active' : ''}`;
-            dot.dataset.index = index;
-            dotsContainer.appendChild(dot);
+        state.recipes.forEach((_, index) => {
+            const dot = domHelpers.createElement('div', {
+                className: `${CLASSES.DOT} ${index === state.currentIndex ? CLASSES.ACTIVE : ''}`,
+                'data-index': index
+            });
+            elements.dotsContainer.appendChild(dot);
         });
     };
     
-    // Create simplified recipe card
+    // Create simplified recipe card using domHelpers
     const createRecipeCard = (recipe) => {
         const sourceDisplay = recipe.source === 'halfbakedharvest' ? 'Half Baked Harvest' : 'The Modern Proper';
         
         // Create card container
-        const card = document.createElement('div');
-        card.className = 'recipe-card';
+        const card = domHelpers.createElement('div', { className: 'recipe-card' });
         
         // Create image section
-        const imageSection = document.createElement('div');
-        imageSection.className = 'recipe-image';
+        const imageSection = domHelpers.createElement('div', { className: 'recipe-image' });
         
-        const image = document.createElement('img');
-        image.src = recipe.imageUrl;
-        image.alt = recipe.title;
+        const image = domHelpers.createElement('img', {
+            src: recipe.imageUrl,
+            alt: recipe.title
+        });
         
-        const source = document.createElement('div');
-        source.className = 'recipe-source';
-        source.textContent = sourceDisplay;
+        const source = domHelpers.createElement('div', {
+            className: 'recipe-source',
+            textContent: sourceDisplay
+        });
         
         imageSection.appendChild(image);
         imageSection.appendChild(source);
         
         // Create content section
-        const content = document.createElement('div');
-        content.className = 'recipe-content';
+        const content = domHelpers.createElement('div', { className: 'recipe-content' });
         
-        const title = document.createElement('h2');
-        title.className = 'recipe-title';
-        title.textContent = recipe.title;
+        const title = domHelpers.createElement('h2', {
+            className: 'recipe-title',
+            textContent: recipe.title
+        });
         
         content.appendChild(title);
         
         // Create details toggle button
-        const detailsToggle = document.createElement('button');
-        detailsToggle.className = 'details-toggle';
-        detailsToggle.innerHTML = `
-            <span>More Details</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
-        `;
+        const detailsToggle = domHelpers.createElement('button', {
+            className: 'details-toggle',
+            innerHTML: `
+                <span>More Details</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+            `
+        });
         
         // Create details panel (hidden by default)
-        const detailsPanel = document.createElement('div');
-        detailsPanel.className = 'recipe-details';
+        const detailsPanel = domHelpers.createElement('div', { className: 'recipe-details' });
         
-        const detailsContent = document.createElement('div');
-        detailsContent.className = 'details-content';
+        const detailsContent = domHelpers.createElement('div', { className: 'details-content' });
         
         // Recipe meta info
-        const meta = document.createElement('div');
-        meta.className = 'recipe-meta';
+        const meta = domHelpers.createElement('div', { className: 'recipe-meta' });
         
-        meta.innerHTML = `
-            <div class="meta-tag">
+        const prepTime = domHelpers.createElement('div', {
+            className: 'meta-tag',
+            innerHTML: `
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <circle cx="12" cy="12" r="10"></circle>
                     <polyline points="12 6 12 12 16 14"></polyline>
                 </svg>
                 <span>${recipe.prepTime} min prep</span>
-            </div>
-            <div class="meta-tag">
+            `
+        });
+        
+        const cookTime = domHelpers.createElement('div', {
+            className: 'meta-tag',
+            innerHTML: `
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <rect x="4" y="5" width="16" height="16" rx="2"></rect>
                     <path d="M16 2v4"></path>
@@ -113,8 +147,12 @@ const CarouselManager = (() => {
                     <path d="M4 10h16"></path>
                 </svg>
                 <span>${recipe.cookTime} min cook</span>
-            </div>
-            <div class="meta-tag">
+            `
+        });
+        
+        const servings = domHelpers.createElement('div', {
+            className: 'meta-tag',
+            innerHTML: `
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"></path>
                     <circle cx="9" cy="7" r="4"></circle>
@@ -122,23 +160,65 @@ const CarouselManager = (() => {
                     <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
                 </svg>
                 <span>Serves ${recipe.servings}</span>
-            </div>
-        `;
+            `
+        });
+        
+        meta.appendChild(prepTime);
+        meta.appendChild(cookTime);
+        meta.appendChild(servings);
+        
+        // Ingredients preview
+        const ingredientsPreview = domHelpers.createElement('div', { className: 'ingredients-preview' });
+        const ingredientsList = domHelpers.createElement('ul', { className: 'ingredients-preview' });
+        
+        // Show first 3 ingredients
+        const displayedIngredients = recipe.ingredients.slice(0, 3);
+        displayedIngredients.forEach(ingredient => {
+            const item = domHelpers.createElement('li', {
+                textContent: `${ingredient.amount} ${ingredient.name}`
+            });
+            ingredientsList.appendChild(item);
+        });
+        
+        // If there are more ingredients, add a "more" indicator
+        if (recipe.ingredients.length > 3) {
+            const moreItem = domHelpers.createElement('li', {
+                className: 'more-ingredients',
+                textContent: `+ ${recipe.ingredients.length - 3} more ingredients`
+            });
+            ingredientsList.appendChild(moreItem);
+        }
+        
+        ingredientsPreview.appendChild(ingredientsList);
         
         // Recipe actions
-        const actions = document.createElement('div');
-        actions.className = 'recipe-actions';
+        const actions = domHelpers.createElement('div', { className: 'recipe-actions' });
         
-        const viewRecipeLink = document.createElement('a');
-        viewRecipeLink.className = 'view-recipe';
-        viewRecipeLink.href = recipe.sourceUrl;
-        viewRecipeLink.target = '_blank';
-        viewRecipeLink.textContent = 'View Recipe';
+        const addToPlanBtn = domHelpers.createElement('button', {
+            className: 'add-to-plan',
+            'data-recipe-id': recipe.id,
+            innerHTML: `
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 5v14"></path>
+                    <path d="M5 12h14"></path>
+                </svg>
+                Add to Plan
+            `
+        });
         
+        const viewRecipeLink = domHelpers.createElement('a', {
+            className: 'view-recipe',
+            href: recipe.sourceUrl,
+            target: '_blank',
+            textContent: 'View Recipe'
+        });
+        
+        actions.appendChild(addToPlanBtn);
         actions.appendChild(viewRecipeLink);
         
         // Assemble the details panel
         detailsContent.appendChild(meta);
+        detailsContent.appendChild(ingredientsPreview);
         detailsContent.appendChild(actions);
         detailsPanel.appendChild(detailsContent);
         
@@ -150,8 +230,8 @@ const CarouselManager = (() => {
         
         // Add event listener for toggle
         detailsToggle.addEventListener('click', () => {
-            detailsToggle.classList.toggle('open');
-            detailsPanel.classList.toggle('open');
+            detailsToggle.classList.toggle(CLASSES.OPEN);
+            detailsPanel.classList.toggle(CLASSES.OPEN);
         });
         
         return card;
@@ -160,13 +240,13 @@ const CarouselManager = (() => {
     // Setup event listeners
     const setupEventListeners = () => {
         // Navigation buttons
-        prevBtn.addEventListener('click', showPreviousRecipe);
-        nextBtn.addEventListener('click', showNextRecipe);
+        elements.prevBtn.addEventListener('click', showPreviousRecipe);
+        elements.nextBtn.addEventListener('click', showNextRecipe);
         
         // Dot navigation
-        dotsContainer.addEventListener('click', (e) => {
-            if (e.target.classList.contains('dot')) {
-                const index = parseInt(e.target.dataset.index);
+        domHelpers.addEventDelegate(elements.dotsContainer, 'click', `.${CLASSES.DOT}`, (_, target) => {
+            const index = parseInt(target.dataset.index);
+            if (!isNaN(index)) {
                 goToRecipe(index);
             }
         });
@@ -182,15 +262,15 @@ const CarouselManager = (() => {
         
         // Touch swiping
         let startX, moveX;
-        carousel.addEventListener('touchstart', (e) => {
+        elements.carousel.addEventListener('touchstart', (e) => {
             startX = e.touches[0].clientX;
         });
         
-        carousel.addEventListener('touchmove', (e) => {
+        elements.carousel.addEventListener('touchmove', (e) => {
             moveX = e.touches[0].clientX;
         });
         
-        carousel.addEventListener('touchend', () => {
+        elements.carousel.addEventListener('touchend', () => {
             if (startX && moveX) {
                 const diff = startX - moveX;
                 if (Math.abs(diff) > 50) {
@@ -208,24 +288,24 @@ const CarouselManager = (() => {
     
     // Navigation functions
     const goToRecipe = (index) => {
-        if (index >= 0 && index < recipes.length) {
-            currentIndex = index;
+        if (index >= 0 && index < state.recipes.length) {
+            state.currentIndex = index;
             updateCarouselPosition();
             updateNavigation();
         }
     };
     
     const showPreviousRecipe = () => {
-        if (currentIndex > 0) {
-            currentIndex--;
+        if (state.currentIndex > 0) {
+            state.currentIndex--;
             updateCarouselPosition();
             updateNavigation();
         }
     };
     
     const showNextRecipe = () => {
-        if (currentIndex < recipes.length - 1) {
-            currentIndex++;
+        if (state.currentIndex < state.recipes.length - 1) {
+            state.currentIndex++;
             updateCarouselPosition();
             updateNavigation();
         }
@@ -233,29 +313,40 @@ const CarouselManager = (() => {
     
     // Update functions
     const updateCarouselPosition = () => {
-        const position = -currentIndex * 100;
-        carousel.style.transform = `translateX(${position}%)`;
+        if (!elements.carousel) return;
+        
+        const position = -state.currentIndex * 100;
+        elements.carousel.style.transform = `translateX(${position}%)`;
     };
     
     const updateNavigation = () => {
         // Update buttons
-        prevBtn.style.opacity = currentIndex === 0 ? '0.5' : '1';
-        prevBtn.style.pointerEvents = currentIndex === 0 ? 'none' : 'auto';
-        
-        nextBtn.style.opacity = currentIndex === recipes.length - 1 ? '0.5' : '1';
-        nextBtn.style.pointerEvents = currentIndex === recipes.length - 1 ? 'none' : 'auto';
+        if (elements.prevBtn && elements.nextBtn) {
+            elements.prevBtn.style.opacity = state.currentIndex === 0 ? '0.5' : '1';
+            elements.prevBtn.style.pointerEvents = state.currentIndex === 0 ? 'none' : 'auto';
+            
+            elements.nextBtn.style.opacity = state.currentIndex === state.recipes.length - 1 ? '0.5' : '1';
+            elements.nextBtn.style.pointerEvents = state.currentIndex === state.recipes.length - 1 ? 'none' : 'auto';
+        }
         
         // Update dots
-        const dots = dotsContainer.querySelectorAll('.dot');
-        dots.forEach((dot, index) => {
-            dot.classList.toggle('active', index === currentIndex);
-        });
+        if (elements.dotsContainer) {
+            const dots = elements.dotsContainer.querySelectorAll(`.${CLASSES.DOT}`);
+            dots.forEach((dot, index) => {
+                dot.classList.toggle(CLASSES.ACTIVE, index === state.currentIndex);
+            });
+        }
     };
     
     // Filter recipes
     const filterRecipes = (filteredRecipeData) => {
-        recipes = filteredRecipeData;
-        currentIndex = 0;
+        if (!filteredRecipeData || !Array.isArray(filteredRecipeData)) {
+            console.error('Invalid filtered recipe data');
+            return;
+        }
+        
+        state.recipes = filteredRecipeData;
+        state.currentIndex = 0;
         renderCarousel();
         renderDots();
         updateNavigation();
@@ -263,7 +354,7 @@ const CarouselManager = (() => {
     
     // Get current recipe
     const getCurrentRecipe = () => {
-        return recipes[currentIndex];
+        return state.recipes[state.currentIndex] || null;
     };
     
     // Public API
