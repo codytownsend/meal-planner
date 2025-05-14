@@ -1,5 +1,5 @@
 // Sample recipe data from Half Baked Harvest and The Modern Proper
-const sampleRecipes = [
+window.sampleRecipes = [
     {
         id: 1,
         title: "One Skillet Greek Chicken and Orzo",

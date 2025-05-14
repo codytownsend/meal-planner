@@ -49,9 +49,9 @@ const domHelpers = {
         return element;
     },
     
-    // Add event listener with delegation
+    // Add event listener with delegation - FIXED to allow document as parent
     addEventDelegate(parent, eventType, selector, callback) {
-        if (!parent || !(parent instanceof Element)) {
+        if (!parent || (!(parent instanceof Element) && !(parent instanceof Document))) {
             console.error('Valid parent element is required for addEventDelegate');
             return;
         }

@@ -1,4 +1,6 @@
-// Main application logic
+// Update for app.js - Add Storage initialization and clear button event listeners
+
+// DOMContentLoaded event handler
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize recipe data
     const recipeData = window.sampleRecipes || [];
@@ -10,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize managers with proper sequence
     CarouselManager.init(recipeData);
     MealPlanManager.init();
+    GroceryListManager.init();
     
     // Constants for UI elements
     const TABS = {
@@ -28,6 +31,9 @@ document.addEventListener('DOMContentLoaded', () => {
         [TABS.GROCERY]: document.getElementById('grocery-view')
     };
     
+    // Get the clear meal plan button
+    const clearMealPlanBtn = document.getElementById('clear-meal-plan');
+    
     // Switch between tabs
     const switchTab = (tabName) => {
         if (!tabElements[tabName] || !viewElements[tabName]) {
@@ -42,12 +48,46 @@ document.addEventListener('DOMContentLoaded', () => {
         // Update view visibility
         Object.values(viewElements).forEach(view => view.classList.remove('active'));
         viewElements[tabName].classList.add('active');
+        
+        // Toggle grocery tab class on body to hide weekly plan
+        if (tabName === TABS.GROCERY) {
+            document.body.classList.add('grocery-tab-active');
+        } else {
+            document.body.classList.remove('grocery-tab-active');
+        }
+        
+        // If switching to grocery tab, auto-generate list if it's empty
+        if (tabName === TABS.GROCERY) {
+            const groceryList = document.getElementById('grocery-list');
+            const hasContent = groceryList && groceryList.querySelector('.grocery-list-content');
+            if (!hasContent) {
+                // Only auto-generate if we have recipes in the meal plan
+                const mealPlan = MealPlanManager.getMealPlan();
+                const hasRecipes = Object.values(mealPlan).some(recipe => recipe !== null);
+                if (hasRecipes) {
+                    GroceryListManager.generateGroceryList();
+                }
+            }
+        }
+        
+        // Save the current view in localStorage
+        StorageManager.saveLastView(tabName);
     };
     
     // Add click event listeners to tabs
     Object.entries(tabElements).forEach(([tabName, tabElement]) => {
         tabElement.addEventListener('click', () => switchTab(tabName));
     });
+    
+    // Add click event listener to clear meal plan button
+    if (clearMealPlanBtn) {
+        clearMealPlanBtn.addEventListener('click', () => {
+            // Add confirmation dialog
+            if (confirm('Are you sure you want to clear your meal plan?')) {
+                MealPlanManager.clearMealPlan();
+            }
+        });
+    }
     
     // Filter functionality setup
     const setupFilters = () => {
@@ -79,8 +119,17 @@ document.addEventListener('DOMContentLoaded', () => {
             source: ''
         };
         
-        // Current filters
-        let currentFilters = {...defaultFilters};
+        // Current filters - try to load from storage
+        let currentFilters = StorageManager.loadFilters() || {...defaultFilters};
+        
+        // Update UI to match loaded filters
+        if (currentFilters) {
+            Object.entries(currentFilters).forEach(([key, value]) => {
+                if (filterElements[key]) {
+                    filterElements[key].value = value;
+                }
+            });
+        }
         
         // Update filter labels based on slider values
         const updateFilterLabels = () => {
@@ -102,6 +151,9 @@ document.addEventListener('DOMContentLoaded', () => {
             
             CarouselManager.filterRecipes(filteredRecipes);
             filtersModal.classList.remove('active');
+            
+            // Save filters to localStorage
+            StorageManager.saveFilters(currentFilters);
         };
         
         // Reset filters to default values
@@ -114,6 +166,9 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             
             updateFilterLabels();
+            
+            // Clear saved filters
+            StorageManager.saveFilters(currentFilters);
         };
         
         // Event handlers for filter UI
@@ -155,22 +210,15 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Initialize filter labels
         updateFilterLabels();
+        
+        // Apply stored filters on load
+        applyFilterToRecipes();
     };
     
     // Run setup functions
     setupFilters();
     
-    // Start with recipes tab active
-    switchTab(TABS.RECIPES);
-    
-    // Prepare empty grocery list view
-    const setupGroceryList = () => {
-        const groceryListElement = document.getElementById('grocery-list');
-        if (groceryListElement) {
-            // Add placeholder message
-            groceryListElement.innerHTML = '<p>Grocery list generation coming soon!</p>';
-        }
-    };
-    
-    setupGroceryList();
+    // Load the last active view from storage, or default to recipes
+    const lastView = StorageManager.loadLastView() || TABS.RECIPES;
+    switchTab(lastView);
 });

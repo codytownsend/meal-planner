@@ -125,8 +125,14 @@
         <!-- Grocery List View (hidden by default) -->
         <section id="grocery-view" class="view">
             <div class="grocery-list-container">
-                <h2>Grocery List</h2>
-                <div id="grocery-list"></div>
+                <div class="grocery-header">
+                    <h2>Grocery List</h2>
+                </div>
+                <div id="grocery-list" class="grocery-list">
+                    <div class="empty-list-message">
+                        Add recipes to your meal plan, then click "Generate List" to create your grocery list.
+                    </div>
+                </div>
             </div>
         </section>
     </main>
@@ -135,6 +141,20 @@
     <section class="weekly-plan">
         <div class="weekly-plan-header">
             <h3>Weekly Meal Plan</h3>
+            <div class="weekly-plan-actions">
+                <button id="clear-meal-plan" class="clear-button" title="Clear meal plan">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="3 6 5 6 21 6"></polyline>
+                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                    </svg>
+                    <span>Clear</span>
+                </button>
+                <button id="toggle-plan" class="toggle-plan" title="Toggle meal plan">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 15 12 9 18 15"></polyline>
+                    </svg>
+                </button>
+            </div>
         </div>
 
         <div class="day-cards-container">
@@ -202,11 +222,24 @@
         </div>
     </div>
 
+    <div id="confirmation-modal" class="confirmation-modal">
+        <div class="confirmation-content">
+            <h4>Confirm Action</h4>
+            <p id="confirmation-message">Are you sure you want to proceed?</p>
+            <div class="confirmation-actions">
+                <button id="confirm-cancel" class="secondary-button">Cancel</button>
+                <button id="confirm-yes" class="primary-button">Yes, Proceed</button>
+            </div>
+        </div>
+    </div>
+
     <!-- JavaScript Files -->
     <script src="data/sample-recipes.js"></script>
     <script src="js/utils/dom-helpers.js"></script>
+    <script src="js/utils/storage.js"></script>
     <script src="js/carousel.js"></script>
     <script src="js/meal-plan.js"></script>
+    <script src="js/grocery-list.js"></script>
     <script src="js/app.js"></script>
 </body>
 

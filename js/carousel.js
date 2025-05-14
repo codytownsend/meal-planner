@@ -167,44 +167,8 @@ const CarouselManager = (() => {
         meta.appendChild(cookTime);
         meta.appendChild(servings);
         
-        // Ingredients preview
-        const ingredientsPreview = domHelpers.createElement('div', { className: 'ingredients-preview' });
-        const ingredientsList = domHelpers.createElement('ul', { className: 'ingredients-preview' });
-        
-        // Show first 3 ingredients
-        const displayedIngredients = recipe.ingredients.slice(0, 3);
-        displayedIngredients.forEach(ingredient => {
-            const item = domHelpers.createElement('li', {
-                textContent: `${ingredient.amount} ${ingredient.name}`
-            });
-            ingredientsList.appendChild(item);
-        });
-        
-        // If there are more ingredients, add a "more" indicator
-        if (recipe.ingredients.length > 3) {
-            const moreItem = domHelpers.createElement('li', {
-                className: 'more-ingredients',
-                textContent: `+ ${recipe.ingredients.length - 3} more ingredients`
-            });
-            ingredientsList.appendChild(moreItem);
-        }
-        
-        ingredientsPreview.appendChild(ingredientsList);
-        
         // Recipe actions
         const actions = domHelpers.createElement('div', { className: 'recipe-actions' });
-        
-        const addToPlanBtn = domHelpers.createElement('button', {
-            className: 'add-to-plan',
-            'data-recipe-id': recipe.id,
-            innerHTML: `
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M12 5v14"></path>
-                    <path d="M5 12h14"></path>
-                </svg>
-                Add to Plan
-            `
-        });
         
         const viewRecipeLink = domHelpers.createElement('a', {
             className: 'view-recipe',
@@ -213,12 +177,10 @@ const CarouselManager = (() => {
             textContent: 'View Recipe'
         });
         
-        actions.appendChild(addToPlanBtn);
         actions.appendChild(viewRecipeLink);
         
         // Assemble the details panel
         detailsContent.appendChild(meta);
-        detailsContent.appendChild(ingredientsPreview);
         detailsContent.appendChild(actions);
         detailsPanel.appendChild(detailsContent);
         
