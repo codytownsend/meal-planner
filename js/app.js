@@ -616,29 +616,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     const lastView = StorageManager.loadLastView() || TABS.RECIPES;
     switchTab(lastView);
     
-    // Show iOS "Add to Home Screen" prompt after a delay (only on iOS devices)
-    if (
-        navigator.standalone !== true && 
-        (/iPhone|iPad|iPod/.test(navigator.userAgent) || 
-        /Macintosh/.test(navigator.userAgent) && navigator.maxTouchPoints > 1)
-    ) {
-        setTimeout(() => {
-            const addToHomePrompt = domHelpers.createElement('div', {
-                className: 'add-to-home',
-                textContent: 'Add to Home Screen for best experience',
-            });
-            
-            document.body.appendChild(addToHomePrompt);
-            
-            // Remove after 5 seconds
-            setTimeout(() => {
-                if (addToHomePrompt.parentNode) {
-                    addToHomePrompt.parentNode.removeChild(addToHomePrompt);
-                }
-            }, 5000);
-        }, 3000);
-    }
-    
     // Show recipe count
     console.log(`Loaded ${RecipeLoader.getTotalLoaded()} of ${RecipeLoader.getTotalAvailable()} total recipes (showing ${filteredRecipes.length} dinner recipes)`);
 });
