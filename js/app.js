@@ -1,10 +1,75 @@
 // DOMContentLoaded event handler
 document.addEventListener('DOMContentLoaded', async () => {
-    // Create loading indicator
-    const loadingIndicator = document.createElement('div');
-    loadingIndicator.className = 'loading-indicator';
-    loadingIndicator.innerHTML = '<div class="loading-spinner"></div><p>Loading recipes...</p>';
-    document.querySelector('main').appendChild(loadingIndicator);
+    // Function to show loading state with error handling
+    const showLoading = (container, message = "Loading...") => {
+        const loadingIndicator = domHelpers.createElement('div', {
+            className: 'loading-indicator',
+            innerHTML: `
+                <div class="loading-spinner"></div>
+                <p>${message}</p>
+            `
+        });
+        
+        // If container is a string, try to get the element
+        const targetContainer = typeof container === 'string' 
+            ? document.querySelector(container) 
+            : container;
+            
+        if (!targetContainer) {
+            console.warn('Loading container not found, attaching to body as fallback');
+            document.body.appendChild(loadingIndicator);
+            return loadingIndicator;
+        }
+        
+        try {
+            domHelpers.clearElement(targetContainer);
+            targetContainer.appendChild(loadingIndicator);
+        } catch (err) {
+            console.warn('Error showing loading state:', err);
+            document.body.appendChild(loadingIndicator);
+        }
+        
+        return loadingIndicator;
+    };
+
+    
+    // Create loading indicator in body (safer initial loading)
+    const loadingIndicator = domHelpers.createElement('div', {
+        className: 'loading-indicator',
+        style: 'position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: white; z-index: 9999; display: flex; flex-direction: column; justify-content: center; align-items: center;',
+        innerHTML: `
+            <div class="loading-spinner"></div>
+            <p>Loading recipes...</p>
+        `
+    });
+    document.body.appendChild(loadingIndicator);
+
+    // Error-resilient element getters
+    const getElement = (selector, defaultValue = null) => {
+        const element = document.querySelector(selector);
+        if (!element) {
+            console.warn(`Element not found: ${selector}`);
+        }
+        return element || defaultValue;
+    };
+    
+    // Function to update current filter chips display
+    const updateFilterChips = (filters) => {
+        const currentMealType = document.getElementById('current-meal-type');
+        if (currentMealType) {
+            if (filters.mealType) {
+                const mealTypeText = filters.mealType.charAt(0).toUpperCase() + filters.mealType.slice(1);
+                currentMealType.textContent = mealTypeText;
+                currentMealType.style.display = 'inline-flex';
+            } else {
+                currentMealType.style.display = 'none';
+            }
+        }
+    };
+    
+    // Create loading indicator in main content
+    const mainContent = document.querySelector('main');
+    showLoading(mainContent, "Loading recipes...");
     
     // Default filter values - setting mealType to 'dinner' by default
     const defaultFilters = {
@@ -25,14 +90,30 @@ document.addEventListener('DOMContentLoaded', async () => {
     const filtersToApply = storedFilters || defaultFilters;
     const filteredRecipes = RecipeLoader.applyFilters(filtersToApply);
     
+    // Update filter chips to reflect current filters
+    updateFilterChips(filtersToApply);
+    
     if (!filteredRecipes || !filteredRecipes.length) {
-        loadingIndicator.innerHTML = '<p>No recipes found matching the filters. Please try different filters.</p>';
+        const noRecipesMessage = domHelpers.createElement('div', {
+            className: 'empty-list-message',
+            innerHTML: `
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="9" y1="9" x2="15" y2="15"></line>
+                    <line x1="15" y1="9" x2="9" y2="15"></line>
+                </svg>
+                <p>No recipes found matching the filters</p>
+                <p class="subtitle">Try different filter settings</p>
+            `
+        });
+        domHelpers.clearElement(mainContent);
+        mainContent.appendChild(noRecipesMessage);
         console.error('No filtered recipes found!');
         return;
     }
     
-    // Remove loading indicator
-    loadingIndicator.remove();
+    // Remove loading indicator by clearing the main content
+    domHelpers.clearElement(mainContent);
     
     // Initialize managers with FILTERED recipes
     CarouselManager.init(filteredRecipes);
@@ -62,24 +143,49 @@ document.addEventListener('DOMContentLoaded', async () => {
         };
         
         // Function to load more recipes
+        // Function to load more recipes with error handling
         const loadMoreRecipes = async () => {
             isLoadingMore = true;
             
             // Create loading indicator at bottom of carousel
-            const loadingIndicator = document.createElement('div');
-            loadingIndicator.className = 'loading-indicator';
-            loadingIndicator.innerHTML = '<div class="loading-spinner"></div><p>Loading more recipes...</p>';
-            document.querySelector('.carousel-container').appendChild(loadingIndicator);
+            const carouselContainer = document.querySelector('.carousel-container');
+            if (!carouselContainer) {
+                console.warn('Carousel container not found for loading indicator');
+                isLoadingMore = false;
+                return;
+            }
             
-            // Load next batch of recipes
-            const newRecipes = await RecipeLoader.loadMoreRecipes();
+            const loadingIndicator = domHelpers.createElement('div', {
+                className: 'loading-indicator',
+                style: 'position: absolute; bottom: 0; left: 0; right: 0; background: rgba(255,255,255,0.9);',
+                innerHTML: `
+                    <div class="loading-spinner"></div>
+                    <p>Loading more recipes...</p>
+                `
+            });
             
-            // Remove loading indicator
-            loadingIndicator.remove();
-            
-            if (newRecipes.length > 0) {
-                // Update carousel with all filtered recipes
-                CarouselManager.updateRecipes(RecipeLoader.getFilteredRecipes());
+            try {
+                carouselContainer.appendChild(loadingIndicator);
+                
+                // Load next batch of recipes
+                const newRecipes = await RecipeLoader.loadMoreRecipes();
+                
+                // Remove loading indicator
+                if (loadingIndicator && loadingIndicator.parentNode) {
+                    loadingIndicator.parentNode.removeChild(loadingIndicator);
+                }
+                
+                if (newRecipes && newRecipes.length > 0) {
+                    // Update carousel with all filtered recipes
+                    CarouselManager.updateRecipes(RecipeLoader.getFilteredRecipes());
+                }
+            } catch (err) {
+                console.error('Error loading more recipes:', err);
+                
+                // Remove loading indicator
+                if (loadingIndicator && loadingIndicator.parentNode) {
+                    loadingIndicator.parentNode.removeChild(loadingIndicator);
+                }
             }
             
             isLoadingMore = false;
@@ -175,9 +281,42 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Add click event listener to clear meal plan button
     if (clearMealPlanBtn) {
         clearMealPlanBtn.addEventListener('click', () => {
-            // Add confirmation dialog
-            if (confirm('Are you sure you want to clear your meal plan?')) {
-                MealPlanManager.clearMealPlan();
+            // Show confirmation modal instead of alert
+            const confirmationModal = document.getElementById('confirmation-modal');
+            const confirmationMessage = document.getElementById('confirmation-message');
+            
+            if (confirmationModal && confirmationMessage) {
+                confirmationMessage.textContent = 'Are you sure you want to clear your meal plan?';
+                confirmationModal.classList.add('active');
+                
+                // Handle confirmation
+                const confirmYesBtn = document.getElementById('confirm-yes');
+                const confirmCancelBtn = document.getElementById('confirm-cancel');
+                
+                const confirmHandler = () => {
+                    MealPlanManager.clearMealPlan();
+                    confirmationModal.classList.remove('active');
+                    
+                    // Remove event listeners to prevent memory leaks
+                    confirmYesBtn.removeEventListener('click', confirmHandler);
+                    confirmCancelBtn.removeEventListener('click', cancelHandler);
+                };
+                
+                const cancelHandler = () => {
+                    confirmationModal.classList.remove('active');
+                    
+                    // Remove event listeners to prevent memory leaks
+                    confirmYesBtn.removeEventListener('click', confirmHandler);
+                    confirmCancelBtn.removeEventListener('click', cancelHandler);
+                };
+                
+                confirmYesBtn.addEventListener('click', confirmHandler);
+                confirmCancelBtn.addEventListener('click', cancelHandler);
+            } else {
+                // Fallback to old confirmation if modal not found
+                if (confirm('Are you sure you want to clear your meal plan?')) {
+                    MealPlanManager.clearMealPlan();
+                }
             }
         });
     }
@@ -195,6 +334,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         const performSearch = () => {
             const searchQuery = searchInput.value.trim().toLowerCase();
             
+            // Show loading in carousel container
+            const carouselContainer = document.querySelector('.carousel-container');
+            if (carouselContainer) {
+                showLoading(carouselContainer, "Searching recipes...");
+            }
+            
             // Update current filters with search query
             const currentFilters = StorageManager.loadFilters() || defaultFilters;
             currentFilters.searchQuery = searchQuery;
@@ -207,6 +352,23 @@ document.addEventListener('DOMContentLoaded', async () => {
             
             // Save filters
             StorageManager.saveFilters(currentFilters);
+            
+            // Add feedback for empty results
+            if (filteredRecipes.length === 0) {
+                const emptyMessage = domHelpers.createElement('div', {
+                    className: 'empty-list-message',
+                    innerHTML: `
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        <p>No recipes found matching "${searchQuery}"</p>
+                        <p class="subtitle">Try a different search term</p>
+                    `
+                });
+                domHelpers.clearElement(carouselContainer);
+                carouselContainer.appendChild(emptyMessage);
+            }
         };
         
         // Search button click event
@@ -269,10 +431,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Apply filters to recipe data using RecipeLoader
         const applyFilterToRecipes = () => {
             // Create loading indicator
-            const loadingIndicator = document.createElement('div');
-            loadingIndicator.className = 'loading-indicator';
-            loadingIndicator.innerHTML = '<div class="loading-spinner"></div><p>Filtering recipes...</p>';
-            document.querySelector('.carousel-container').appendChild(loadingIndicator);
+            const carouselContainer = document.querySelector('.carousel-container');
+            if (carouselContainer) {
+                showLoading(carouselContainer, "Filtering recipes...");
+            }
             
             // Apply filters to loaded recipes
             const filteredRecipes = RecipeLoader.applyFilters(currentFilters);
@@ -283,11 +445,27 @@ document.addEventListener('DOMContentLoaded', async () => {
             // Close filter modal
             filtersModal.classList.remove('active');
             
-            // Remove loading indicator
-            loadingIndicator.remove();
+            // Update filter chips
+            updateFilterChips(currentFilters);
             
             // Save filters to localStorage
             StorageManager.saveFilters(currentFilters);
+            
+            // Add feedback for empty results
+            if (filteredRecipes.length === 0) {
+                const emptyMessage = domHelpers.createElement('div', {
+                    className: 'empty-list-message',
+                    innerHTML: `
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z"></path>
+                        </svg>
+                        <p>No recipes match these filters</p>
+                        <p class="subtitle">Try different filter settings</p>
+                    `
+                });
+                domHelpers.clearElement(carouselContainer);
+                carouselContainer.appendChild(emptyMessage);
+            }
         };
         
         // Reset filters to default values
@@ -317,6 +495,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (closeFilters) {
             closeFilters.addEventListener('click', () => {
                 filtersModal.classList.remove('active');
+            });
+            
+            // Also close when clicking outside
+            filtersModal.addEventListener('click', (e) => {
+                if (e.target === filtersModal) {
+                    filtersModal.classList.remove('active');
+                }
             });
         }
         
@@ -355,15 +540,98 @@ document.addEventListener('DOMContentLoaded', async () => {
         
         // Initialize filter labels
         updateFilterLabels();
+        
+        // Update filter chips on initial load
+        updateFilterChips(currentFilters);
+    };
+    
+    // Setup bottom sheet behavior
+    const setupBottomSheets = () => {
+        const bottomSheets = document.querySelectorAll('.bottom-sheet');
+        
+        bottomSheets.forEach(sheet => {
+            // Close sheet when clicking outside the content
+            sheet.addEventListener('click', (e) => {
+                if (e.target === sheet) {
+                    sheet.classList.remove('active');
+                }
+            });
+            
+            // Add swipe down to close
+            const content = sheet.querySelector('.bottom-sheet-content');
+            if (content) {
+                let startY = 0;
+                let currentY = 0;
+                
+                content.addEventListener('touchstart', (e) => {
+                    startY = e.touches[0].clientY;
+                });
+                
+                content.addEventListener('touchmove', (e) => {
+                    currentY = e.touches[0].clientY;
+                    const diff = currentY - startY;
+                    
+                    // Only allow swiping down, not up
+                    if (diff > 0) {
+                        content.style.transform = `translateY(${diff}px)`;
+                        e.preventDefault();
+                    }
+                });
+                
+                content.addEventListener('touchend', () => {
+                    const diff = currentY - startY;
+                    content.style.transform = '';
+                    
+                    if (diff > 100) {
+                        // If swiped down enough, close the sheet
+                        sheet.classList.remove('active');
+                    }
+                });
+            }
+        });
     };
     
     // Run setup functions
     setupFilters();
     setupSearch();
+    setupBottomSheets();
+    
+    // Setup weekly plan toggle
+    const weeklyPlan = document.querySelector('.weekly-plan');
+    const togglePlanBtn = document.getElementById('toggle-plan');
+    
+    if (weeklyPlan && togglePlanBtn) {
+        togglePlanBtn.addEventListener('click', () => {
+            weeklyPlan.classList.toggle('collapsed');
+        });
+    }
     
     // Load the last active view from storage, or default to recipes
     const lastView = StorageManager.loadLastView() || TABS.RECIPES;
     switchTab(lastView);
+    
+    // Show iOS "Add to Home Screen" prompt after a delay (only on iOS devices)
+    if (
+        navigator.standalone !== true && 
+        (/iPhone|iPad|iPod/.test(navigator.userAgent) || 
+        /Macintosh/.test(navigator.userAgent) && navigator.maxTouchPoints > 1)
+    ) {
+        setTimeout(() => {
+            const addToHomePrompt = domHelpers.createElement('div', {
+                className: 'add-to-home',
+                textContent: 'Add to Home Screen for best experience',
+            });
+            
+            document.body.appendChild(addToHomePrompt);
+            
+            // Remove after 5 seconds
+            setTimeout(() => {
+                if (addToHomePrompt.parentNode) {
+                    addToHomePrompt.parentNode.removeChild(addToHomePrompt);
+                }
+            }, 5000);
+        }, 3000);
+    }
     
     // Show recipe count
     console.log(`Loaded ${RecipeLoader.getTotalLoaded()} of ${RecipeLoader.getTotalAvailable()} total recipes (showing ${filteredRecipes.length} dinner recipes)`);

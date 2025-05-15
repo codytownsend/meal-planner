@@ -1,22 +1,29 @@
-// Simplified Carousel with Details Dropdown
+// Simplified Carousel with Details Dropdown and Mobile Swipe Support
 const CarouselManager = (() => {
     // State management
     const state = {
         recipes: [],
-        currentIndex: 0
+        currentIndex: 0,
+        isSwiping: false,
+        swipeStartX: null,
+        swipeCurrentX: null,
+        swipeThreshold: 50,
+        animationInProgress: false
     };
     
     // DOM Element references
     const elements = {
         carousel: null,
         prevBtn: null,
-        nextBtn: null
+        nextBtn: null,
+        container: null
     };
     
     // Constants
     const CLASSES = {
         ACTIVE: 'active',
-        OPEN: 'open'
+        OPEN: 'open',
+        SWIPING: 'swiping'
     };
     
     // Initialize
@@ -32,6 +39,7 @@ const CarouselManager = (() => {
         elements.carousel = document.getElementById('recipe-carousel');
         elements.prevBtn = document.getElementById('prev-recipe');
         elements.nextBtn = document.getElementById('next-recipe');
+        elements.container = document.querySelector('.carousel-container');
         
         // Verify elements exist
         if (!elements.carousel || !elements.prevBtn || !elements.nextBtn) {
@@ -56,7 +64,7 @@ const CarouselManager = (() => {
         updateCarouselPosition();
     };
     
-    // Create simplified recipe card using domHelpers
+    // Create recipe card - updated for mobile design
     const createRecipeCard = (recipe) => {
         const sourceDisplay = recipe.source === 'halfbakedharvest' ? 'Half Baked Harvest' : 'The Modern Proper';
         
@@ -68,7 +76,8 @@ const CarouselManager = (() => {
         
         const image = domHelpers.createElement('img', {
             src: recipe.imageUrl,
-            alt: recipe.title
+            alt: recipe.title,
+            loading: 'lazy' // Add lazy loading
         });
         
         const source = domHelpers.createElement('div', {
@@ -93,7 +102,7 @@ const CarouselManager = (() => {
         const detailsToggle = domHelpers.createElement('button', {
             className: 'details-toggle',
             innerHTML: `
-                <span>More Details</span>
+                <span>Recipe Details</span>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <polyline points="6 9 12 15 18 9"></polyline>
                 </svg>
@@ -152,13 +161,6 @@ const CarouselManager = (() => {
         // Recipe actions
         const actions = domHelpers.createElement('div', { className: 'recipe-actions' });
         
-        const viewRecipeLink = domHelpers.createElement('a', {
-            className: 'view-recipe',
-            href: recipe.sourceUrl,
-            target: '_blank',
-            textContent: 'View Recipe'
-        });
-        
         // Add to Plan button
         const addToPlanBtn = domHelpers.createElement('button', {
             className: 'add-to-plan',
@@ -170,6 +172,13 @@ const CarouselManager = (() => {
                 </svg>
                 <span>Add to Plan</span>
             `
+        });
+        
+        const viewRecipeLink = domHelpers.createElement('a', {
+            className: 'view-recipe',
+            href: recipe.sourceUrl,
+            target: '_blank',
+            textContent: 'View Recipe'
         });
         
         actions.appendChild(addToPlanBtn);
@@ -210,30 +219,112 @@ const CarouselManager = (() => {
             }
         });
         
-        // Touch swiping
-        let startX, moveX;
-        elements.carousel.addEventListener('touchstart', (e) => {
-            startX = e.touches[0].clientX;
-        });
+        // Touch swiping with enhanced support
+        setupSwipeSupport();
+    };
+    
+    // Setup enhanced swipe support for mobile
+    const setupSwipeSupport = () => {
+        if (!elements.carousel || !elements.container) return;
         
-        elements.carousel.addEventListener('touchmove', (e) => {
-            moveX = e.touches[0].clientX;
-        });
+        // Touch events for swipe
+        elements.container.addEventListener('touchstart', handleSwipeStart, { passive: false });
+        elements.container.addEventListener('touchmove', handleSwipeMove, { passive: false });
+        elements.container.addEventListener('touchend', handleSwipeEnd, { passive: false });
         
-        elements.carousel.addEventListener('touchend', () => {
-            if (startX && moveX) {
-                const diff = startX - moveX;
-                if (Math.abs(diff) > 50) {
-                    if (diff > 0) {
-                        showNextRecipe();
-                    } else {
-                        showPreviousRecipe();
-                    }
-                }
+        // Mouse events for drag (optional, for desktop testing)
+        elements.container.addEventListener('mousedown', handleSwipeStart);
+        document.addEventListener('mousemove', handleSwipeMove);
+        document.addEventListener('mouseup', handleSwipeEnd);
+    };
+    
+    // Handle the start of a swipe
+    const handleSwipeStart = (e) => {
+        // Skip if animation is in progress
+        if (state.animationInProgress) return;
+        
+        // Don't swipe if we're clicking a button or link
+        if (e.target.tagName === 'BUTTON' || e.target.tagName === 'A' || 
+            e.target.closest('button') || e.target.closest('a')) {
+            return;
+        }
+        
+        // Get initial position
+        const pageX = e.type.includes('mouse') ? e.pageX : e.touches[0].pageX;
+        
+        state.isSwiping = true;
+        state.swipeStartX = pageX;
+        state.swipeCurrentX = pageX;
+        
+        // Add swiping class for visual feedback
+        elements.carousel.classList.add(CLASSES.SWIPING);
+        
+        // Prevent default only for touch events to avoid text selection during swipe
+        if (e.type === 'touchstart') {
+            // We don't want to prevent all touch events as that would break scrolling
+            // Instead we'll check the direction in the move handler
+        }
+    };
+    
+    // Handle swipe movement
+    const handleSwipeMove = (e) => {
+        if (!state.isSwiping) return;
+        
+        // Get current position
+        const pageX = e.type.includes('mouse') ? e.pageX : e.touches[0].pageX;
+        state.swipeCurrentX = pageX;
+        
+        // Calculate swipe distance
+        const distance = state.swipeCurrentX - state.swipeStartX;
+        
+        // If we're swiping horizontally enough, prevent vertical scrolling
+        if (e.type === 'touchmove' && Math.abs(distance) > 10) {
+            e.preventDefault();
+        }
+        
+        // Only allow swiping if we're not at the edge or if we're swiping in the valid direction
+        const canSwipeLeft = state.currentIndex < state.recipes.length - 1;
+        const canSwipeRight = state.currentIndex > 0;
+        
+        if ((distance < 0 && canSwipeLeft) || (distance > 0 && canSwipeRight)) {
+            // Calculate a resistance factor that increases as we approach the edges
+            let resistance = 1;
+            
+            // Apply transformation based on swipe
+            const translateValue = -state.currentIndex * 100 + (distance / elements.container.offsetWidth) * 100 * resistance;
+            elements.carousel.style.transform = `translateX(${translateValue}%)`;
+        }
+    };
+    
+    // Handle end of swipe
+    const handleSwipeEnd = (e) => {
+        if (!state.isSwiping) return;
+        
+        state.isSwiping = false;
+        elements.carousel.classList.remove(CLASSES.SWIPING);
+        
+        // Calculate the distance swiped
+        const distance = state.swipeCurrentX - state.swipeStartX;
+        const absDist = Math.abs(distance);
+        
+        // If swiped far enough, change recipe
+        if (absDist > state.swipeThreshold) {
+            if (distance > 0 && state.currentIndex > 0) {
+                showPreviousRecipe();
+            } else if (distance < 0 && state.currentIndex < state.recipes.length - 1) {
+                showNextRecipe();
+            } else {
+                // Reset to current position if at the edge
+                updateCarouselPosition();
             }
-            startX = null;
-            moveX = null;
-        });
+        } else {
+            // Reset to current position if swipe not far enough
+            updateCarouselPosition();
+        }
+        
+        // Reset swipe state
+        state.swipeStartX = null;
+        state.swipeCurrentX = null;
     };
     
     // Navigation functions
@@ -246,18 +337,30 @@ const CarouselManager = (() => {
     };
     
     const showPreviousRecipe = () => {
-        if (state.currentIndex > 0) {
+        if (state.currentIndex > 0 && !state.animationInProgress) {
+            state.animationInProgress = true;
             state.currentIndex--;
             updateCarouselPosition();
             updateNavigation();
+            
+            // Reset animation flag after transition completes
+            setTimeout(() => {
+                state.animationInProgress = false;
+            }, 300); // Match this to your CSS transition time
         }
     };
     
     const showNextRecipe = () => {
-        if (state.currentIndex < state.recipes.length - 1) {
+        if (state.currentIndex < state.recipes.length - 1 && !state.animationInProgress) {
+            state.animationInProgress = true;
             state.currentIndex++;
             updateCarouselPosition();
             updateNavigation();
+            
+            // Reset animation flag after transition completes
+            setTimeout(() => {
+                state.animationInProgress = false;
+            }, 300); // Match this to your CSS transition time
         }
     };
     
@@ -272,11 +375,38 @@ const CarouselManager = (() => {
     const updateNavigation = () => {
         // Update buttons
         if (elements.prevBtn && elements.nextBtn) {
-            elements.prevBtn.style.opacity = state.currentIndex === 0 ? '0.5' : '1';
-            elements.prevBtn.style.pointerEvents = state.currentIndex === 0 ? 'none' : 'auto';
+            // Previous button
+            if (state.currentIndex === 0) {
+                elements.prevBtn.style.opacity = '0.5';
+                elements.prevBtn.style.pointerEvents = 'none';
+            } else {
+                elements.prevBtn.style.opacity = '1';
+                elements.prevBtn.style.pointerEvents = 'auto';
+            }
             
-            elements.nextBtn.style.opacity = state.currentIndex === state.recipes.length - 1 ? '0.5' : '1';
-            elements.nextBtn.style.pointerEvents = state.currentIndex === state.recipes.length - 1 ? 'none' : 'auto';
+            // Next button
+            if (state.currentIndex === state.recipes.length - 1) {
+                elements.nextBtn.style.opacity = '0.5';
+                elements.nextBtn.style.pointerEvents = 'none';
+            } else {
+                elements.nextBtn.style.opacity = '1';
+                elements.nextBtn.style.pointerEvents = 'auto';
+            }
+        }
+        
+        // Update progress indicator if present
+        const progressIndicator = document.querySelector('.carousel-progress');
+        if (progressIndicator) {
+            // Clear existing indicators
+            domHelpers.clearElement(progressIndicator);
+            
+            // Create new indicators
+            state.recipes.forEach((_, index) => {
+                const dot = domHelpers.createElement('div', {
+                    className: `carousel-dot ${index === state.currentIndex ? 'active' : ''}`
+                });
+                progressIndicator.appendChild(dot);
+            });
         }
     };
     
@@ -300,13 +430,15 @@ const CarouselManager = (() => {
     
     // Update recipes - new method for pagination
     const updateRecipes = (newRecipes) => {
-        if (!newRecipes || !Array.isArray(newRecipes) || !newRecipes.length) {
+        if (!newRecipes || !Array.isArray(newRecipes)) {
             console.error('Invalid recipes data provided to CarouselManager.updateRecipes');
             return;
         }
         
         // Save current index for restoring position if possible
-        const currentRecipeId = state.recipes[state.currentIndex]?.id;
+        const currentRecipeId = state.recipes.length > 0 && state.currentIndex < state.recipes.length 
+            ? state.recipes[state.currentIndex]?.id 
+            : null;
         
         // Update recipes
         state.recipes = newRecipes;
@@ -329,7 +461,26 @@ const CarouselManager = (() => {
         renderCarousel();
         updateNavigation();
         
+        // Log update
         console.log(`Carousel updated with ${newRecipes.length} recipes`);
+        
+        // If no recipes, show empty message
+        if (newRecipes.length === 0 && elements.container) {
+            const emptyMessage = domHelpers.createElement('div', {
+                className: 'empty-list-message',
+                innerHTML: `
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                        <line x1="12" y1="9" x2="12" y2="13"></line>
+                        <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                    </svg>
+                    <p>No recipes found</p>
+                    <p class="subtitle">Try different search or filter settings</p>
+                `
+            });
+            domHelpers.clearElement(elements.container);
+            elements.container.appendChild(emptyMessage);
+        }
     };
     
     // Public API
@@ -337,6 +488,7 @@ const CarouselManager = (() => {
         init,
         filterRecipes,
         getCurrentRecipe,
-        updateRecipes
+        updateRecipes,
+        goToRecipe
     };
 })();
