@@ -258,6 +258,9 @@ const MealPlanManager = (() => {
         state.mealPlan[day] = recipe;
         updateDayCard(day);
         
+        // Dispatch event for other modules to react to meal plan updates
+        document.dispatchEvent(new CustomEvent('mealPlanUpdated', { detail: { recipe, day } }));
+        
         // Save changes to localStorage
         saveMealPlan();
     };
@@ -285,6 +288,9 @@ const MealPlanManager = (() => {
         console.log(`Removing recipe from ${day}`);
         state.mealPlan[day] = null;
         updateDayCard(day);
+        
+        // Dispatch event for other modules to react to meal plan updates
+        document.dispatchEvent(new CustomEvent('mealPlanUpdated', { detail: { recipe: null, day } }));
         
         // Save changes to localStorage
         saveMealPlan();
@@ -416,6 +422,9 @@ const MealPlanManager = (() => {
             state.mealPlan[day] = null;
             updateDayCard(day);
         });
+        
+        // Dispatch event for other modules to react to meal plan updates
+        document.dispatchEvent(new CustomEvent('mealPlanUpdated', { detail: { cleared: true } }));
         
         // Clear from storage
         saveMealPlan();

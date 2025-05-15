@@ -87,6 +87,22 @@ const RecipeLoader = (() => {
         state.filters = filters;
         
         state.filteredRecipes = state.allRecipes.filter(recipe => {
+            // Apply search filter if provided
+            if (filters.searchQuery && filters.searchQuery.length > 0) {
+                const query = filters.searchQuery.toLowerCase();
+                const titleMatch = recipe.title.toLowerCase().includes(query);
+                const tagsMatch = recipe.tags && Array.isArray(recipe.tags) && 
+                               recipe.tags.some(tag => tag.toLowerCase().includes(query));
+                const ingredientMatch = recipe.ingredients && Array.isArray(recipe.ingredients) &&
+                                   recipe.ingredients.some(ingredient => 
+                                       ingredient.name.toLowerCase().includes(query));
+                
+                if (!titleMatch && !tagsMatch && !ingredientMatch) {
+                    return false;
+                }
+            }
+            
+            // Apply other filters
             return (!filters.cuisine || recipe.cuisine === filters.cuisine) &&
                    (!filters.mealType || recipe.mealType === filters.mealType) &&
                    (!filters.protein || recipe.protein === filters.protein) &&
@@ -98,11 +114,30 @@ const RecipeLoader = (() => {
         return state.filteredRecipes;
     };
     
+    // Find recipe by ID
+    const findRecipeById = (id) => {
+        // First check loaded recipes
+        let recipe = state.allRecipes.find(r => r.id === id);
+        
+        // If not found, check all available recipes
+        if (!recipe && window.sampleRecipes) {
+            recipe = window.sampleRecipes.find(r => r.id === id);
+            
+            // If found in all recipes but not in loaded recipes, add it to loaded
+            if (recipe && !state.allRecipes.some(r => r.id === id)) {
+                state.allRecipes.push(recipe);
+            }
+        }
+        
+        return recipe || null;
+    };
+    
     // Public API
     return {
         init,
         loadMoreRecipes,
         applyFilters,
+        findRecipeById,
         getFilteredRecipes: () => state.filteredRecipes,
         getAllRecipes: () => state.allRecipes,
         getCurrentPage: () => state.currentPage,

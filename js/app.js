@@ -6,68 +6,116 @@ document.addEventListener('DOMContentLoaded', async () => {
     loadingIndicator.innerHTML = '<div class="loading-spinner"></div><p>Loading recipes...</p>';
     document.querySelector('main').appendChild(loadingIndicator);
     
-    // Initialize recipe loader and load first batch
-    const initialRecipes = await RecipeLoader.init();
+    // Default filter values - setting mealType to 'dinner' by default
+    const defaultFilters = {
+        maxPrepTime: 30,
+        maxCookTime: 45,
+        cuisine: '',
+        protein: '',
+        source: '',
+        mealType: 'dinner', // Show dinner recipes by default
+        searchQuery: '' // New property for search
+    };
     
-    if (!initialRecipes || !initialRecipes.length) {
-        loadingIndicator.innerHTML = '<p>Error loading recipes. Please try again later.</p>';
-        console.error('No recipe data found!');
+    // Initialize recipe loader and load first batch
+    await RecipeLoader.init();
+    
+    // Apply dinner filter immediately after loading recipes
+    const storedFilters = StorageManager.loadFilters();
+    const filtersToApply = storedFilters || defaultFilters;
+    const filteredRecipes = RecipeLoader.applyFilters(filtersToApply);
+    
+    if (!filteredRecipes || !filteredRecipes.length) {
+        loadingIndicator.innerHTML = '<p>No recipes found matching the filters. Please try different filters.</p>';
+        console.error('No filtered recipes found!');
         return;
     }
     
     // Remove loading indicator
     loadingIndicator.remove();
     
-    // Initialize managers with loaded recipes
-    CarouselManager.init(initialRecipes);
+    // Initialize managers with FILTERED recipes
+    CarouselManager.init(filteredRecipes);
     MealPlanManager.init();
     GroceryListManager.init();
+    FavoritesManager.init();
     
-    // Add "Load More" button if there are more recipes
-    if (RecipeLoader.hasMore()) {
-        const loadMoreContainer = document.createElement('div');
-        loadMoreContainer.className = 'load-more-container';
+    // Setup infinite scroll functionality
+    const setupInfiniteScroll = () => {
+        // Variable to track if we're currently loading
+        let isLoadingMore = false;
         
-        const loadMoreButton = document.createElement('button');
-        loadMoreButton.className = 'load-more-button';
-        loadMoreButton.textContent = 'Load More Recipes';
-        loadMoreButton.addEventListener('click', async () => {
-            loadMoreButton.disabled = true;
-            loadMoreButton.textContent = 'Loading...';
+        // Function to check scroll position and load more if needed
+        const checkScrollPosition = () => {
+            // Don't do anything if already loading or no more recipes
+            if (isLoadingMore || !RecipeLoader.hasMore()) return;
             
+            // Calculate how far down the page we've scrolled
+            const scrollPosition = window.innerHeight + window.scrollY;
+            // Threshold - load more when within 500px of bottom
+            const threshold = document.body.offsetHeight - 500;
+            
+            // If scrolled past threshold, load more recipes
+            if (scrollPosition > threshold) {
+                loadMoreRecipes();
+            }
+        };
+        
+        // Function to load more recipes
+        const loadMoreRecipes = async () => {
+            isLoadingMore = true;
+            
+            // Create loading indicator at bottom of carousel
+            const loadingIndicator = document.createElement('div');
+            loadingIndicator.className = 'loading-indicator';
+            loadingIndicator.innerHTML = '<div class="loading-spinner"></div><p>Loading more recipes...</p>';
+            document.querySelector('.carousel-container').appendChild(loadingIndicator);
+            
+            // Load next batch of recipes
             const newRecipes = await RecipeLoader.loadMoreRecipes();
             
+            // Remove loading indicator
+            loadingIndicator.remove();
+            
             if (newRecipes.length > 0) {
-                // Update the carousel with all filtered recipes
+                // Update carousel with all filtered recipes
                 CarouselManager.updateRecipes(RecipeLoader.getFilteredRecipes());
-                loadMoreButton.textContent = 'Load More Recipes';
-                loadMoreButton.disabled = false;
             }
             
-            // Hide button if no more recipes
-            if (!RecipeLoader.hasMore()) {
-                loadMoreContainer.style.display = 'none';
-            }
+            isLoadingMore = false;
+        };
+        
+        // Add scroll event listener with throttling
+        let scrollTimeout;
+        window.addEventListener('scroll', () => {
+            if (scrollTimeout) clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(checkScrollPosition, 200); // Throttle to once per 200ms
         });
         
-        loadMoreContainer.appendChild(loadMoreButton);
-        document.querySelector('.carousel-container').after(loadMoreContainer);
-    }
+        // Initial check in case the page doesn't have a scrollbar yet
+        setTimeout(checkScrollPosition, 500); // Check after a short delay
+    };
+    
+    // Initialize infinite scroll
+    setupInfiniteScroll();
     
     // Constants for UI elements
     const TABS = {
         RECIPES: 'recipes',
+        FAVORITES: 'favorites',
         GROCERY: 'grocery'
     };
     
     // Tab navigation elements
     const tabElements = {
         [TABS.RECIPES]: document.getElementById('tab-recipes'),
+        [TABS.FAVORITES]: document.getElementById('tab-favorites'),
         [TABS.GROCERY]: document.getElementById('tab-grocery')
     };
     
     const viewElements = {
         [TABS.RECIPES]: document.getElementById('recipes-view'),
+        [TABS.FAVORITES]: document.getElementById('favorites-view'),
         [TABS.GROCERY]: document.getElementById('grocery-view')
     };
     
@@ -110,6 +158,11 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
         }
         
+        // If switching to favorites tab, update the displayed favorites
+        if (tabName === TABS.FAVORITES) {
+            FavoritesManager.refreshFavorites();
+        }
+        
         // Save the current view in localStorage
         StorageManager.saveLastView(tabName);
     };
@@ -129,6 +182,50 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     }
     
+    // Setup search functionality
+    const setupSearch = () => {
+        const searchInput = document.getElementById('recipe-search');
+        const searchButton = document.getElementById('search-button');
+        
+        if (!searchInput || !searchButton) {
+            console.error('Search elements not found');
+            return;
+        }
+        
+        const performSearch = () => {
+            const searchQuery = searchInput.value.trim().toLowerCase();
+            
+            // Update current filters with search query
+            const currentFilters = StorageManager.loadFilters() || defaultFilters;
+            currentFilters.searchQuery = searchQuery;
+            
+            // Apply search filter
+            const filteredRecipes = RecipeLoader.applyFilters(currentFilters);
+            
+            // Update carousel with filtered recipes
+            CarouselManager.updateRecipes(filteredRecipes);
+            
+            // Save filters
+            StorageManager.saveFilters(currentFilters);
+        };
+        
+        // Search button click event
+        searchButton.addEventListener('click', performSearch);
+        
+        // Search on enter key
+        searchInput.addEventListener('keyup', (e) => {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+        
+        // Update search input with stored value
+        const storedFilters = StorageManager.loadFilters();
+        if (storedFilters && storedFilters.searchQuery) {
+            searchInput.value = storedFilters.searchQuery;
+        }
+    };
+    
     // Filter functionality setup with recipe loader
     const setupFilters = () => {
         const filtersToggle = document.getElementById('filters-toggle');
@@ -143,7 +240,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             cuisine: document.getElementById('cuisine-type'),
             protein: document.getElementById('protein-type'),
             source: document.getElementById('recipe-source'),
-            mealType: document.getElementById('meal-type') // Your new meal type filter
+            mealType: document.getElementById('meal-type') // Your meal type filter
         };
         
         const filterLabels = {
@@ -151,18 +248,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             cookTime: document.getElementById('cook-time-value')
         };
         
-        // Default filter values
-        const defaultFilters = {
-            maxPrepTime: 30,
-            maxCookTime: 45,
-            cuisine: '',
-            protein: '',
-            source: '',
-            mealType: ''
-        };
-        
-        // Current filters - try to load from storage
-        let currentFilters = StorageManager.loadFilters() || {...defaultFilters};
+        // Current filters - using the same default we used earlier
+        let currentFilters = storedFilters || defaultFilters;
         
         // Update UI to match loaded filters
         if (currentFilters) {
@@ -201,21 +288,13 @@ document.addEventListener('DOMContentLoaded', async () => {
             
             // Save filters to localStorage
             StorageManager.saveFilters(currentFilters);
-            
-            // Update the "Load More" button visibility based on filter results
-            const loadMoreContainer = document.querySelector('.load-more-container');
-            if (loadMoreContainer) {
-                if (RecipeLoader.hasMore() && filteredRecipes.length > 0) {
-                    loadMoreContainer.style.display = 'flex';
-                } else {
-                    loadMoreContainer.style.display = 'none';
-                }
-            }
         };
         
         // Reset filters to default values
         const resetFiltersToDefault = () => {
-            currentFilters = {...defaultFilters};
+            // Preserve the search query when resetting other filters
+            const searchQuery = currentFilters.searchQuery || '';
+            currentFilters = {...defaultFilters, searchQuery};
             
             // Update UI to match defaults
             Object.entries(filterElements).forEach(([key, element]) => {
@@ -224,8 +303,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             
             updateFilterLabels();
             
-            // Clear saved filters
-            StorageManager.saveFilters(currentFilters);
+            // Apply the reset filters
+            applyFilterToRecipes();
         };
         
         // Event handlers for filter UI
@@ -276,18 +355,16 @@ document.addEventListener('DOMContentLoaded', async () => {
         
         // Initialize filter labels
         updateFilterLabels();
-        
-        // Apply stored filters on load
-        applyFilterToRecipes();
     };
     
     // Run setup functions
     setupFilters();
+    setupSearch();
     
     // Load the last active view from storage, or default to recipes
     const lastView = StorageManager.loadLastView() || TABS.RECIPES;
     switchTab(lastView);
     
     // Show recipe count
-    console.log(`Loaded ${RecipeLoader.getTotalLoaded()} of ${RecipeLoader.getTotalAvailable()} total recipes`);
+    console.log(`Loaded ${RecipeLoader.getTotalLoaded()} of ${RecipeLoader.getTotalAvailable()} total recipes (showing ${filteredRecipes.length} dinner recipes)`);
 });

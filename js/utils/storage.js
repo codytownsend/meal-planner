@@ -4,7 +4,9 @@ const StorageManager = (() => {
     const STORAGE_KEYS = {
         MEAL_PLAN: 'mealPlannerMealPlan',
         FILTERS: 'mealPlannerFilters',
-        LAST_VIEW: 'mealPlannerLastView'
+        LAST_VIEW: 'mealPlannerLastView',
+        FAVORITES: 'mealPlannerFavorites',
+        RECIPE_HISTORY: 'mealPlannerRecipeHistory'
     };
 
     // Check if localStorage is available
@@ -64,7 +66,34 @@ const StorageManager = (() => {
 
     // Save meal plan
     const saveMealPlan = (mealPlan) => {
+        // Save recipes to history for favorites feature
+        saveMealPlanHistory(mealPlan);
+        
+        // Save the meal plan itself
         return saveData(STORAGE_KEYS.MEAL_PLAN, mealPlan);
+    };
+    
+    // Save meal plan history (for favorites)
+    const saveMealPlanHistory = (mealPlan) => {
+        if (!mealPlan) return false;
+        
+        try {
+            // Load current history
+            const history = loadData(STORAGE_KEYS.RECIPE_HISTORY) || {};
+            
+            // Add recipe IDs to history with timestamp
+            Object.values(mealPlan).forEach(recipeId => {
+                if (recipeId !== null) {
+                    history[recipeId] = Date.now();
+                }
+            });
+            
+            // Save updated history
+            return saveData(STORAGE_KEYS.RECIPE_HISTORY, history);
+        } catch (e) {
+            console.error('Error saving meal plan history:', e);
+            return false;
+        }
     };
 
     // Load meal plan
@@ -91,6 +120,16 @@ const StorageManager = (() => {
     const loadLastView = () => {
         return loadData(STORAGE_KEYS.LAST_VIEW);
     };
+    
+    // Save favorites
+    const saveFavorites = (favorites) => {
+        return saveData(STORAGE_KEYS.FAVORITES, favorites);
+    };
+    
+    // Load favorites
+    const loadFavorites = () => {
+        return loadData(STORAGE_KEYS.FAVORITES);
+    };
 
     // Clear all data
     const clearAllData = () => {
@@ -109,12 +148,17 @@ const StorageManager = (() => {
 
     // Public API
     return {
+        saveData,
+        loadData,
+        clearData,
         saveMealPlan,
         loadMealPlan,
         saveFilters,
         loadFilters,
         saveLastView,
         loadLastView,
+        saveFavorites,
+        loadFavorites,
         clearAllData
     };
 })();
