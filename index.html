@@ -61,13 +61,28 @@
                             <label for="cuisine-type">Cuisine Type</label>
                             <select id="cuisine-type">
                                 <option value="">All Cuisines</option>
+                                <option value="american">American</option>
                                 <option value="italian">Italian</option>
                                 <option value="mexican">Mexican</option>
                                 <option value="asian">Asian</option>
-                                <option value="american">American</option>
                                 <option value="mediterranean">Mediterranean</option>
+                                <option value="greek">Greek</option>
+                                <option value="thai">Thai</option>
+                                <option value="french">French</option>
+                                <option value="indian">Indian</option>
                             </select>
                         </div>
+
+                        <div class="filter-group">
+                            <label for="meal-type">Meal Type</label>
+                            <select id="meal-type">
+                                <option value="">All Meals</option>
+                                <option value="dinner">Dinner</option>
+                                <option value="lunch">Lunch</option>
+                                <option value="appetizer">Appetizer</option>
+                                <option value="side">Side</option>
+                            </select>
+                        </div>                        
 
                         <div class="filter-group">
                             <label for="protein-type">Protein Type</label>
@@ -116,9 +131,6 @@
                         <polyline points="9 18 15 12 9 6"></polyline>
                     </svg>
                 </button>
-
-                <!-- Simple Dots Navigation -->
-                <div class="carousel-dots" id="carousel-dots"></div>
             </div>
         </section>
 
@@ -234,9 +246,10 @@
     </div>
 
     <!-- JavaScript Files -->
-    <script src="data/sample-recipes.js"></script>
+    <script src="data/recipes.js"></script>
     <script src="js/utils/dom-helpers.js"></script>
     <script src="js/utils/storage.js"></script>
+    <script src="js/recipe-loader.js"></script>
     <script src="js/carousel.js"></script>
     <script src="js/meal-plan.js"></script>
     <script src="js/grocery-list.js"></script>

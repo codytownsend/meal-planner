@@ -1,18 +1,58 @@
-// Update for app.js - Add Storage initialization and clear button event listeners
-
 // DOMContentLoaded event handler
-document.addEventListener('DOMContentLoaded', () => {
-    // Initialize recipe data
-    const recipeData = window.sampleRecipes || [];
-    if (!recipeData.length) {
+document.addEventListener('DOMContentLoaded', async () => {
+    // Create loading indicator
+    const loadingIndicator = document.createElement('div');
+    loadingIndicator.className = 'loading-indicator';
+    loadingIndicator.innerHTML = '<div class="loading-spinner"></div><p>Loading recipes...</p>';
+    document.querySelector('main').appendChild(loadingIndicator);
+    
+    // Initialize recipe loader and load first batch
+    const initialRecipes = await RecipeLoader.init();
+    
+    if (!initialRecipes || !initialRecipes.length) {
+        loadingIndicator.innerHTML = '<p>Error loading recipes. Please try again later.</p>';
         console.error('No recipe data found!');
         return;
     }
-
-    // Initialize managers with proper sequence
-    CarouselManager.init(recipeData);
+    
+    // Remove loading indicator
+    loadingIndicator.remove();
+    
+    // Initialize managers with loaded recipes
+    CarouselManager.init(initialRecipes);
     MealPlanManager.init();
     GroceryListManager.init();
+    
+    // Add "Load More" button if there are more recipes
+    if (RecipeLoader.hasMore()) {
+        const loadMoreContainer = document.createElement('div');
+        loadMoreContainer.className = 'load-more-container';
+        
+        const loadMoreButton = document.createElement('button');
+        loadMoreButton.className = 'load-more-button';
+        loadMoreButton.textContent = 'Load More Recipes';
+        loadMoreButton.addEventListener('click', async () => {
+            loadMoreButton.disabled = true;
+            loadMoreButton.textContent = 'Loading...';
+            
+            const newRecipes = await RecipeLoader.loadMoreRecipes();
+            
+            if (newRecipes.length > 0) {
+                // Update the carousel with all filtered recipes
+                CarouselManager.updateRecipes(RecipeLoader.getFilteredRecipes());
+                loadMoreButton.textContent = 'Load More Recipes';
+                loadMoreButton.disabled = false;
+            }
+            
+            // Hide button if no more recipes
+            if (!RecipeLoader.hasMore()) {
+                loadMoreContainer.style.display = 'none';
+            }
+        });
+        
+        loadMoreContainer.appendChild(loadMoreButton);
+        document.querySelector('.carousel-container').after(loadMoreContainer);
+    }
     
     // Constants for UI elements
     const TABS = {
@@ -89,7 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    // Filter functionality setup
+    // Filter functionality setup with recipe loader
     const setupFilters = () => {
         const filtersToggle = document.getElementById('filters-toggle');
         const filtersModal = document.getElementById('filters-modal');
@@ -102,7 +142,8 @@ document.addEventListener('DOMContentLoaded', () => {
             maxCookTime: document.getElementById('max-cook-time'),
             cuisine: document.getElementById('cuisine-type'),
             protein: document.getElementById('protein-type'),
-            source: document.getElementById('recipe-source')
+            source: document.getElementById('recipe-source'),
+            mealType: document.getElementById('meal-type') // Your new meal type filter
         };
         
         const filterLabels = {
@@ -116,7 +157,8 @@ document.addEventListener('DOMContentLoaded', () => {
             maxCookTime: 45,
             cuisine: '',
             protein: '',
-            source: ''
+            source: '',
+            mealType: ''
         };
         
         // Current filters - try to load from storage
@@ -133,27 +175,42 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Update filter labels based on slider values
         const updateFilterLabels = () => {
-            filterLabels.prepTime.textContent = currentFilters.maxPrepTime;
-            filterLabels.cookTime.textContent = currentFilters.maxCookTime;
+            if (filterLabels.prepTime) filterLabels.prepTime.textContent = currentFilters.maxPrepTime;
+            if (filterLabels.cookTime) filterLabels.cookTime.textContent = currentFilters.maxCookTime;
         };
         
-        // Apply filters to recipe data
+        // Apply filters to recipe data using RecipeLoader
         const applyFilterToRecipes = () => {
-            const filteredRecipes = recipeData.filter(recipe => {
-                return (
-                    recipe.prepTime <= currentFilters.maxPrepTime &&
-                    recipe.cookTime <= currentFilters.maxCookTime &&
-                    (!currentFilters.cuisine || recipe.cuisine === currentFilters.cuisine) &&
-                    (!currentFilters.protein || recipe.protein === currentFilters.protein) &&
-                    (!currentFilters.source || recipe.source === currentFilters.source)
-                );
-            });
+            // Create loading indicator
+            const loadingIndicator = document.createElement('div');
+            loadingIndicator.className = 'loading-indicator';
+            loadingIndicator.innerHTML = '<div class="loading-spinner"></div><p>Filtering recipes...</p>';
+            document.querySelector('.carousel-container').appendChild(loadingIndicator);
             
-            CarouselManager.filterRecipes(filteredRecipes);
+            // Apply filters to loaded recipes
+            const filteredRecipes = RecipeLoader.applyFilters(currentFilters);
+            
+            // Update carousel with filtered recipes
+            CarouselManager.updateRecipes(filteredRecipes);
+            
+            // Close filter modal
             filtersModal.classList.remove('active');
+            
+            // Remove loading indicator
+            loadingIndicator.remove();
             
             // Save filters to localStorage
             StorageManager.saveFilters(currentFilters);
+            
+            // Update the "Load More" button visibility based on filter results
+            const loadMoreContainer = document.querySelector('.load-more-container');
+            if (loadMoreContainer) {
+                if (RecipeLoader.hasMore() && filteredRecipes.length > 0) {
+                    loadMoreContainer.style.display = 'flex';
+                } else {
+                    loadMoreContainer.style.display = 'none';
+                }
+            }
         };
         
         // Reset filters to default values
@@ -162,7 +219,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Update UI to match defaults
             Object.entries(filterElements).forEach(([key, element]) => {
-                element.value = currentFilters[key];
+                if (element) element.value = currentFilters[key];
             });
             
             updateFilterLabels();
@@ -185,28 +242,37 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         // Slider input handlers
-        filterElements.maxPrepTime.addEventListener('input', () => {
-            currentFilters.maxPrepTime = parseInt(filterElements.maxPrepTime.value);
-            updateFilterLabels();
-        });
+        if (filterElements.maxPrepTime) {
+            filterElements.maxPrepTime.addEventListener('input', () => {
+                currentFilters.maxPrepTime = parseInt(filterElements.maxPrepTime.value);
+                updateFilterLabels();
+            });
+        }
         
-        filterElements.maxCookTime.addEventListener('input', () => {
-            currentFilters.maxCookTime = parseInt(filterElements.maxCookTime.value);
-            updateFilterLabels();
-        });
+        if (filterElements.maxCookTime) {
+            filterElements.maxCookTime.addEventListener('input', () => {
+                currentFilters.maxCookTime = parseInt(filterElements.maxCookTime.value);
+                updateFilterLabels();
+            });
+        }
         
         // Apply button handler
-        applyFilters.addEventListener('click', () => {
-            // Update currentFilters with select values
-            currentFilters.cuisine = filterElements.cuisine.value;
-            currentFilters.protein = filterElements.protein.value;
-            currentFilters.source = filterElements.source.value;
-            
-            applyFilterToRecipes();
-        });
+        if (applyFilters) {
+            applyFilters.addEventListener('click', () => {
+                // Update currentFilters with select values
+                if (filterElements.cuisine) currentFilters.cuisine = filterElements.cuisine.value;
+                if (filterElements.protein) currentFilters.protein = filterElements.protein.value;
+                if (filterElements.source) currentFilters.source = filterElements.source.value;
+                if (filterElements.mealType) currentFilters.mealType = filterElements.mealType.value;
+                
+                applyFilterToRecipes();
+            });
+        }
         
         // Reset button handler
-        resetFilters.addEventListener('click', resetFiltersToDefault);
+        if (resetFilters) {
+            resetFilters.addEventListener('click', resetFiltersToDefault);
+        }
         
         // Initialize filter labels
         updateFilterLabels();
@@ -221,4 +287,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Load the last active view from storage, or default to recipes
     const lastView = StorageManager.loadLastView() || TABS.RECIPES;
     switchTab(lastView);
+    
+    // Show recipe count
+    console.log(`Loaded ${RecipeLoader.getTotalLoaded()} of ${RecipeLoader.getTotalAvailable()} total recipes`);
 });

@@ -1,0 +1,1206 @@
+{
+  "totalRecipes": 3268,
+  "categorizedRecipes": 2340,
+  "uncategorizedRecipes": 928,
+  "uniqueCuisines": 41,
+  "cuisines": [
+    {
+      "name": "American",
+      "count": 2054,
+      "percentage": "62.9%",
+      "recipes": [
+        {
+          "name": "Chocolate Chip Zucchini Pecan Bread",
+          "url": "https://www.halfbakedharvest.com/chocolate-chip-zucchini-pecan-bread/"
+        },
+        {
+          "name": "Strawberry Feta Salad with Candied Pecans",
+          "url": "https://www.halfbakedharvest.com/strawberry-feta-salad/"
+        },
+        {
+          "name": "Sheet Pan Dijon Salmon and Sesame Panko Potatoes",
+          "url": "https://www.halfbakedharvest.com/dijon-salmon-and-panko-potatoes/"
+        },
+        {
+          "name": "Sheet Pan Sun-Dried Tomato Chicken Bowls",
+          "url": "https://www.halfbakedharvest.com/sun-dried-tomato-chicken-bowls/"
+        },
+        {
+          "name": "Smashed Raspberry Dutch Baby",
+          "url": "https://www.halfbakedharvest.com/raspberry-dutch-baby/"
+        },
+        {
+          "name": "Skillet Mexican Beef and Rice",
+          "url": "https://www.halfbakedharvest.com/skillet-mexican-beef-and-rice/"
+        },
+        {
+          "name": "Chipotle Pineapple Chicken with Bang Bang Sauce",
+          "url": "https://www.halfbakedharvest.com/chipotle-pineapple-chicken/"
+        },
+        {
+          "name": "Bursting Blueberry Ricotta Pudding Cake",
+          "url": "https://www.halfbakedharvest.com/blueberry-ricotta-pudding-cake/"
+        },
+        {
+          "name": "Crispy Wonton Rotisserie Chicken Salad",
+          "url": "https://www.halfbakedharvest.com/wonton-chicken-salad/"
+        },
+        {
+          "name": "Easy Lemon Fritter Cake",
+          "url": "https://www.halfbakedharvest.com/lemon-fritter-cake/"
+        }
+      ]
+    },
+    {
+      "name": "Uncategorized",
+      "count": 928,
+      "percentage": "28.4%",
+      "recipes": [
+        {
+          "name": "The Best (easiest) No Knead Bread",
+          "url": "https://www.halfbakedharvest.com/easiest-no-knead-bread/"
+        },
+        {
+          "name": "Lemon Feta Paprika Chicken Skewers with Charred Corn",
+          "url": "https://www.halfbakedharvest.com/paprika-chicken-skewers/"
+        },
+        {
+          "name": "Quick Poblano Pineapple Shrimp Tacos with Cilantro Jalapeño Ranch",
+          "url": "https://www.halfbakedharvest.com/poblano-pineapple-shrimp-tacos/"
+        },
+        {
+          "name": "Chocolate Peanut Butter Millionaire Bars",
+          "url": "https://www.halfbakedharvest.com/chocolate-peanut-butter-millionaire-bars/"
+        },
+        {
+          "name": "15 Minute Soy Sauce Butter Fried Rice",
+          "url": "https://www.halfbakedharvest.com/soy-sauce-butter-fried-rice/"
+        },
+        {
+          "name": "Mango Kale Chopped Salad with Cilantro Lime Dressing",
+          "url": "https://www.halfbakedharvest.com/mango-kale-chopped-salad/"
+        },
+        {
+          "name": "Crispy Chicken Katsu Bowls",
+          "url": "https://www.halfbakedharvest.com/chicken-katsu-bowls/"
+        },
+        {
+          "name": "Easiest One Pan Caprese Pesto Orzo Bake",
+          "url": "https://www.halfbakedharvest.com/one-pan-caprese-pesto-orzo-bake/"
+        },
+        {
+          "name": "Crispy Oregano Roasted Potatoes with Creamy Feta Sauce",
+          "url": "https://www.halfbakedharvest.com/oregano-roasted-potatoes/"
+        },
+        {
+          "name": "Crockpot Crispy Chicken Tinga Tacos with Jalapeño Avocado Crema",
+          "url": "https://www.halfbakedharvest.com/crispy-chicken-tinga-tacos/"
+        }
+      ]
+    },
+    {
+      "name": "Italian",
+      "count": 224,
+      "percentage": "6.9%",
+      "recipes": [
+        {
+          "name": "One Skillet Tuscan Chicken and Orzo",
+          "url": "https://www.halfbakedharvest.com/skillet-tuscan-chicken-and-orzo/"
+        },
+        {
+          "name": "Pesto Zuppa Toscana Meatballs",
+          "url": "https://www.halfbakedharvest.com/pesto-zuppa-toscana-meatballs/"
+        },
+        {
+          "name": "Stuffed Creamy Tomato Basil Pasta Shells",
+          "url": "https://www.halfbakedharvest.com/tomato-basil-pasta-shells/"
+        },
+        {
+          "name": "Sheet Pan Zucchini Lasagna with Garlic Butter Croutons",
+          "url": "https://www.halfbakedharvest.com/sheet-pan-zucchini-lasagna/"
+        },
+        {
+          "name": "Caprese Chicken Parmesan",
+          "url": "https://www.halfbakedharvest.com/caprese-chicken-parmesan/"
+        },
+        {
+          "name": "Spicy Pesto Eggplant Zucchini Involtini",
+          "url": "https://www.halfbakedharvest.com/eggplant-zucchini-pesto-involtini/"
+        },
+        {
+          "name": "The Italian Salad Sandwich",
+          "url": "https://www.halfbakedharvest.com/italian-salad-sandwich/"
+        },
+        {
+          "name": "3 Cheese Lemon Basil Pizza",
+          "url": "https://www.halfbakedharvest.com/lemon-basil-pizza/"
+        },
+        {
+          "name": "Marry Me Chicken Meatballs",
+          "url": "https://www.halfbakedharvest.com/marry-me-chicken-meatballs/"
+        },
+        {
+          "name": "Italian Chop Pasta Salad",
+          "url": "https://www.halfbakedharvest.com/italian-chop-pasta-salad/"
+        }
+      ]
+    },
+    {
+      "name": "Mexican",
+      "count": 177,
+      "percentage": "5.4%",
+      "recipes": [
+        {
+          "name": "Crockpot Chuck Roast Tinga Tacos",
+          "url": "https://www.halfbakedharvest.com/chuck-roast-tinga-tacos/"
+        },
+        {
+          "name": "Skillet Mexican Beef and Rice",
+          "url": "https://www.halfbakedharvest.com/skillet-mexican-beef-and-rice/"
+        },
+        {
+          "name": "Baked Cheesy Cuban Chicken Taquitos",
+          "url": "https://www.halfbakedharvest.com/cuban-chicken-taquitos/"
+        },
+        {
+          "name": "Crispy Black Bean Sweet Potato Enchiladas",
+          "url": "https://www.halfbakedharvest.com/black-bean-sweet-potato-enchiladas/"
+        },
+        {
+          "name": "Salsa Verde Tortilla Soup",
+          "url": "https://www.halfbakedharvest.com/salsa-verde-tortilla-soup/"
+        },
+        {
+          "name": "Easy Skillet Butternut Squash Chicken Enchiladas",
+          "url": "https://www.halfbakedharvest.com/butternut-squash-chicken-enchiladas/"
+        },
+        {
+          "name": "Skillet Creamy Green Chile Chicken Fajitas",
+          "url": "https://www.halfbakedharvest.com/green-chile-chicken-fajitas/"
+        },
+        {
+          "name": "Sheet Pan Street Style Steak Tacos",
+          "url": "https://www.halfbakedharvest.com/steak-and-corn-tacos/"
+        },
+        {
+          "name": "Green Chile Chicken Taquitos",
+          "url": "https://www.halfbakedharvest.com/green-chile-chicken-taquitos/"
+        },
+        {
+          "name": "Queso Steak and Elote Tacos",
+          "url": "https://www.halfbakedharvest.com/steak-and-elote-tacos/"
+        }
+      ]
+    },
+    {
+      "name": "Asian",
+      "count": 122,
+      "percentage": "3.7%",
+      "recipes": [
+        {
+          "name": "20 Minute Cashew Chicken Noodles",
+          "url": "https://www.halfbakedharvest.com/cashew-chicken-noodles/"
+        },
+        {
+          "name": "20 Minute Potstickers in Red Curry Garlic Oil",
+          "url": "https://www.halfbakedharvest.com/potstickers-in-red-curry-garlic-broth/"
+        },
+        {
+          "name": "20 Minute Honey Garlic Chicken Udon Noodles",
+          "url": "https://www.halfbakedharvest.com/garlic-chicken-udon-noodles/"
+        },
+        {
+          "name": "30 Minute Peanut Beef Rolls",
+          "url": "https://www.halfbakedharvest.com/peanut-beef-rolls/"
+        },
+        {
+          "name": "Sesame Peanut Chicken Katsu Ramen",
+          "url": "https://www.halfbakedharvest.com/peanut-chicken-katsu-ramen/"
+        },
+        {
+          "name": "Sheet Pan Ginger Chicken and Brussels Sprouts",
+          "url": "https://www.halfbakedharvest.com/sheet-pan-ginger-chicken/"
+        },
+        {
+          "name": "30 Minute Crispy Thai Peanut Chicken Ramen",
+          "url": "https://www.halfbakedharvest.com/peanut-chicken-ramen/"
+        },
+        {
+          "name": "30 Minute Ginger Peanut Chicken Bowls",
+          "url": "https://www.halfbakedharvest.com/ginger-peanut-chicken-bowls/"
+        },
+        {
+          "name": "20 Minute Honey Garlic Chicken",
+          "url": "https://www.halfbakedharvest.com/honey-garlic-chicken/"
+        },
+        {
+          "name": "Sheet Pan Sesame Miso Chicken and Sweet Potatoes ",
+          "url": "https://www.halfbakedharvest.com/sesame-miso-chicken/"
+        }
+      ]
+    },
+    {
+      "name": "Greek",
+      "count": 51,
+      "percentage": "1.6%",
+      "recipes": [
+        {
+          "name": "Greek Tahini Chicken and Feta Orzo Bowls",
+          "url": "https://www.halfbakedharvest.com/tahini-chicken-and-feta-orzo-bowls/"
+        },
+        {
+          "name": "Sheet Pan Lemon Balsamic Chicken and Potatoes",
+          "url": "https://www.halfbakedharvest.com/lemon-balsamic-chicken-and-potatoes/"
+        },
+        {
+          "name": "Greek Chicken Skewers with Feta Fries",
+          "url": "https://www.halfbakedharvest.com/chicken-tzatziki-skewers/"
+        },
+        {
+          "name": "One Skillet Greek Lemon Chicken and Rice",
+          "url": "https://www.halfbakedharvest.com/lemon-chicken-and-rice/"
+        },
+        {
+          "name": "Chicken Tzatziki Salad",
+          "url": "https://www.halfbakedharvest.com/chicken-tzatziki-avocado-salad/"
+        },
+        {
+          "name": "Sheet Pan Chicken Tzatziki and Sweet Potatoes",
+          "url": "https://www.halfbakedharvest.com/sheet-pan-chicken-tzatziki/"
+        },
+        {
+          "name": "Greek Chicken Bowls with Creamy Tahini Feta Sauce ",
+          "url": "https://www.halfbakedharvest.com/chicken-bowls-with-feta-sauce/"
+        },
+        {
+          "name": "Crockpot Greek Chicken Meatballs with Creamy Tomato Orzo",
+          "url": "https://www.halfbakedharvest.com/crockpot-greek-chicken-meatballs/"
+        },
+        {
+          "name": "Chicken Tzatziki Rice Bowls",
+          "url": "https://www.halfbakedharvest.com/chicken-tzatziki-rice-bowls/"
+        },
+        {
+          "name": "Sheet Pan Honey Garlic Chicken and Feta Potatoes",
+          "url": "https://www.halfbakedharvest.com/sheet-pan-honey-garlic-chicken/"
+        }
+      ]
+    },
+    {
+      "name": "Mediterranean",
+      "count": 49,
+      "percentage": "1.5%",
+      "recipes": [
+        {
+          "name": "30 Minute Herby Lemon Garlic Steak and Rice",
+          "url": "https://www.halfbakedharvest.com/lemon-garlic-steak-and-rice/"
+        },
+        {
+          "name": "How to Make an Easy Mediterranean Mezze Platter",
+          "url": "https://www.halfbakedharvest.com/mezze-platter/"
+        },
+        {
+          "name": "Greek Chicken Orzo Salad",
+          "url": "https://www.halfbakedharvest.com/greek-chicken-orzo-salad/"
+        },
+        {
+          "name": "One Skillet Tzatziki Chicken and Orzo",
+          "url": "https://www.halfbakedharvest.com/skillet-chicken-tzatziki-and-orzo/"
+        },
+        {
+          "name": "Crumbled Feta and Tomato Basil Vinaigrette Dip",
+          "url": "https://www.halfbakedharvest.com/crumbled-feta-and-tomato-basil-vinaigrette-dip/"
+        },
+        {
+          "name": "Crispy Roasted Cauliflower Hummus",
+          "url": "https://www.halfbakedharvest.com/roasted-cauliflower-hummus/"
+        },
+        {
+          "name": "Oven Fried Feta Rolls with Chili Honey",
+          "url": "https://www.halfbakedharvest.com/fried-feta-rolls/"
+        },
+        {
+          "name": "Sicilian Style Salmon with Garlic Broccoli and Tomatoes",
+          "url": "https://www.halfbakedharvest.com/sicilian-style-salmon-with-garlic-broccoli-and-tomatoes/"
+        },
+        {
+          "name": "Mediterranean Avocado Chicken Salad",
+          "url": "https://www.halfbakedharvest.com/mediterranean-avocado-chicken-salad/"
+        },
+        {
+          "name": "Mediterranean Grilled Lamb Kebabs",
+          "url": "https://www.halfbakedharvest.com/mediterranean-grilled-lamb-kebabs/"
+        }
+      ]
+    },
+    {
+      "name": "thai",
+      "count": 43,
+      "percentage": "1.3%",
+      "recipes": [
+        {
+          "name": "Crispy Garlic Chicken Drunken Noodles",
+          "url": "https://www.halfbakedharvest.com/garlic-chicken-noodles/"
+        },
+        {
+          "name": "Sesame Ginger Steak Skewers with Peanut Sauce",
+          "url": "https://www.halfbakedharvest.com/sesame-ginger-steak-skewers/"
+        },
+        {
+          "name": "Thai Basil Chicken and Garlic Butter Noodles",
+          "url": "https://www.halfbakedharvest.com/basil-chicken-and-garlic-noodles/"
+        },
+        {
+          "name": "20 Minute Ginger Cashew Beef",
+          "url": "https://www.halfbakedharvest.com/ginger-cashew-beef/"
+        },
+        {
+          "name": "Chopped Thai Crunch Chicken Salad",
+          "url": "https://www.halfbakedharvest.com/thai-crunch-chicken-salad/"
+        },
+        {
+          "name": "Crockpot Thai Yellow Curry Chicken with Garlic Rice",
+          "url": "https://www.halfbakedharvest.com/yellow-curry-chicken/"
+        },
+        {
+          "name": "30 Minute Thai Basil Beef Noodles",
+          "url": "https://www.halfbakedharvest.com/basil-beef-noodles/"
+        },
+        {
+          "name": "Curried Thai Beef with Peanut Sauce",
+          "url": "https://www.halfbakedharvest.com/curried-beef/"
+        },
+        {
+          "name": "Crockpot Thai Short Ribs with Coconut Rice",
+          "url": "https://www.halfbakedharvest.com/thai-short-ribs/"
+        },
+        {
+          "name": "Chili Onion Crisp Salmon Bowl with Avocado Mango Salsa",
+          "url": "https://www.halfbakedharvest.com/chili-crisp-salmon-bowl/"
+        }
+      ]
+    },
+    {
+      "name": "French",
+      "count": 40,
+      "percentage": "1.2%",
+      "recipes": [
+        {
+          "name": "Frozen Watermelon Spritz",
+          "url": "https://www.halfbakedharvest.com/frozen-watermelon-spritz/"
+        },
+        {
+          "name": "\"Brûléed\" Eggnog Croissant French Toast",
+          "url": "https://www.halfbakedharvest.com/croissant-french-toast/"
+        },
+        {
+          "name": "Garlic Butter Chicken Marsala Meatballs",
+          "url": "https://www.halfbakedharvest.com/chicken-marsala-meatballs/"
+        },
+        {
+          "name": "Crockpot Short Rib Bourguignon",
+          "url": "https://www.halfbakedharvest.com/short-rib-bourguignon/"
+        },
+        {
+          "name": "Creamy French Onion Soup In Bread Bowls",
+          "url": "https://www.halfbakedharvest.com/french-onion-soup/"
+        },
+        {
+          "name": "Coq au Vin",
+          "url": "https://www.halfbakedharvest.com/one-pot-coq-au-vin/"
+        },
+        {
+          "name": "Crockpot Coq au Vin Meatballs",
+          "url": "https://www.halfbakedharvest.com/coq-au-vin-meatballs/"
+        },
+        {
+          "name": "Blueberry Chamomile Galette",
+          "url": "https://www.halfbakedharvest.com/blueberry-galette/"
+        },
+        {
+          "name": "French Onion Potato Soup",
+          "url": "https://www.halfbakedharvest.com/french-onion-potato-soup/"
+        },
+        {
+          "name": "Sugar Cookie Chocolate Crème Brûlée.",
+          "url": "https://www.halfbakedharvest.com/sugar-cookie-chocolate-creme-brulee/"
+        }
+      ]
+    },
+    {
+      "name": "Indian",
+      "count": 29,
+      "percentage": "0.9%",
+      "recipes": [
+        {
+          "name": "Baked Coconut Chicken Tikka Masala",
+          "url": "https://www.halfbakedharvest.com/baked-coconut-chicken-tikka-masala/"
+        },
+        {
+          "name": "30 Minute Harissa Butter Chicken",
+          "url": "https://www.halfbakedharvest.com/harissa-butter-chicken/"
+        },
+        {
+          "name": "One Pan Sesame Butter Pumpkin Chicken",
+          "url": "https://www.halfbakedharvest.com/pumpkin-butter-chicken/"
+        },
+        {
+          "name": "Crockpot Basil Butter Chicken",
+          "url": "https://www.halfbakedharvest.com/basil-butter-chicken/"
+        },
+        {
+          "name": "Sheet Pan Curry Butter Chicken with Sweet Potatoes and Tahini",
+          "url": "https://www.halfbakedharvest.com/curry-butter-chicken/"
+        },
+        {
+          "name": "Crockpot Creamy Coconut Chicken Tikka Masala",
+          "url": "https://www.halfbakedharvest.com/crockpot-creamy-coconut-chicken-tikka-masala/"
+        },
+        {
+          "name": "Creamy Butternut Squash Butter Chicken",
+          "url": "https://www.halfbakedharvest.com/butternut-squash-butter-chicken/"
+        },
+        {
+          "name": "Simple Coconut Chicken Curry",
+          "url": "https://www.halfbakedharvest.com/simple-coconut-chicken-curry/"
+        },
+        {
+          "name": "Crockpot Thai Broccoli Rabe Chicken Curry.",
+          "url": "https://www.halfbakedharvest.com/crockpot-thai-broccoli-rabe-chicken-curry/"
+        },
+        {
+          "name": "Apple Cider Chicken Marsala with Wild Rice Pilaf.",
+          "url": "https://www.halfbakedharvest.com/apple-cider-chicken-marsala-wild-rice-pilaf/"
+        }
+      ]
+    },
+    {
+      "name": "korean",
+      "count": 19,
+      "percentage": "0.6%",
+      "recipes": [
+        {
+          "name": "Sheet Pan Korean Popcorn Chicken",
+          "url": "https://www.halfbakedharvest.com/korean-popcorn-chicken/"
+        },
+        {
+          "name": "20 Minute Korean Gochujang Beef Bowls",
+          "url": "https://www.halfbakedharvest.com/gochujang-beef-bowls/"
+        },
+        {
+          "name": "Korean-Style Beef",
+          "url": "https://www.halfbakedharvest.com/korean-style-beef/"
+        },
+        {
+          "name": "Korean Grilled Steak with Toasted Sesame Chimichurri",
+          "url": "https://www.halfbakedharvest.com/korean-grilled-steak/"
+        },
+        {
+          "name": "Instant Pot Sticky Korean Chicken",
+          "url": "https://www.halfbakedharvest.com/instant-pot-sticky-korean-chicken/"
+        },
+        {
+          "name": "Honey Garlic Korean BBQ Grilled Shrimp",
+          "url": "https://www.halfbakedharvest.com/honey-garlic-korean-bbq-grilled-shrimp/"
+        },
+        {
+          "name": "Korean Avocado Tuna Sushi Roll",
+          "url": "https://www.halfbakedharvest.com/korean-avocado-tuna-sushi-roll/"
+        },
+        {
+          "name": "Korean Bulgogi BBQ Steak Bowls.",
+          "url": "https://www.halfbakedharvest.com/korean-bulgogi-bbq-steak-bowls/"
+        },
+        {
+          "name": "Kimchi Chicken and Bacon Fried Rice.",
+          "url": "https://www.halfbakedharvest.com/kimchi-chicken-and-bacon-fried-rice/"
+        },
+        {
+          "name": "Korean Pineapple Pork Lettuce Wraps.",
+          "url": "https://www.halfbakedharvest.com/korean-pineapple-pork-lettuce-wraps/"
+        }
+      ]
+    },
+    {
+      "name": "Middle Eastern",
+      "count": 12,
+      "percentage": "0.4%",
+      "recipes": [
+        {
+          "name": "Sheet Pan Steak Gyros with Feta Tzatziki Sauce",
+          "url": "https://www.halfbakedharvest.com/sheet-pan-steak-gyros/"
+        },
+        {
+          "name": "Sheet Pan Chicken Shawarma Havarti Sandwich",
+          "url": "https://www.halfbakedharvest.com/chicken-shawarma-havarti-sandwich/"
+        },
+        {
+          "name": "Crispy Feta with Lemon Pepper Chicken and Rice",
+          "url": "https://www.halfbakedharvest.com/crispy-feta-with-lemon-pepper-chicken/"
+        },
+        {
+          "name": "Cauliflower Shawarma Wraps with Green Tahini and Feta",
+          "url": "https://www.halfbakedharvest.com/cauliflower-shawarma-wraps-with-green-tahini-and-feta/"
+        },
+        {
+          "name": "Sheet Pan Harissa Chicken with Chickpeas and Sweet Potatoes",
+          "url": "https://www.halfbakedharvest.com/sheet-pan-harissa-chicken-with-chickpeas-and-sweet-potatoes/"
+        },
+        {
+          "name": "Farro Tabbouleh with Burrata and Hummus",
+          "url": "https://www.halfbakedharvest.com/farro-tabbouleh-with-burrata-and-hummus/"
+        },
+        {
+          "name": "Roasted Red Pepper Meze Platter",
+          "url": "https://www.halfbakedharvest.com/roasted-red-pepper-meze-platter/"
+        },
+        {
+          "name": "Spicy Green Harissa.",
+          "url": "https://www.halfbakedharvest.com/spicy-green-harissa/"
+        },
+        {
+          "name": "Buffalo Falafel and Garlic Blue Cheese Fry Pita’s w/Ranch Style Tzatziki.",
+          "url": "https://www.halfbakedharvest.com/buffalo-falafel-pitas-wgarlic-blue-cheese-fries-ranch-style-tzatziki/"
+        },
+        {
+          "name": "Moroccan Spiced Lamb Burgers with Apricot-Pepper Chutney + Pistachio Feta Pesto",
+          "url": "https://www.halfbakedharvest.com/moroccan-spiced-lamb-burgers-apricot-chutney-pistachio-feta-pesto/"
+        }
+      ]
+    },
+    {
+      "name": "Moroccan",
+      "count": 11,
+      "percentage": "0.3%",
+      "recipes": [
+        {
+          "name": "Moroccan Grilled Chicken with Herby Lemon Olive Vinaigrette",
+          "url": "https://www.halfbakedharvest.com/moroccan-grilled-chicken/"
+        },
+        {
+          "name": "Moroccan Dip Platter",
+          "url": "https://www.halfbakedharvest.com/moroccan-dip-platter/"
+        },
+        {
+          "name": "Skillet Roasted Moroccan Chicken and Olive Tagine",
+          "url": "https://www.halfbakedharvest.com/skillet-roasted-moroccan-chicken-and-olive-tagine/"
+        },
+        {
+          "name": "Moroccan Chocolate Almond Phyllo Cake (Snack Cake).",
+          "url": "https://www.halfbakedharvest.com/moroccan-chocolate-almond-phyllo-cake-snake-cake/"
+        },
+        {
+          "name": "Spicy Moroccan Fried Eggs",
+          "url": "https://www.halfbakedharvest.com/spicy-moroccan-fried-eggs/"
+        },
+        {
+          "name": "Iced Moroccan Mint Tea",
+          "url": "https://www.halfbakedharvest.com/iced-moroccan-mint-tea/"
+        },
+        {
+          "name": "Moroccan Pancakes (Beghrir).",
+          "url": "https://www.halfbakedharvest.com/moroccan-pancakes-beghrir/"
+        },
+        {
+          "name": "Crockpot Moroccan Lentil and Chickpea Soup.",
+          "url": "https://www.halfbakedharvest.com/crockpot-moroccan-lentil-and-chickpea-soup/"
+        },
+        {
+          "name": "Moroccan Butternut Squash and Goat Cheese Soup w/Coconut Ginger Cream + Pistachios.",
+          "url": "https://www.halfbakedharvest.com/moroccan-butternut-squash-goat-cheese-soup-wcoconut-ginger-cream-pistachios/"
+        },
+        {
+          "name": "One Pot Moroccan Chicken + Chickpeas with Pistachio Couscous and Goat Cheese.",
+          "url": "https://www.halfbakedharvest.com/one-pot-moroccan-chicken-chickpeas-pistachio-couscous-goat-cheese/"
+        }
+      ]
+    },
+    {
+      "name": "Hawaiian",
+      "count": 10,
+      "percentage": "0.3%",
+      "recipes": [
+        {
+          "name": "Hawaiian Chicken Tacos with Jalapeño Pineapple Salsa",
+          "url": "https://www.halfbakedharvest.com/hawaiian-chicken-tacos/"
+        },
+        {
+          "name": "Hawaiian BBQ Skewers with Sriracha Honey Butter.",
+          "url": "https://www.halfbakedharvest.com/hawaiian-bbq-skewers-sriracha-lime-butter/"
+        },
+        {
+          "name": "Hawaiian Tequila Chicken Salad.",
+          "url": "https://www.halfbakedharvest.com/hawaiian-tequila-chicken-salad-pineapple-vinaigrette/"
+        },
+        {
+          "name": "Hawaiian Ahi Tuna Poke Bowl.",
+          "url": "https://www.halfbakedharvest.com/hawaiian-ahi-tuna-poke-bowl-video/"
+        },
+        {
+          "name": "Double Chocolate Hawaiian Tiramisu.",
+          "url": "https://www.halfbakedharvest.com/double-chocolate-hawaiian-tiramisu/"
+        },
+        {
+          "name": "Hawaiian Carne Asada Fries with Grilled Pineapple Pico De Gallo.",
+          "url": "https://www.halfbakedharvest.com/hawaiian-carne-asada-fries-with-pineapple-pico-de-gallo/"
+        },
+        {
+          "name": "Tropical Fruit Breakfast Smoothie.",
+          "url": "https://www.halfbakedharvest.com/tropical-fruit-breakfast-smoothie/"
+        },
+        {
+          "name": "Hawaiian Shrimp Truck Special (Garlic Lemon Butter Shrimp).",
+          "url": "https://www.halfbakedharvest.com/hawaiian-shrimp-truck-special-garlic-lemon-butter-shrimp/"
+        },
+        {
+          "name": "Hawaiian Hula Pork Fajitas with Pineapple Slaw + Coconut Rice.",
+          "url": "https://www.halfbakedharvest.com/hawaiian-hula-pork-fajitas-pineapple-slaw-coconut-rice/"
+        },
+        {
+          "name": "Hawaiian BBQ Salmon Burgers with Coconut Caramelized Pineapple",
+          "url": "https://www.halfbakedharvest.com/hawaiian-bbq-salmon-burgers-with-coconut-caramelized-pineapple/"
+        }
+      ]
+    },
+    {
+      "name": "Vietnamese",
+      "count": 9,
+      "percentage": "0.3%",
+      "recipes": [
+        {
+          "name": "25 Minute Banh Mi Rice Bowls",
+          "url": "https://www.halfbakedharvest.com/banh-mi-rice-bowls/"
+        },
+        {
+          "name": "Vietnamese Shrimp Spring Roll Bowl With Sweet Chili Mango Sauce",
+          "url": "https://www.halfbakedharvest.com/vietnamese-shrimp-spring-roll-bowl-with-sweet-chili-mango-sauce/"
+        },
+        {
+          "name": "Lighter Shrimp Po Boys with Avocado Mango Slaw",
+          "url": "https://www.halfbakedharvest.com/lighter-shrimp-po-boys-avocado-mango-slaw/"
+        },
+        {
+          "name": "Vietnamese Meatball and Sweet Potato Noodle Bowl.",
+          "url": "https://www.halfbakedharvest.com/vietnamese-meatball-and-sweet-potato-noodle-bowl/"
+        },
+        {
+          "name": "Vietnamese Meatball Lettuce Wraps with Mango Salad + Cilantro-Basil Cashew Sauce.",
+          "url": "https://www.halfbakedharvest.com/vietnamese-meatball-lettuce-wraps-mango-salad-cilantro-basil-cashew-sauce/"
+        },
+        {
+          "name": "Vietnamese Short Rib Pho French Dip Banh Mi with Thai Basil Chimichurri.",
+          "url": "https://www.halfbakedharvest.com/short-rib-pho-french-dip-banh-mi-with-thai-basil-chimichurri/"
+        },
+        {
+          "name": "Mahi Mahi Banh Mi with Spicy Curried Mayo + Fried Eggs.",
+          "url": "https://www.halfbakedharvest.com/mahi-mahi-banh-mi-spicy-curried-mayo-fried-eggs/"
+        },
+        {
+          "name": "Deconstructed Vietnamese Chicken, Avocado + Lemongrass Spring Roll Salad.",
+          "url": "https://www.halfbakedharvest.com/vietnamese-chicken-avocado-lemongrass-spring-roll-salad-hoisin-crackers/"
+        },
+        {
+          "name": "Avocado and Vietnamese Chicken Springs Rolls",
+          "url": "https://www.halfbakedharvest.com/avocado-and-vietnamese-chicken-springs-rolls/"
+        }
+      ]
+    },
+    {
+      "name": "cuban",
+      "count": 8,
+      "percentage": "0.2%",
+      "recipes": [
+        {
+          "name": "Baked Cheesy Cuban Chicken Taquitos",
+          "url": "https://www.halfbakedharvest.com/cuban-chicken-taquitos/"
+        },
+        {
+          "name": "Strawberry Ginger Mojito",
+          "url": "https://www.halfbakedharvest.com/strawberry-mojito/"
+        },
+        {
+          "name": "Sheet Pan Cuban Chicken With Citrus Avocado Salsa",
+          "url": "https://www.halfbakedharvest.com/sheet-pan-cuban-chicken-with-citrus-avocado-salsa/"
+        },
+        {
+          "name": "The Cuban Mojo Pork Special.",
+          "url": "https://www.halfbakedharvest.com/the-cuban-mojo-pork-special/"
+        },
+        {
+          "name": "Sweet Cuban Coconut Balls with Melted Chocolate (Coquito Acaramelado).",
+          "url": "https://www.halfbakedharvest.com/sweet-cuban-coconut-balls-with-melted-chocolate-coquito-acaramelado/"
+        },
+        {
+          "name": "The Cuban Frita Burger.",
+          "url": "https://www.halfbakedharvest.com/the-cuban-frita-burger/"
+        },
+        {
+          "name": "Cuban Chicken and Black Bean Quinoa Bowls with Fried Chili Spiced Bananas + Spicy Mangos.",
+          "url": "https://www.halfbakedharvest.com/cuban-chicken-black-bean-quinoa-bowls-fried-bananas/"
+        },
+        {
+          "name": "Cuban Black Bean and Rice Mojo Burgers with Slaw + Garlic Tostones.",
+          "url": "https://www.halfbakedharvest.com/cuban-black-bean-rice-mojo-burgers-slaw-garlic-tostones/"
+        }
+      ]
+    },
+    {
+      "name": "jamaican",
+      "count": 8,
+      "percentage": "0.2%",
+      "recipes": [
+        {
+          "name": "Meal Prep Tropical Jerk Chicken and Gingered Broccoli",
+          "url": "https://www.halfbakedharvest.com/meal-prep-tropical-jerk-chicken-and-gingered-broccoli/"
+        },
+        {
+          "name": "20 Minute Grilled Jerk Chicken with Mango-Nectarine Salsa",
+          "url": "https://www.halfbakedharvest.com/20-minute-grilled-jerk-chicken-with-mango-nectarine-salsa/"
+        },
+        {
+          "name": "Jamaican Jerk Fish Tacos with Plantain Fried Rice and Pineapple Salsa.",
+          "url": "https://www.halfbakedharvest.com/jamaican-jerk-fish-tacos-with-plantain-fried-rice-and-pineapple-salsa/"
+        },
+        {
+          "name": "Almond Buttermilk Jamaican Fried Chicken with Pickled Pineapple Slaw.",
+          "url": "https://www.halfbakedharvest.com/almond-buttermilk-jamaican-fried-chicken-with-rum-pickled-pineapple-slaw/"
+        },
+        {
+          "name": "Jamaican Jerk and Citrus Pineapple Roasted Chicken.",
+          "url": "https://www.halfbakedharvest.com/jamaican-jerk-citrus-pineapple-roasted-chicken/"
+        },
+        {
+          "name": "Jamaican Jerk Chicken, Fried Plantain and Coconut Macadamia Fried Quinoa.",
+          "url": "https://www.halfbakedharvest.com/jamaican-jerk-chicken-fried-plantain-fried-quinoa/"
+        },
+        {
+          "name": "Caribbean Jerk Salmon Tostadas with Grilled Pineapple Peach Coconut Salsa",
+          "url": "https://www.halfbakedharvest.com/caribbean-jerk-salmon-tostadas-with-grilled-pineapple-peach-coconut-salsa/"
+        },
+        {
+          "name": "Jerk Chicken with Fired Rice and Grilled Pineapple Salsa",
+          "url": "https://www.halfbakedharvest.com/jerk-chicken-with-fired-rice-and-grilled-pineapple-salsa/"
+        }
+      ]
+    },
+    {
+      "name": "Chinese",
+      "count": 7,
+      "percentage": "0.2%",
+      "recipes": [
+        {
+          "name": "20 Minute Crispy Orange Garlic Chicken",
+          "url": "https://www.halfbakedharvest.com/orange-garlic-chicken/"
+        },
+        {
+          "name": "Sheet Pan Sticky Ginger Soy Chicken and Broccoli",
+          "url": "https://www.halfbakedharvest.com/sticky-ginger-soy-chicken/"
+        },
+        {
+          "name": "Chili Crisp Butternut Squash Dumplings in Ginger Soy Broth",
+          "url": "https://www.halfbakedharvest.com/butternut-squash-dumplings/"
+        },
+        {
+          "name": "Cheese Rangoons with Sweet Ginger Chili Sauce",
+          "url": "https://www.halfbakedharvest.com/cheese-rangoons/"
+        },
+        {
+          "name": "Weeknight Sticky Honey Garlic Meatballs",
+          "url": "https://www.halfbakedharvest.com/honey-garlic-meatballs/"
+        },
+        {
+          "name": "Veggie Spring Rolls with Thai Mango Dipping Sauce.",
+          "url": "https://www.halfbakedharvest.com/avocado-veggie-spring-rolls-sweet-thai-mango-sauce/"
+        },
+        {
+          "name": "Caramelized Teriyaki Salmon with Sesame Toasted Buckwheat.",
+          "url": "https://www.halfbakedharvest.com/caramelized-teriyaki-salmon-sesame-toasted-buckwheat/"
+        }
+      ]
+    },
+    {
+      "name": "Japanese",
+      "count": 7,
+      "percentage": "0.2%",
+      "recipes": [
+        {
+          "name": "Spicy Short Rib Peanut Ramen",
+          "url": "https://www.halfbakedharvest.com/short-rib-peanut-ramen/"
+        },
+        {
+          "name": "Crockpot Crispy Pork Ramen",
+          "url": "https://www.halfbakedharvest.com/crockpot-crispy-pork-ramen/"
+        },
+        {
+          "name": "Korean Avocado Tuna Sushi Roll",
+          "url": "https://www.halfbakedharvest.com/korean-avocado-tuna-sushi-roll/"
+        },
+        {
+          "name": "Mango Avocado Soba Noodles with Sesame Salmon Poke",
+          "url": "https://www.halfbakedharvest.com/sesame-mango-and-avocado-soba-noodles-with-salmon-poke/"
+        },
+        {
+          "name": "Spicy Brown Rice Seared Tuna Roll Bowl with Mango Chimichurri.",
+          "url": "https://www.halfbakedharvest.com/spicy-brown-rice-seared-tuna-roll-bowl/"
+        },
+        {
+          "name": "Hawaiian Ahi Tuna Poke Bowl.",
+          "url": "https://www.halfbakedharvest.com/hawaiian-ahi-tuna-poke-bowl-video/"
+        },
+        {
+          "name": "30 Minute Chicken Ramen with Miso Roasted Brussels Sprouts + Ginger Butter.",
+          "url": "https://www.halfbakedharvest.com/30-minute-chicken-ramen-with-miso-roasted-brussels-sprouts-ginger-butter/"
+        }
+      ]
+    },
+    {
+      "name": "south american",
+      "count": 5,
+      "percentage": "0.2%",
+      "recipes": [
+        {
+          "name": "Cuban Style Steak and Avocado Rice with Pineapple Chimichurri",
+          "url": "https://www.halfbakedharvest.com/cuban-style-steak-and-avocado-rice-with-pineapple-chimichurri/"
+        },
+        {
+          "name": "The Cuban Mojo Pork Special.",
+          "url": "https://www.halfbakedharvest.com/the-cuban-mojo-pork-special/"
+        },
+        {
+          "name": "Sweet Cuban Coconut Balls with Melted Chocolate (Coquito Acaramelado).",
+          "url": "https://www.halfbakedharvest.com/sweet-cuban-coconut-balls-with-melted-chocolate-coquito-acaramelado/"
+        },
+        {
+          "name": "The Cuban Frita Burger.",
+          "url": "https://www.halfbakedharvest.com/the-cuban-frita-burger/"
+        },
+        {
+          "name": "Cuban Chicken and Black Bean Quinoa Bowls with Fried Chili Spiced Bananas + Spicy Mangos.",
+          "url": "https://www.halfbakedharvest.com/cuban-chicken-black-bean-quinoa-bowls-fried-bananas/"
+        }
+      ]
+    },
+    {
+      "name": "british",
+      "count": 4,
+      "percentage": "0.1%",
+      "recipes": [
+        {
+          "name": "Strawberry Melon Elderflower Pimms Cup",
+          "url": "https://www.halfbakedharvest.com/strawberry-melon-elderflower-pimms-cup/"
+        },
+        {
+          "name": "Coconut Eton Mess Cake with Whipped Ricotta Cream.",
+          "url": "https://www.halfbakedharvest.com/coconut-eton-mess-cake-whipped-ricotta-cream/"
+        },
+        {
+          "name": "Potato Chip Crusted Fish and Chips...with all the Fixings.",
+          "url": "https://www.halfbakedharvest.com/potato-chip-crusted-fish-and-chips-with-all-the-fixings/"
+        },
+        {
+          "name": "Mini Sweet Potato Cheddar and Chorizo Sheperds Pies",
+          "url": "https://www.halfbakedharvest.com/mini-cheddar-sweet-potato-chorizo-shepherds-pies/"
+        }
+      ]
+    },
+    {
+      "name": "Caribbean",
+      "count": 3,
+      "percentage": "0.1%",
+      "recipes": [
+        {
+          "name": "Chipotle Pineapple Chicken with Bang Bang Sauce",
+          "url": "https://www.halfbakedharvest.com/chipotle-pineapple-chicken/"
+        },
+        {
+          "name": "Sheet Pan Chipotle Salmon Tacos with Pineapple Jalapeño Salsa",
+          "url": "https://www.halfbakedharvest.com/sheet-pan-chipotle-salmon-tacos/"
+        },
+        {
+          "name": "Caribbean Mango Pork and Tropical Rice Plates.",
+          "url": "https://www.halfbakedharvest.com/caribbean-mango-pork-and-tropical-rice-plates/"
+        }
+      ]
+    },
+    {
+      "name": "Tuscan",
+      "count": 3,
+      "percentage": "0.1%",
+      "recipes": [
+        {
+          "name": "Spicy Tuscan Chicken Pasta",
+          "url": "https://www.halfbakedharvest.com/tuscan-chicken-pasta/"
+        },
+        {
+          "name": "Tuscan Summer Stone Fruit, Tomato, and Burrata Panzanella Salad",
+          "url": "https://www.halfbakedharvest.com/tuscan-summer-stone-fruit-tomato-and-burrata-panzanella-salad/"
+        },
+        {
+          "name": "Tuscan Steak with Marinated Cherry Tomatoes",
+          "url": "https://www.halfbakedharvest.com/tuscan-steak-with-marinated-cherry-tomatoes/"
+        }
+      ]
+    },
+    {
+      "name": "Polish",
+      "count": 3,
+      "percentage": "0.1%",
+      "recipes": [
+        {
+          "name": "Sweet Potato Cheddar Pierogi with Bacon Bits",
+          "url": "https://www.halfbakedharvest.com/sweet-potato-cheddar-pierogi/"
+        },
+        {
+          "name": "Homemade Cheddar Pierogies",
+          "url": "https://www.halfbakedharvest.com/homemade-cheddar-pierogies/"
+        },
+        {
+          "name": "Crockpot Braised Red Wine Short Ribs with Cheddar Potato Perogies.",
+          "url": "https://www.halfbakedharvest.com/crockpot-braised-red-wine-short-ribs-with-cheddar-potato-perogies/"
+        }
+      ]
+    },
+    {
+      "name": "cajun",
+      "count": 3,
+      "percentage": "0.1%",
+      "recipes": [
+        {
+          "name": "Lemon Pepper Cajun Chicken Fettuccine Alfredo",
+          "url": "https://www.halfbakedharvest.com/cajun-chicken-fettuccine-alfredo/"
+        },
+        {
+          "name": "Skinny Cajun Sweet Potato Fries with Garlic Cheese Sauce.",
+          "url": "https://www.halfbakedharvest.com/skinny-cajun-sweet-potato-fries-with-garlic-cheese-sauce/"
+        },
+        {
+          "name": "Kickin' Cajun Chicken Sliders with Beer Battered Onion Rings.",
+          "url": "https://www.halfbakedharvest.com/kickin-cajun-chicken-sliders-with-beer-battered-onion-rings/"
+        }
+      ]
+    },
+    {
+      "name": "spanish",
+      "count": 3,
+      "percentage": "0.1%",
+      "recipes": [
+        {
+          "name": "Spanish Tortilla with Burrata and Herbs",
+          "url": "https://www.halfbakedharvest.com/spanish-tortilla/"
+        },
+        {
+          "name": "Easy Cinnamon Churros with Coffee Chocolate Sauce",
+          "url": "https://www.halfbakedharvest.com/easy-cinnamon-churros-with-coffee-chocolate-sauce/"
+        },
+        {
+          "name": "Skillet Grilled Seafood and Chorizo Paella.",
+          "url": "https://www.halfbakedharvest.com/skillet-grilled-seafood-and-chorizo-paella/"
+        }
+      ]
+    },
+    {
+      "name": "turkish",
+      "count": 3,
+      "percentage": "0.1%",
+      "recipes": [
+        {
+          "name": "Turkish Poached Egg and Quinoa Breakfast Bowl.",
+          "url": "https://www.halfbakedharvest.com/turkish-egg-and-quinoa-breakfast-bowl/"
+        },
+        {
+          "name": "Turkish Fried Eggs in Herbed Yogurt.",
+          "url": "https://www.halfbakedharvest.com/turkish-fried-eggs-in-herbed-yogurt/"
+        },
+        {
+          "name": "Asparagus, Pistachio Pesto and Ricotta Gozleme.",
+          "url": "https://www.halfbakedharvest.com/asparagus-pistachio-pesto-and-ricotta-gozleme/"
+        }
+      ]
+    },
+    {
+      "name": "irish",
+      "count": 3,
+      "percentage": "0.1%",
+      "recipes": [
+        {
+          "name": "Irish Pub Spinach and Artichoke Melt.",
+          "url": "https://www.halfbakedharvest.com/irish-pub-spinach-artichoke-melt/"
+        },
+        {
+          "name": "Double Chocolate Irish Tea Infused Oat Muffins.",
+          "url": "https://www.halfbakedharvest.com/double-chocolate-irish-tea-infused-oat-muffins/"
+        },
+        {
+          "name": "An Irishman's Mac and Cheese.",
+          "url": "https://www.halfbakedharvest.com/irishmans-mac-cheese/"
+        }
+      ]
+    },
+    {
+      "name": "Filipino",
+      "count": 2,
+      "percentage": "0.1%",
+      "recipes": [
+        {
+          "name": "Pineapple Adobo Chicken Skewers",
+          "url": "https://www.halfbakedharvest.com/pineapple-adobo-chicken-skewers/"
+        },
+        {
+          "name": "Coconut Honey Lime Filipino Chicken Adobo Skewers.",
+          "url": "https://www.halfbakedharvest.com/coconut-honey-lime-filipino-chicken-adobo-skewers/"
+        }
+      ]
+    },
+    {
+      "name": "Arab",
+      "count": 2,
+      "percentage": "0.1%",
+      "recipes": [
+        {
+          "name": "Sheet Pan Chicken Shawarma Havarti Sandwich",
+          "url": "https://www.halfbakedharvest.com/chicken-shawarma-havarti-sandwich/"
+        },
+        {
+          "name": "Artichoke Shakshuka",
+          "url": "https://www.halfbakedharvest.com/artichoke-shakshuka/"
+        }
+      ]
+    },
+    {
+      "name": "German",
+      "count": 2,
+      "percentage": "0.1%",
+      "recipes": [
+        {
+          "name": "Quinoa Crusted Schnitzel with Creamed Corn Gnocchi.",
+          "url": "https://www.halfbakedharvest.com/quinoa-crusted-schnitzel-with-creamed-corn-gnocchi/"
+        },
+        {
+          "name": "Zucchini Peach Streusel Muffins.",
+          "url": "https://www.halfbakedharvest.com/zucchini-peach-streusel-muffins/"
+        }
+      ]
+    },
+    {
+      "name": "Mongolian",
+      "count": 1,
+      "percentage": "0.0%",
+      "recipes": [
+        {
+          "name": "20 Minute Crispy Mongolian Beef",
+          "url": "https://www.halfbakedharvest.com/mongolian-beef/"
+        }
+      ]
+    },
+    {
+      "name": "Vegan",
+      "count": 1,
+      "percentage": "0.0%",
+      "recipes": [
+        {
+          "name": "6 Ingredient Vegan Chocolate Chia Mousse",
+          "url": "https://www.halfbakedharvest.com/6-ingredient-vegan-chocolate-chia-mousse/"
+        }
+      ]
+    },
+    {
+      "name": "Fusion",
+      "count": 1,
+      "percentage": "0.0%",
+      "recipes": [
+        {
+          "name": "Slow Cooker Chipotle Chicken Tamale Chili",
+          "url": "https://www.halfbakedharvest.com/slow-cooker-chipotle-chicken-tamale-chili/"
+        }
+      ]
+    },
+    {
+      "name": "russian",
+      "count": 1,
+      "percentage": "0.0%",
+      "recipes": [
+        {
+          "name": "Pomegranate and Peppermint Moscow Mules.",
+          "url": "https://www.halfbakedharvest.com/pomegranate-peppermint-moscow-mules-video/"
+        }
+      ]
+    },
+    {
+      "name": "australian",
+      "count": 1,
+      "percentage": "0.0%",
+      "recipes": [
+        {
+          "name": "Homemade Tim Tams.",
+          "url": "https://www.halfbakedharvest.com/homemade-tim-tams/"
+        }
+      ]
+    },
+    {
+      "name": "swedish",
+      "count": 1,
+      "percentage": "0.0%",
+      "recipes": [
+        {
+          "name": "Easy Warm Swedish Caramel Apple Cheesecake.",
+          "url": "https://www.halfbakedharvest.com/easy-warm-swedish-caramel-apple-cheesecake/"
+        }
+      ]
+    },
+    {
+      "name": "Syrian",
+      "count": 1,
+      "percentage": "0.0%",
+      "recipes": [
+        {
+          "name": "Lemon Ricotta Stuffed Syrian Pistachio Pancakes with Lavender Passionfruit Syrup.",
+          "url": "https://www.halfbakedharvest.com/lemon-ricotta-stuffed-syrian-pancakes-with-lavender-passionfruit-syrup/"
+        }
+      ]
+    },
+    {
+      "name": "Canadian",
+      "count": 1,
+      "percentage": "0.0%",
+      "recipes": [
+        {
+          "name": "Authentic Canadian Poutine.",
+          "url": "https://www.halfbakedharvest.com/authentic-canadian-poutine/"
+        }
+      ]
+    },
+    {
+      "name": "Creole",
+      "count": 1,
+      "percentage": "0.0%",
+      "recipes": [
+        {
+          "name": "Big Easy Style Saucy Creole Shrimp.",
+          "url": "https://www.halfbakedharvest.com/big-easy-style-saucy-creole-shrimp/"
+        }
+      ]
+    },
+    {
+      "name": "christmas",
+      "count": 1,
+      "percentage": "0.0%",
+      "recipes": [
+        {
+          "name": "Homemade Holidays: Let’s Make the House Smell Like Christmas.",
+          "url": "https://www.halfbakedharvest.com/homemade-holidays-lets-make-house-smell-like-christmas/"
+        }
+      ]
+    },
+    {
+      "name": "Brazilian",
+      "count": 1,
+      "percentage": "0.0%",
+      "recipes": [
+        {
+          "name": "Brigadeiros (Brazilian Chocolate Truffles).",
+          "url": "https://www.halfbakedharvest.com/brigadeiros-brazilian-chocolate-truffles/"
+        }
+      ]
+    }
+  ]
+}

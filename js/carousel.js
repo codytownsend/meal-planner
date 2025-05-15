@@ -10,13 +10,11 @@ const CarouselManager = (() => {
     const elements = {
         carousel: null,
         prevBtn: null,
-        nextBtn: null,
-        dotsContainer: null
+        nextBtn: null
     };
     
     // Constants
     const CLASSES = {
-        DOT: 'dot',
         ACTIVE: 'active',
         OPEN: 'open'
     };
@@ -34,17 +32,14 @@ const CarouselManager = (() => {
         elements.carousel = document.getElementById('recipe-carousel');
         elements.prevBtn = document.getElementById('prev-recipe');
         elements.nextBtn = document.getElementById('next-recipe');
-        elements.dotsContainer = document.getElementById('carousel-dots');
         
         // Verify elements exist
-        if (!elements.carousel || !elements.prevBtn || 
-            !elements.nextBtn || !elements.dotsContainer) {
+        if (!elements.carousel || !elements.prevBtn || !elements.nextBtn) {
             console.error('Required carousel elements not found');
             return;
         }
         
         renderCarousel();
-        renderDots();
         setupEventListeners();
         updateNavigation();
     };
@@ -59,19 +54,6 @@ const CarouselManager = (() => {
         });
         
         updateCarouselPosition();
-    };
-    
-    // Create navigation dots
-    const renderDots = () => {
-        domHelpers.clearElement(elements.dotsContainer);
-        
-        state.recipes.forEach((_, index) => {
-            const dot = domHelpers.createElement('div', {
-                className: `${CLASSES.DOT} ${index === state.currentIndex ? CLASSES.ACTIVE : ''}`,
-                'data-index': index
-            });
-            elements.dotsContainer.appendChild(dot);
-        });
     };
     
     // Create simplified recipe card using domHelpers
@@ -177,6 +159,20 @@ const CarouselManager = (() => {
             textContent: 'View Recipe'
         });
         
+        // Add to Plan button
+        const addToPlanBtn = domHelpers.createElement('button', {
+            className: 'add-to-plan',
+            'data-recipe-id': recipe.id,
+            innerHTML: `
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+                <span>Add to Plan</span>
+            `
+        });
+        
+        actions.appendChild(addToPlanBtn);
         actions.appendChild(viewRecipeLink);
         
         // Assemble the details panel
@@ -204,14 +200,6 @@ const CarouselManager = (() => {
         // Navigation buttons
         elements.prevBtn.addEventListener('click', showPreviousRecipe);
         elements.nextBtn.addEventListener('click', showNextRecipe);
-        
-        // Dot navigation
-        domHelpers.addEventDelegate(elements.dotsContainer, 'click', `.${CLASSES.DOT}`, (_, target) => {
-            const index = parseInt(target.dataset.index);
-            if (!isNaN(index)) {
-                goToRecipe(index);
-            }
-        });
         
         // Keyboard navigation
         document.addEventListener('keydown', (e) => {
@@ -290,14 +278,6 @@ const CarouselManager = (() => {
             elements.nextBtn.style.opacity = state.currentIndex === state.recipes.length - 1 ? '0.5' : '1';
             elements.nextBtn.style.pointerEvents = state.currentIndex === state.recipes.length - 1 ? 'none' : 'auto';
         }
-        
-        // Update dots
-        if (elements.dotsContainer) {
-            const dots = elements.dotsContainer.querySelectorAll(`.${CLASSES.DOT}`);
-            dots.forEach((dot, index) => {
-                dot.classList.toggle(CLASSES.ACTIVE, index === state.currentIndex);
-            });
-        }
     };
     
     // Filter recipes
@@ -310,7 +290,6 @@ const CarouselManager = (() => {
         state.recipes = filteredRecipeData;
         state.currentIndex = 0;
         renderCarousel();
-        renderDots();
         updateNavigation();
     };
     
@@ -319,10 +298,45 @@ const CarouselManager = (() => {
         return state.recipes[state.currentIndex] || null;
     };
     
+    // Update recipes - new method for pagination
+    const updateRecipes = (newRecipes) => {
+        if (!newRecipes || !Array.isArray(newRecipes) || !newRecipes.length) {
+            console.error('Invalid recipes data provided to CarouselManager.updateRecipes');
+            return;
+        }
+        
+        // Save current index for restoring position if possible
+        const currentRecipeId = state.recipes[state.currentIndex]?.id;
+        
+        // Update recipes
+        state.recipes = newRecipes;
+        
+        // Try to maintain position by finding the same recipe ID
+        if (currentRecipeId) {
+            const newIndex = state.recipes.findIndex(recipe => recipe.id === currentRecipeId);
+            if (newIndex !== -1) {
+                state.currentIndex = newIndex;
+            } else {
+                // Reset to first recipe if previous recipe not found
+                state.currentIndex = 0;
+            }
+        } else {
+            // Reset to first recipe
+            state.currentIndex = 0;
+        }
+        
+        // Redraw carousel
+        renderCarousel();
+        updateNavigation();
+        
+        console.log(`Carousel updated with ${newRecipes.length} recipes`);
+    };
+    
     // Public API
     return {
         init,
         filterRecipes,
-        getCurrentRecipe
+        getCurrentRecipe,
+        updateRecipes
     };
 })();

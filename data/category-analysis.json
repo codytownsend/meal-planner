@@ -1,0 +1,1835 @@
+{
+  "totalRecipes": 3268,
+  "categorizedRecipes": 2344,
+  "uncategorizedRecipes": 924,
+  "uniqueCategories": 46,
+  "categories": [
+    {
+      "name": "Main Course",
+      "count": 1045,
+      "percentage": "32.0%",
+      "recipes": [
+        {
+          "name": "Sheet Pan Dijon Salmon and Sesame Panko Potatoes",
+          "url": "https://www.halfbakedharvest.com/dijon-salmon-and-panko-potatoes/"
+        },
+        {
+          "name": "Sheet Pan Sun-Dried Tomato Chicken Bowls",
+          "url": "https://www.halfbakedharvest.com/sun-dried-tomato-chicken-bowls/"
+        },
+        {
+          "name": "Crockpot Chuck Roast Tinga Tacos",
+          "url": "https://www.halfbakedharvest.com/chuck-roast-tinga-tacos/"
+        },
+        {
+          "name": "Skillet Mexican Beef and Rice",
+          "url": "https://www.halfbakedharvest.com/skillet-mexican-beef-and-rice/"
+        },
+        {
+          "name": "Chipotle Pineapple Chicken with Bang Bang Sauce",
+          "url": "https://www.halfbakedharvest.com/chipotle-pineapple-chicken/"
+        },
+        {
+          "name": "Crispy Wonton Rotisserie Chicken Salad",
+          "url": "https://www.halfbakedharvest.com/wonton-chicken-salad/"
+        },
+        {
+          "name": "Sheet Pan Spinach Dip Pizza",
+          "url": "https://www.halfbakedharvest.com/spinach-artichoke-dip-pizza/"
+        },
+        {
+          "name": "Spicy Honey Mustard Salmon Bowls",
+          "url": "https://www.halfbakedharvest.com/honey-mustard-salmon-bowls/"
+        },
+        {
+          "name": "One Pot Chicken Caesar Pesto Pasta",
+          "url": "https://www.halfbakedharvest.com/caesar-pesto-pasta/"
+        },
+        {
+          "name": "Sheet Pan Sesame Feta Chicken and Sweet Potatoes",
+          "url": "https://www.halfbakedharvest.com/sheet-pan-sesame-feta-chicken/"
+        }
+      ]
+    },
+    {
+      "name": "Uncategorized",
+      "count": 924,
+      "percentage": "28.3%",
+      "recipes": [
+        {
+          "name": "The Best (easiest) No Knead Bread",
+          "url": "https://www.halfbakedharvest.com/easiest-no-knead-bread/"
+        },
+        {
+          "name": "Quick Poblano Pineapple Shrimp Tacos with Cilantro Jalapeño Ranch",
+          "url": "https://www.halfbakedharvest.com/poblano-pineapple-shrimp-tacos/"
+        },
+        {
+          "name": "Mango Kale Chopped Salad with Cilantro Lime Dressing",
+          "url": "https://www.halfbakedharvest.com/mango-kale-chopped-salad/"
+        },
+        {
+          "name": "Easiest One Pan Caprese Pesto Orzo Bake",
+          "url": "https://www.halfbakedharvest.com/one-pan-caprese-pesto-orzo-bake/"
+        },
+        {
+          "name": "Crispy Oregano Roasted Potatoes with Creamy Feta Sauce",
+          "url": "https://www.halfbakedharvest.com/oregano-roasted-potatoes/"
+        },
+        {
+          "name": "Crockpot Crispy Chicken Tinga Tacos with Jalapeño Avocado Crema",
+          "url": "https://www.halfbakedharvest.com/crispy-chicken-tinga-tacos/"
+        },
+        {
+          "name": "Roasted Cauliflower Pitas with Zhug and Garlic Tahini",
+          "url": "https://www.halfbakedharvest.com/roasted-cauliflower-pitas/"
+        },
+        {
+          "name": "Baked Chocolate Fudge Glazed Doughnuts",
+          "url": "https://www.halfbakedharvest.com/baked-chocolate-fudge-glazed-doughnuts/"
+        },
+        {
+          "name": "Sheet Pan Greek Garlic Butter Chicken and Potatoes",
+          "url": "https://www.halfbakedharvest.com/garlic-butter-chicken-and-potatoes/"
+        },
+        {
+          "name": "Iced Lemon Loaf",
+          "url": "https://www.halfbakedharvest.com/iced-lemon-loaf/"
+        }
+      ]
+    },
+    {
+      "name": "Dessert",
+      "count": 609,
+      "percentage": "18.6%",
+      "recipes": [
+        {
+          "name": "Bursting Blueberry Ricotta Pudding Cake",
+          "url": "https://www.halfbakedharvest.com/blueberry-ricotta-pudding-cake/"
+        },
+        {
+          "name": "Easy Lemon Fritter Cake",
+          "url": "https://www.halfbakedharvest.com/lemon-fritter-cake/"
+        },
+        {
+          "name": "Raspberry White Chocolate Magic Cookies",
+          "url": "https://www.halfbakedharvest.com/raspberry-white-chocolate-cookies/"
+        },
+        {
+          "name": "Crinkle Top Lemon Blondies",
+          "url": "https://www.halfbakedharvest.com/lemon-blondies/"
+        },
+        {
+          "name": "Blueberry Muffin Bread",
+          "url": "https://www.halfbakedharvest.com/blueberry-muffin-bread/"
+        },
+        {
+          "name": "Strawberry Oatmeal Cookie Cobbler",
+          "url": "https://www.halfbakedharvest.com/strawberry-oatmeal-cookie-cobbler/"
+        },
+        {
+          "name": "Homemade Baked Frosted Chocolate Donuts",
+          "url": "https://www.halfbakedharvest.com/baked-frosted-chocolate-donuts/"
+        },
+        {
+          "name": "Divine 6 Ingredient Magic Cookie Bars",
+          "url": "https://www.halfbakedharvest.com/6-ingredient-magic-cookie-bars/"
+        },
+        {
+          "name": "5 Ingredient Magic Cookies",
+          "url": "https://www.halfbakedharvest.com/5-ingredient-magic-cookies/"
+        },
+        {
+          "name": "Double Chocolate Muffins",
+          "url": "https://www.halfbakedharvest.com/double-chocolate-muffins/"
+        }
+      ]
+    },
+    {
+      "name": "Snack",
+      "count": 441,
+      "percentage": "13.5%",
+      "recipes": [
+        {
+          "name": "Blueberry Muffin Bread",
+          "url": "https://www.halfbakedharvest.com/blueberry-muffin-bread/"
+        },
+        {
+          "name": "Crockpot Hearty Chicken and Rice Soup",
+          "url": "https://www.halfbakedharvest.com/chicken-and-rice-soup/"
+        },
+        {
+          "name": "20 Minute Potstickers in Red Curry Garlic Oil",
+          "url": "https://www.halfbakedharvest.com/potstickers-in-red-curry-garlic-broth/"
+        },
+        {
+          "name": "5 Ingredient Magic Cookies",
+          "url": "https://www.halfbakedharvest.com/5-ingredient-magic-cookies/"
+        },
+        {
+          "name": "Double Chocolate Muffins",
+          "url": "https://www.halfbakedharvest.com/double-chocolate-muffins/"
+        },
+        {
+          "name": "Cinnamon Crunch Swirled Coffee Cake",
+          "url": "https://www.halfbakedharvest.com/cinnamon-crunch-yogurt-coffee-cake/"
+        },
+        {
+          "name": "Brown Butter Oatmeal Chocolate Chip Cookie Bars",
+          "url": "https://www.halfbakedharvest.com/brown-butter-oatmeal-chocolate-chip-cookie-bars/"
+        },
+        {
+          "name": "Samoa Cookie Bars",
+          "url": "https://www.halfbakedharvest.com/samoa-cookie-bars/"
+        },
+        {
+          "name": "Chocolate Chunk Greek Yogurt Banana Bread",
+          "url": "https://www.halfbakedharvest.com/chocolate-chunk-greek-yogurt-banana-bread/"
+        },
+        {
+          "name": "Big and Fluffy Overnight Cinnamon Rolls ",
+          "url": "https://www.halfbakedharvest.com/overnight-cinnamon-rolls/"
+        }
+      ]
+    },
+    {
+      "name": "Appetizer",
+      "count": 232,
+      "percentage": "7.1%",
+      "recipes": [
+        {
+          "name": "Crispy Turmeric Chicken Tenders",
+          "url": "https://www.halfbakedharvest.com/turmeric-chicken-tenders/"
+        },
+        {
+          "name": "20 Minute Potstickers in Red Curry Garlic Oil",
+          "url": "https://www.halfbakedharvest.com/potstickers-in-red-curry-garlic-broth/"
+        },
+        {
+          "name": "Buffalo Chicken Dip Sliders",
+          "url": "https://www.halfbakedharvest.com/buffalo-chicken-dip-sliders/"
+        },
+        {
+          "name": "30 Minute Peanut Beef Rolls",
+          "url": "https://www.halfbakedharvest.com/peanut-beef-rolls/"
+        },
+        {
+          "name": "Whipped Goat Cheese Candied Bacon Dip",
+          "url": "https://www.halfbakedharvest.com/goat-cheese-candied-bacon-dip/"
+        },
+        {
+          "name": "Spinach and Artichoke Dip Rolls",
+          "url": "https://www.halfbakedharvest.com/spinach-and-artichoke-dip-rolls/"
+        },
+        {
+          "name": "Caramelized Honey Baked Brie with Warm Olives",
+          "url": "https://www.halfbakedharvest.com/honey-baked-brie/"
+        },
+        {
+          "name": "Holiday Pretzel Mix",
+          "url": "https://www.halfbakedharvest.com/holiday-pretzel-mix/"
+        },
+        {
+          "name": "Creamy Spicy Chicken Gnocchi Soup",
+          "url": "https://www.halfbakedharvest.com/chicken-gnocchi-soup/"
+        },
+        {
+          "name": "Bacon Wrapped Date and Goat Cheese Pastry Twist",
+          "url": "https://www.halfbakedharvest.com/goat-cheese-pastry-twists/"
+        }
+      ]
+    },
+    {
+      "name": "Breakfast",
+      "count": 143,
+      "percentage": "4.4%",
+      "recipes": [
+        {
+          "name": "Smashed Raspberry Dutch Baby",
+          "url": "https://www.halfbakedharvest.com/raspberry-dutch-baby/"
+        },
+        {
+          "name": "Blueberry Muffin Bread",
+          "url": "https://www.halfbakedharvest.com/blueberry-muffin-bread/"
+        },
+        {
+          "name": "Big and Fluffy Overnight Cinnamon Rolls ",
+          "url": "https://www.halfbakedharvest.com/overnight-cinnamon-rolls/"
+        },
+        {
+          "name": "Pumpkin Butter Cinnamon Rolls with Coffee Icing",
+          "url": "https://www.halfbakedharvest.com/pumpkin-butter-cinnamon-rolls/"
+        },
+        {
+          "name": "Baked Cinnamon Crunch Apple Cider Doughnuts",
+          "url": "https://www.halfbakedharvest.com/cinnamon-crunch-apple-cider-doughnuts/"
+        },
+        {
+          "name": "Pumpkin Spice Pecan Latte",
+          "url": "https://www.halfbakedharvest.com/pumpkin-spice-pecan-latte/"
+        },
+        {
+          "name": "Cinnamon Crunch Swirled Banana Bread",
+          "url": "https://www.halfbakedharvest.com/cinnamon-crunch-swirled-banana-bread/"
+        },
+        {
+          "name": "Blueberry Cinnamon Rolls with Maple Icing",
+          "url": "https://www.halfbakedharvest.com/blueberry-cinnamon-rolls/"
+        },
+        {
+          "name": "Muffin Top Strawberry Shortcakes",
+          "url": "https://www.halfbakedharvest.com/muffin-top-strawberry-shortcakes/"
+        },
+        {
+          "name": "Strawberry Caramel Muffins",
+          "url": "https://www.halfbakedharvest.com/strawberry-caramel-muffins/"
+        }
+      ]
+    },
+    {
+      "name": "Side Dish",
+      "count": 140,
+      "percentage": "4.3%",
+      "recipes": [
+        {
+          "name": "Roasted Asparagus and Potatoes with Sesame Breadcrumbs and Burrata",
+          "url": "https://www.halfbakedharvest.com/roasted-asparagus-and-potatoes/"
+        },
+        {
+          "name": "Creamy Lentil Sun-dried Tomato Soup",
+          "url": "https://www.halfbakedharvest.com/lentil-tomato-soup/"
+        },
+        {
+          "name": "Salsa Verde Tortilla Soup",
+          "url": "https://www.halfbakedharvest.com/salsa-verde-tortilla-soup/"
+        },
+        {
+          "name": "Honey Butter Soft Pretzel Candy Canes",
+          "url": "https://www.halfbakedharvest.com/soft-pretzel-candy-canes/"
+        },
+        {
+          "name": "Creamy Spicy Chicken Gnocchi Soup",
+          "url": "https://www.halfbakedharvest.com/chicken-gnocchi-soup/"
+        },
+        {
+          "name": "Crockpot Creamy Sun-Dried Tomato Lasagna Soup",
+          "url": "https://www.halfbakedharvest.com/sun-dried-tomato-lasagna-soup/"
+        },
+        {
+          "name": "Crockpot Fondue Mashed Potatoes",
+          "url": "https://www.halfbakedharvest.com/fondue-mashed-potatoes/"
+        },
+        {
+          "name": "Salted Sage Honey Butter Brioche Rolls",
+          "url": "https://www.halfbakedharvest.com/honey-butter-brioche-rolls/"
+        },
+        {
+          "name": "Brown Sugar Roasted Honeynut Squash",
+          "url": "https://www.halfbakedharvest.com/oasted-honeynut-squash/"
+        },
+        {
+          "name": "Creamy Butternut Squash Sage Pesto Soup",
+          "url": "https://www.halfbakedharvest.com/butternut-squash-sage-pesto-soup/"
+        }
+      ]
+    },
+    {
+      "name": "Drinks",
+      "count": 112,
+      "percentage": "3.4%",
+      "recipes": [
+        {
+          "name": "Spicy Ginger Pomegranate Mule",
+          "url": "https://www.halfbakedharvest.com/pomegranate-moscow-mule/"
+        },
+        {
+          "name": "Thanksgiving Cranberry Cobbler Punch ",
+          "url": "https://www.halfbakedharvest.com/cobbler-punch/"
+        },
+        {
+          "name": "Autumn Aperol Apple Cider Margarita (+Mocktail)",
+          "url": "https://www.halfbakedharvest.com/aperol-apple-cider-margarita/"
+        },
+        {
+          "name": "Smoky Black Pomegranate Cocktail",
+          "url": "https://www.halfbakedharvest.com/black-pomegranate-cocktail/"
+        },
+        {
+          "name": "Peach Thyme Smash",
+          "url": "https://www.halfbakedharvest.com/peach-thyme-smash/"
+        },
+        {
+          "name": "Batch Spicy Coconut Lime Margarita",
+          "url": "https://www.halfbakedharvest.com/coconut-lime-margaritas/"
+        },
+        {
+          "name": "Naughty Gingerbread Cocktail (+mocktail).",
+          "url": "https://www.halfbakedharvest.com/gingerbread-cocktail/"
+        },
+        {
+          "name": "Cinnamon Apple Bourbon Smash",
+          "url": "https://www.halfbakedharvest.com/cinnamon-apple-bourbon-smash/"
+        },
+        {
+          "name": "Bloody Mule",
+          "url": "https://www.halfbakedharvest.com/bloody-mule/"
+        },
+        {
+          "name": "Hocus Pocus Old Fashioned",
+          "url": "https://www.halfbakedharvest.com/hocus-pocus-old-fashioned/"
+        }
+      ]
+    },
+    {
+      "name": "Salad",
+      "count": 88,
+      "percentage": "2.7%",
+      "recipes": [
+        {
+          "name": "Strawberry Feta Salad with Candied Pecans",
+          "url": "https://www.halfbakedharvest.com/strawberry-feta-salad/"
+        },
+        {
+          "name": "Sweet Potato Ginger Salad",
+          "url": "https://www.halfbakedharvest.com/sweet-potato-bacon-salad/"
+        },
+        {
+          "name": "Watermelon Peach Salad",
+          "url": "https://www.halfbakedharvest.com/watermelon-peach-salad/"
+        },
+        {
+          "name": "Roasted Garlic Tomato Caprese",
+          "url": "https://www.halfbakedharvest.com/tomato-burrata-caprese/"
+        },
+        {
+          "name": "Roasted Brussels Sprout Salad",
+          "url": "https://www.halfbakedharvest.com/roasted-brussels-sprout-salad/"
+        },
+        {
+          "name": "Shredded Brussels Sprout Candied Bacon Salad",
+          "url": "https://www.halfbakedharvest.com/brussels-sprout-candied-bacon-salad/"
+        },
+        {
+          "name": "Hot Bacon Tomato Goat Cheese Salad",
+          "url": "https://www.halfbakedharvest.com/tomato-goat-cheese-salad/"
+        },
+        {
+          "name": "Street Corn Pasta Salad",
+          "url": "https://www.halfbakedharvest.com/street-corn-pasta-salad/"
+        },
+        {
+          "name": "Smashed Cucumber and Watermelon Feta Salad",
+          "url": "https://www.halfbakedharvest.com/cucumber-and-watermelon-feta-salad/"
+        },
+        {
+          "name": "Black Pepper Pretzel Chicken and Avocado Bacon Salad",
+          "url": "https://www.halfbakedharvest.com/black-pepper-pretzel-chicken-bacon-salad/"
+        }
+      ]
+    },
+    {
+      "name": "Bread",
+      "count": 65,
+      "percentage": "2.0%",
+      "recipes": [
+        {
+          "name": "Chocolate Chip Zucchini Pecan Bread",
+          "url": "https://www.halfbakedharvest.com/chocolate-chip-zucchini-pecan-bread/"
+        },
+        {
+          "name": "Salted Honey Butter Cheddar Brioche Rolls",
+          "url": "https://www.halfbakedharvest.com/cheddar-brioche-rolls/"
+        },
+        {
+          "name": "Chocolate Chunk Greek Yogurt Banana Bread",
+          "url": "https://www.halfbakedharvest.com/chocolate-chunk-greek-yogurt-banana-bread/"
+        },
+        {
+          "name": "Salted Sage Honey Butter Brioche Rolls",
+          "url": "https://www.halfbakedharvest.com/honey-butter-brioche-rolls/"
+        },
+        {
+          "name": "Cinnamon Crunch Swirled Banana Bread",
+          "url": "https://www.halfbakedharvest.com/cinnamon-crunch-swirled-banana-bread/"
+        },
+        {
+          "name": "Muffin Top Strawberry Shortcakes",
+          "url": "https://www.halfbakedharvest.com/muffin-top-strawberry-shortcakes/"
+        },
+        {
+          "name": "Strawberry Caramel Muffins",
+          "url": "https://www.halfbakedharvest.com/strawberry-caramel-muffins/"
+        },
+        {
+          "name": "Perfect Popovers with Cranberry Butter",
+          "url": "https://www.halfbakedharvest.com/perfect-popovers/"
+        },
+        {
+          "name": "Pumpkin Butter Cinnamon Roll Bread",
+          "url": "https://www.halfbakedharvest.com/pumpkin-butter-cinnamon-roll-bread/"
+        },
+        {
+          "name": "Mini Blueberry Muffins",
+          "url": "https://www.halfbakedharvest.com/mini-blueberry-muffins/"
+        }
+      ]
+    },
+    {
+      "name": "Sandwiches",
+      "count": 58,
+      "percentage": "1.8%",
+      "recipes": [
+        {
+          "name": "Roasted Garlic Caprese Grilled Cheese",
+          "url": "https://www.halfbakedharvest.com/caprese-grilled-cheese/"
+        },
+        {
+          "name": "Honey, Peach, and Brie Panini with Bacon Butter",
+          "url": "https://www.halfbakedharvest.com/honey-peach-and-brie-panini-with-bacon-butter/"
+        },
+        {
+          "name": "Marinated Vegetable and Cheese Sandwich with Sun-Dried Tomato Pesto",
+          "url": "https://www.halfbakedharvest.com/marinated-veggie-cheese-sandwich/"
+        },
+        {
+          "name": "Open Faced Rosemary Chicken, Peach, and Bacon Sandwich",
+          "url": "https://www.halfbakedharvest.com/open-faced-rosemary-chicken-peach-and-bacon-sandwich/"
+        },
+        {
+          "name": "Thai Basil Steak Salad Sandwich.",
+          "url": "https://www.halfbakedharvest.com/thai-steak-sandwich/"
+        },
+        {
+          "name": "Antipasto Mozzarella Sandwich with Lemon Pesto",
+          "url": "https://www.halfbakedharvest.com/antipasto-mozzarella-sandwich-with-lemony-basil-pesto/"
+        },
+        {
+          "name": "Broccoli Cheddar Melts",
+          "url": "https://www.halfbakedharvest.com/broccoli-cheddar-melts/"
+        },
+        {
+          "name": "Everything Spice Grilled Cheese",
+          "url": "https://www.halfbakedharvest.com/3-cheese-everything-spice-grilled-cheese/"
+        },
+        {
+          "name": "Opened Faced Tomato and Goat Cheese Sandwich with Hot Bacon Vinaigrette",
+          "url": "https://www.halfbakedharvest.com/opened-faced-tomato-and-goat-cheese-sandwich-with-hot-bacon-vinaigrette/"
+        },
+        {
+          "name": "Spicy Maple Grilled Chicken Sandwich with Smoky Bacon Corn",
+          "url": "https://www.halfbakedharvest.com/spicy-maple-grilled-chicken-sandwich-with-smoky-bacon-corn/"
+        }
+      ]
+    },
+    {
+      "name": "light meal",
+      "count": 51,
+      "percentage": "1.6%",
+      "recipes": [
+        {
+          "name": "Crockpot Hearty Chicken and Rice Soup",
+          "url": "https://www.halfbakedharvest.com/chicken-and-rice-soup/"
+        },
+        {
+          "name": "20 Minute Honey Garlic Chicken Udon Noodles",
+          "url": "https://www.halfbakedharvest.com/garlic-chicken-udon-noodles/"
+        },
+        {
+          "name": "30 Minute Peanut Beef Rolls",
+          "url": "https://www.halfbakedharvest.com/peanut-beef-rolls/"
+        },
+        {
+          "name": "Creamy Tuscan White Bean Lemon Soup",
+          "url": "https://www.halfbakedharvest.com/white-bean-lemon-soup/"
+        },
+        {
+          "name": "Sesame Peanut Chicken Katsu Ramen",
+          "url": "https://www.halfbakedharvest.com/peanut-chicken-katsu-ramen/"
+        },
+        {
+          "name": "30 Minute Crispy Thai Peanut Chicken Ramen",
+          "url": "https://www.halfbakedharvest.com/peanut-chicken-ramen/"
+        },
+        {
+          "name": "Pretzel Chicken Fingers with Honey Mustard Cheese Sauce.",
+          "url": "https://www.halfbakedharvest.com/pretzel-chicken-fingers/"
+        },
+        {
+          "name": "Butternut Squash Orzo Salad with Candied Bacon",
+          "url": "https://www.halfbakedharvest.com/butternut-squash-orzo-salad/"
+        },
+        {
+          "name": "Broccoli Cheddar Corn Chowder",
+          "url": "https://www.halfbakedharvest.com/broccoli-cheddar-chipotle-corn-chowder/"
+        },
+        {
+          "name": "Open Face Tomato Bacon Sandwich",
+          "url": "https://www.halfbakedharvest.com/open-face-tomato-bacon-sandwich/"
+        }
+      ]
+    },
+    {
+      "name": "Soup",
+      "count": 48,
+      "percentage": "1.5%",
+      "recipes": [
+        {
+          "name": "Creamy French Onion Soup In Bread Bowls",
+          "url": "https://www.halfbakedharvest.com/french-onion-soup/"
+        },
+        {
+          "name": "Broccoli Cheddar Noodle Soup",
+          "url": "https://www.halfbakedharvest.com/broccoli-cheddar-noodle-soup/"
+        },
+        {
+          "name": "Crockpot Spicy Chicken Tortilla Soup",
+          "url": "https://www.halfbakedharvest.com/crockpot-spicy-chicken-tortilla-soup/"
+        },
+        {
+          "name": "30 Minute Coconut Curry Noodle Soup with Chili Crisp Chickpeas",
+          "url": "https://www.halfbakedharvest.com/coconut-curry-noodle-soup/"
+        },
+        {
+          "name": "Creamy Tortellini French Onion Soup",
+          "url": "https://www.halfbakedharvest.com/tortellini-french-onion-soup/"
+        },
+        {
+          "name": "Creamy Broccoli Cheddar Casserole with Garlic Butter Pretzels",
+          "url": "https://www.halfbakedharvest.com/broccoli-cheddar-casserole/"
+        },
+        {
+          "name": "Slow Cooker Creamy White Bean Noodle Soup with Rosemary Bacon",
+          "url": "https://www.halfbakedharvest.com/creamy-white-bean-noodle-soup/"
+        },
+        {
+          "name": "Slow Cooker Hearty Chicken Soup",
+          "url": "https://www.halfbakedharvest.com/slow-cooker-hearty-chicken-soup/"
+        },
+        {
+          "name": "Crockpot Tuscan White Bean and Lemon Soup",
+          "url": "https://www.halfbakedharvest.com/crockpot-tuscan-white-bean-and-lemon-soup/"
+        },
+        {
+          "name": "French Onion Potato Soup",
+          "url": "https://www.halfbakedharvest.com/french-onion-potato-soup/"
+        }
+      ]
+    },
+    {
+      "name": "Brunch",
+      "count": 39,
+      "percentage": "1.2%",
+      "recipes": [
+        {
+          "name": "Smashed Raspberry Dutch Baby",
+          "url": "https://www.halfbakedharvest.com/raspberry-dutch-baby/"
+        },
+        {
+          "name": "Blueberry Croissant French Toast Bake",
+          "url": "https://www.halfbakedharvest.com/blueberry-croissant-french-toast-bake/"
+        },
+        {
+          "name": "Banana Bread Carrot Cake with Vanilla Cream Cheese Frosting",
+          "url": "https://www.halfbakedharvest.com/banana-bread-carrot-cake/"
+        },
+        {
+          "name": "Homemade Honey Butter Cheddar Biscuits",
+          "url": "https://www.halfbakedharvest.com/cheddar-biscuits/"
+        },
+        {
+          "name": "Blueberry Sour Cream Coffee Cake",
+          "url": "https://www.halfbakedharvest.com/blueberry-sour-cream-coffee-cake/"
+        },
+        {
+          "name": "Brown Butter Iced Espresso Cardamom Buns",
+          "url": "https://www.halfbakedharvest.com/espresso-cardamom-buns/"
+        },
+        {
+          "name": "Iced Raspberry Honey Sweet Rolls",
+          "url": "https://www.halfbakedharvest.com/raspberry-honey-sweet-rolls/"
+        },
+        {
+          "name": "Maple Almond Banana Muffins",
+          "url": "https://www.halfbakedharvest.com/maple-almond-banana-muffins/"
+        },
+        {
+          "name": "\"Brûléed\" Eggnog Croissant French Toast",
+          "url": "https://www.halfbakedharvest.com/croissant-french-toast/"
+        },
+        {
+          "name": "Cinnamon Swirl Crunch Quick Bread",
+          "url": "https://www.halfbakedharvest.com/cinnamon-crunch-quick-bread/"
+        }
+      ]
+    },
+    {
+      "name": "lunch",
+      "count": 34,
+      "percentage": "1.0%",
+      "recipes": [
+        {
+          "name": "Honey Mustard Chicken, Bacon, and Avocado Melts",
+          "url": "https://www.halfbakedharvest.com/chicken-bacon-avocado-melt/"
+        },
+        {
+          "name": "Crispy Turmeric Chicken Tenders",
+          "url": "https://www.halfbakedharvest.com/turmeric-chicken-tenders/"
+        },
+        {
+          "name": "Crockpot Hearty Chicken and Rice Soup",
+          "url": "https://www.halfbakedharvest.com/chicken-and-rice-soup/"
+        },
+        {
+          "name": "Creamy Lentil Sun-dried Tomato Soup",
+          "url": "https://www.halfbakedharvest.com/lentil-tomato-soup/"
+        },
+        {
+          "name": "20 Minute Honey Garlic Chicken Udon Noodles",
+          "url": "https://www.halfbakedharvest.com/garlic-chicken-udon-noodles/"
+        },
+        {
+          "name": "Sesame Peanut Chicken Katsu Ramen",
+          "url": "https://www.halfbakedharvest.com/peanut-chicken-katsu-ramen/"
+        },
+        {
+          "name": "Ham and Cheese Sliders",
+          "url": "https://www.halfbakedharvest.com/crispy-prosciutto-and-cheese-sliders/"
+        },
+        {
+          "name": "Creamy Homestyle Chicken Noodle Soup",
+          "url": "https://www.halfbakedharvest.com/creamy-homestyle-chicken-noodle-soup/"
+        },
+        {
+          "name": "Open Face Tomato Bacon Sandwich",
+          "url": "https://www.halfbakedharvest.com/open-face-tomato-bacon-sandwich/"
+        },
+        {
+          "name": "Grilled Buffalo Chicken Sub Sandwich",
+          "url": "https://www.halfbakedharvest.com/grilled-buffalo-chicken-subs/"
+        }
+      ]
+    },
+    {
+      "name": "cocktails",
+      "count": 25,
+      "percentage": "0.8%",
+      "recipes": [
+        {
+          "name": "Spicy Ginger Pomegranate Mule",
+          "url": "https://www.halfbakedharvest.com/pomegranate-moscow-mule/"
+        },
+        {
+          "name": "Peach Thyme Smash",
+          "url": "https://www.halfbakedharvest.com/peach-thyme-smash/"
+        },
+        {
+          "name": "Batch Spicy Coconut Lime Margarita",
+          "url": "https://www.halfbakedharvest.com/coconut-lime-margaritas/"
+        },
+        {
+          "name": "Naughty Gingerbread Cocktail (+mocktail).",
+          "url": "https://www.halfbakedharvest.com/gingerbread-cocktail/"
+        },
+        {
+          "name": "Bloody Mule",
+          "url": "https://www.halfbakedharvest.com/bloody-mule/"
+        },
+        {
+          "name": "Hocus Pocus Old Fashioned",
+          "url": "https://www.halfbakedharvest.com/hocus-pocus-old-fashioned/"
+        },
+        {
+          "name": "Enchanted Graveyard Pomegranate Punch",
+          "url": "https://www.halfbakedharvest.com/pomegranate-punch/"
+        },
+        {
+          "name": "Strawberry Lemonade Aperol Margarita.",
+          "url": "https://www.halfbakedharvest.com/strawberry-lemonade-aperol-margarita/"
+        },
+        {
+          "name": "Spicy Jalapeño Ginger Moscow Mule",
+          "url": "https://www.halfbakedharvest.com/jalapeno-ginger-moscow-mule-with-mocktail/"
+        },
+        {
+          "name": "Old Saint Nick's Chocolate Espresso Martini",
+          "url": "https://www.halfbakedharvest.com/chocolate-espresso-martini/"
+        }
+      ]
+    },
+    {
+      "name": "drink",
+      "count": 24,
+      "percentage": "0.7%",
+      "recipes": [
+        {
+          "name": "Christmas White Russian",
+          "url": "https://www.halfbakedharvest.com/christmas-white-russian/"
+        },
+        {
+          "name": "Smoky Apple Cider Paloma (with mocktail)",
+          "url": "https://www.halfbakedharvest.com/apple-cider-paloma/"
+        },
+        {
+          "name": "Ghostly Ginger Cocktail",
+          "url": "https://www.halfbakedharvest.com/ghostly-ginger-cocktail/"
+        },
+        {
+          "name": "Pumpkin Spice Pecan Latte",
+          "url": "https://www.halfbakedharvest.com/pumpkin-spice-pecan-latte/"
+        },
+        {
+          "name": "Peach Thyme Smash",
+          "url": "https://www.halfbakedharvest.com/peach-thyme-smash/"
+        },
+        {
+          "name": "Frozen Watermelon Spritz",
+          "url": "https://www.halfbakedharvest.com/frozen-watermelon-spritz/"
+        },
+        {
+          "name": "Uncle Eddy's White Russian",
+          "url": "https://www.halfbakedharvest.com/white-russian/"
+        },
+        {
+          "name": "Mistletoe Kiss Cocktail",
+          "url": "https://www.halfbakedharvest.com/mistletoe-kiss-cocktail/"
+        },
+        {
+          "name": "Gingerbread Chai Brûlée Latte",
+          "url": "https://www.halfbakedharvest.com/gingerbread-chai-brulee-latte/"
+        },
+        {
+          "name": "Sage Ginger Paloma",
+          "url": "https://www.halfbakedharvest.com/sage-ginger-paloma/"
+        }
+      ]
+    },
+    {
+      "name": "dinner salad",
+      "count": 16,
+      "percentage": "0.5%",
+      "recipes": [
+        {
+          "name": "Strawberry Feta Salad with Candied Pecans",
+          "url": "https://www.halfbakedharvest.com/strawberry-feta-salad/"
+        },
+        {
+          "name": "Crispy Wonton Rotisserie Chicken Salad",
+          "url": "https://www.halfbakedharvest.com/wonton-chicken-salad/"
+        },
+        {
+          "name": "Blackened Salmon Caesar Salad",
+          "url": "https://www.halfbakedharvest.com/salmon-caesar-salad/"
+        },
+        {
+          "name": "Roasted Sweet Potato Salad with Tahini Dressing",
+          "url": "https://www.halfbakedharvest.com/roasted-sweet-potato-salad/"
+        },
+        {
+          "name": "Sweet Potato Ginger Salad",
+          "url": "https://www.halfbakedharvest.com/sweet-potato-bacon-salad/"
+        },
+        {
+          "name": "Harvest Brie and Cheddar Apple Kale Salad",
+          "url": "https://www.halfbakedharvest.com/cheddar-apple-kale-salad/"
+        },
+        {
+          "name": "Butternut Squash Orzo Salad with Candied Bacon",
+          "url": "https://www.halfbakedharvest.com/butternut-squash-orzo-salad/"
+        },
+        {
+          "name": "Tajín Honey Lime Chicken and Jalapeño Corn Caesar Salad",
+          "url": "https://www.halfbakedharvest.com/chicken-jalapeno-corn-caesar/"
+        },
+        {
+          "name": "Italian Chop Pasta Salad",
+          "url": "https://www.halfbakedharvest.com/italian-chop-pasta-salad/"
+        },
+        {
+          "name": "Chicken Tzatziki Salad",
+          "url": "https://www.halfbakedharvest.com/chicken-tzatziki-avocado-salad/"
+        }
+      ]
+    },
+    {
+      "name": "cookies",
+      "count": 15,
+      "percentage": "0.5%",
+      "recipes": [
+        {
+          "name": "Wholesome Peanut Butter Pretzel Chocolate Chip Cookies",
+          "url": "https://www.halfbakedharvest.com/peanut-butter-pretzel-chocolate-chip-cookies/"
+        },
+        {
+          "name": "Coffee Chocolate Chip Blondies",
+          "url": "https://www.halfbakedharvest.com/coffee-chocolate-chip-blondies/"
+        },
+        {
+          "name": "Double Strawberry Sugar Cookies",
+          "url": "https://www.halfbakedharvest.com/strawberry-sugar-cookies/"
+        },
+        {
+          "name": "Chocolate Chip Nutella Stuffed Oatmeal Cookies",
+          "url": "https://www.halfbakedharvest.com/chocolate-chip-nutella-oatmeal-cookies/"
+        },
+        {
+          "name": "Giant Double Blueberry Muffin Cookies",
+          "url": "https://www.halfbakedharvest.com/blueberry-muffin-cookies/"
+        },
+        {
+          "name": "Peanut Butter Protein Chocolate Chip Cookies",
+          "url": "https://www.halfbakedharvest.com/peanut-butter-protein-chocolate-chip-cookies/"
+        },
+        {
+          "name": "Soft Gingerbread Latte Cookies with Brown Butter Icing",
+          "url": "https://www.halfbakedharvest.com/gingerbread-latte-cookies/"
+        },
+        {
+          "name": "Chewy Frosted Cinnamon Swirl Snickerdoodles",
+          "url": "https://www.halfbakedharvest.com/frosted-cinnamon-swirl-snickerdoodles/"
+        },
+        {
+          "name": "Easy Slice 'n' Bake Vanilla Almond Sugar Cookies",
+          "url": "https://www.halfbakedharvest.com/slice-n-bake-vanilla-bean-sugar-cookies/"
+        },
+        {
+          "name": "Chewy Brown Butter Pretzel Pecan Cookies",
+          "url": "https://www.halfbakedharvest.com/pretzel-pecan-cookies/"
+        }
+      ]
+    },
+    {
+      "name": "holiday cocktails",
+      "count": 11,
+      "percentage": "0.3%",
+      "recipes": [
+        {
+          "name": "Sparkling Mistletoe Cosmo",
+          "url": "https://www.halfbakedharvest.com/mistletoe-cosmo/"
+        },
+        {
+          "name": "Autumn Aperol Apple Cider Margarita (+Mocktail)",
+          "url": "https://www.halfbakedharvest.com/aperol-apple-cider-margarita/"
+        },
+        {
+          "name": "Smoky Black Pomegranate Cocktail",
+          "url": "https://www.halfbakedharvest.com/black-pomegranate-cocktail/"
+        },
+        {
+          "name": "Ghostly Ginger Cocktail",
+          "url": "https://www.halfbakedharvest.com/ghostly-ginger-cocktail/"
+        },
+        {
+          "name": "Uncle Eddy's White Russian",
+          "url": "https://www.halfbakedharvest.com/white-russian/"
+        },
+        {
+          "name": "WhoVille Christmas Punch",
+          "url": "https://www.halfbakedharvest.com/christmas-punch/"
+        },
+        {
+          "name": "Naughty Nice Margarita",
+          "url": "https://www.halfbakedharvest.com/naughty-nice-margarita/"
+        },
+        {
+          "name": "Mistletoe Kiss Cocktail",
+          "url": "https://www.halfbakedharvest.com/mistletoe-kiss-cocktail/"
+        },
+        {
+          "name": "Sage Ginger Paloma",
+          "url": "https://www.halfbakedharvest.com/sage-ginger-paloma/"
+        },
+        {
+          "name": "Cinnamon Apple Bourbon Smash",
+          "url": "https://www.halfbakedharvest.com/cinnamon-apple-bourbon-smash/"
+        }
+      ]
+    },
+    {
+      "name": "cocktail",
+      "count": 11,
+      "percentage": "0.3%",
+      "recipes": [
+        {
+          "name": "Christmas White Russian",
+          "url": "https://www.halfbakedharvest.com/christmas-white-russian/"
+        },
+        {
+          "name": "Smoky Apple Cider Paloma (with mocktail)",
+          "url": "https://www.halfbakedharvest.com/apple-cider-paloma/"
+        },
+        {
+          "name": "Smoky Black Pomegranate Cocktail",
+          "url": "https://www.halfbakedharvest.com/black-pomegranate-cocktail/"
+        },
+        {
+          "name": "Ghostly Ginger Cocktail",
+          "url": "https://www.halfbakedharvest.com/ghostly-ginger-cocktail/"
+        },
+        {
+          "name": "Peach Thyme Smash",
+          "url": "https://www.halfbakedharvest.com/peach-thyme-smash/"
+        },
+        {
+          "name": "Frozen Watermelon Spritz",
+          "url": "https://www.halfbakedharvest.com/frozen-watermelon-spritz/"
+        },
+        {
+          "name": "WhoVille Christmas Punch",
+          "url": "https://www.halfbakedharvest.com/christmas-punch/"
+        },
+        {
+          "name": "Mistletoe Kiss Cocktail",
+          "url": "https://www.halfbakedharvest.com/mistletoe-kiss-cocktail/"
+        },
+        {
+          "name": "Sage Ginger Paloma",
+          "url": "https://www.halfbakedharvest.com/sage-ginger-paloma/"
+        },
+        {
+          "name": "Fireside Cranberry Cider Margarita",
+          "url": "https://www.halfbakedharvest.com/cranberry-cider-margarita/"
+        }
+      ]
+    },
+    {
+      "name": "Dip",
+      "count": 10,
+      "percentage": "0.3%",
+      "recipes": [
+        {
+          "name": "10 Minute Garden Herb Avocado Dip",
+          "url": "https://www.halfbakedharvest.com/10-minute-garden-herb-avocado-dip/"
+        },
+        {
+          "name": "Summer Garden Guacamole.",
+          "url": "https://www.halfbakedharvest.com/summer-garden-guacamole/"
+        },
+        {
+          "name": "Farmers Market Hummus.",
+          "url": "https://www.halfbakedharvest.com/farmers-market-hummus/"
+        },
+        {
+          "name": "Margarita Pizza Dip (withBurrata!!).",
+          "url": "https://www.halfbakedharvest.com/margherita-pizza-dip-burrata/"
+        },
+        {
+          "name": "Roasted Beet Hummus (VIDEO).",
+          "url": "https://www.halfbakedharvest.com/roasted-beet-hummus-video/"
+        },
+        {
+          "name": "Queso Fundido alla Tequila.",
+          "url": "https://www.halfbakedharvest.com/queso-fundido-alla-tequila/"
+        },
+        {
+          "name": "Cheesy Miso Caramelized Corn and Pineapple Chile Dip.",
+          "url": "https://www.halfbakedharvest.com/cheesy-miso-caramelized-corn-and-pineapple-chile-dip/"
+        },
+        {
+          "name": "Summer Fruit Salsa and Miso Hummus.",
+          "url": "https://www.halfbakedharvest.com/summer-fruit-salsa-and-pesto-hummus/"
+        },
+        {
+          "name": "Cheesy Margherita Pizza Hummus with Grilled Pesto Pizza Bread.",
+          "url": "https://www.halfbakedharvest.com/cheesy-margarita-pizza-hummus-grilled-pesto-pizza-bread/"
+        },
+        {
+          "name": "Ridiculously Easy Classic Fiesta Guacamole.",
+          "url": "https://www.halfbakedharvest.com/ridiculously-easy-classic-fiesta-guacamole/"
+        }
+      ]
+    },
+    {
+      "name": "bars",
+      "count": 7,
+      "percentage": "0.2%",
+      "recipes": [
+        {
+          "name": "Oatmeal Cookie Magic Bars",
+          "url": "https://www.halfbakedharvest.com/oatmeal-cookie-magic-bars/"
+        },
+        {
+          "name": "Cookie Dough Chocolate Peanut Butter Bars:",
+          "url": "https://www.halfbakedharvest.com/cookie-dough-chocolate-peanut-butter-bars/"
+        },
+        {
+          "name": "Strawberry White Chocolate Blondies",
+          "url": "https://www.halfbakedharvest.com/strawberry-white-chocolate-blondies/"
+        },
+        {
+          "name": "Coffee Chocolate Chip Blondies",
+          "url": "https://www.halfbakedharvest.com/coffee-chocolate-chip-blondies/"
+        },
+        {
+          "name": "Healthier Buckeye Brownies",
+          "url": "https://www.halfbakedharvest.com/healthier-buckeye-brownies/"
+        },
+        {
+          "name": "BOO! Chocolate Peanut Butter Bars",
+          "url": "https://www.halfbakedharvest.com/boo-chocolate-peanut-butter-bars/"
+        },
+        {
+          "name": "Brown Sugar Maple Pumpkin Butter Bars",
+          "url": "https://www.halfbakedharvest.com/pumpkin-butter-bars/"
+        }
+      ]
+    },
+    {
+      "name": "Condiment",
+      "count": 6,
+      "percentage": "0.2%",
+      "recipes": [
+        {
+          "name": "Roasted Lemon Spinach and Artichoke Dip",
+          "url": "https://www.halfbakedharvest.com/roasted-lemon-spinach-and-artichoke-dip/"
+        },
+        {
+          "name": "Holiday Gifting: Homemade Simple Syrups",
+          "url": "https://www.halfbakedharvest.com/holiday-gifting-homemade-simple-syrups/"
+        },
+        {
+          "name": "Homemade Slow Cooker Maple Apple Butter",
+          "url": "https://www.halfbakedharvest.com/homemade-slow-cooker-maple-apple-butter/"
+        },
+        {
+          "name": "Sun-Dried Tomato Muhammara (Roasted Red Pepper Spread)",
+          "url": "https://www.halfbakedharvest.com/sun-dried-tomato-muhammara-roasted-red-pepper-spread/"
+        },
+        {
+          "name": "Spicy Green Harissa.",
+          "url": "https://www.halfbakedharvest.com/spicy-green-harissa/"
+        },
+        {
+          "name": "Homemade Harissa (Spicy Red Pepper Sauce).",
+          "url": "https://www.halfbakedharvest.com/homemade-harissa-spicy-red-pepper-sauce/"
+        }
+      ]
+    },
+    {
+      "name": "Festive",
+      "count": 5,
+      "percentage": "0.2%",
+      "recipes": [
+        {
+          "name": "Creamy Chocolate Peanut Butter Banana Fuge Popsicles",
+          "url": "https://www.halfbakedharvest.com/creamy-chocolate-peanut-butter-banana-fudge-popsicles/"
+        },
+        {
+          "name": "Spicy Bourbon Pumpkin Smash",
+          "url": "https://www.halfbakedharvest.com/bourbon-pumpkin-smash/"
+        },
+        {
+          "name": "Lemon Coconut Vanilla Sheet Cake",
+          "url": "https://www.halfbakedharvest.com/lemon-coconut-vanilla-sheet-cake/"
+        },
+        {
+          "name": "Jalapeño Cream Cheese Chicken Taquitos with Buffalo Sauce",
+          "url": "https://www.halfbakedharvest.com/jalapeno-cream-cheese-buffalo-chicken-taquitos/"
+        },
+        {
+          "name": "Gingerbread Snowglobe Place Setting",
+          "url": "https://www.halfbakedharvest.com/gingerbread-snowglobe-place-setting/"
+        }
+      ]
+    },
+    {
+      "name": "side salad",
+      "count": 4,
+      "percentage": "0.1%",
+      "recipes": [
+        {
+          "name": "Strawberry Feta Salad with Candied Pecans",
+          "url": "https://www.halfbakedharvest.com/strawberry-feta-salad/"
+        },
+        {
+          "name": "Butternut Squash Orzo Salad with Candied Bacon",
+          "url": "https://www.halfbakedharvest.com/butternut-squash-orzo-salad/"
+        },
+        {
+          "name": "Lemon Parmesan Sesame Salad",
+          "url": "https://www.halfbakedharvest.com/lemon-parmesan-sesame-salad/"
+        },
+        {
+          "name": "Italian Chop Pasta Salad",
+          "url": "https://www.halfbakedharvest.com/italian-chop-pasta-salad/"
+        }
+      ]
+    },
+    {
+      "name": "rolls",
+      "count": 4,
+      "percentage": "0.1%",
+      "recipes": [
+        {
+          "name": "Salted Honey Butter Cheddar Brioche Rolls",
+          "url": "https://www.halfbakedharvest.com/cheddar-brioche-rolls/"
+        },
+        {
+          "name": "Honey Butter Soft Pretzel Candy Canes",
+          "url": "https://www.halfbakedharvest.com/soft-pretzel-candy-canes/"
+        },
+        {
+          "name": "Salted Sage Honey Butter Brioche Rolls",
+          "url": "https://www.halfbakedharvest.com/honey-butter-brioche-rolls/"
+        },
+        {
+          "name": "Easy Gruyère Croissants",
+          "url": "https://www.halfbakedharvest.com/gruyere-croissants/"
+        }
+      ]
+    },
+    {
+      "name": "holiday drinks",
+      "count": 4,
+      "percentage": "0.1%",
+      "recipes": [
+        {
+          "name": "Sparkling Mistletoe Cosmo",
+          "url": "https://www.halfbakedharvest.com/mistletoe-cosmo/"
+        },
+        {
+          "name": "Autumn Aperol Apple Cider Margarita (+Mocktail)",
+          "url": "https://www.halfbakedharvest.com/aperol-apple-cider-margarita/"
+        },
+        {
+          "name": "WhoVille Christmas Punch",
+          "url": "https://www.halfbakedharvest.com/christmas-punch/"
+        },
+        {
+          "name": "Naughty Nice Margarita",
+          "url": "https://www.halfbakedharvest.com/naughty-nice-margarita/"
+        }
+      ]
+    },
+    {
+      "name": "cupcakes",
+      "count": 4,
+      "percentage": "0.1%",
+      "recipes": [
+        {
+          "name": "Carrot Cake Cupcakes",
+          "url": "https://www.halfbakedharvest.com/carrot-cake-cupcakes/"
+        },
+        {
+          "name": "Lucky's Golden Ticket Cupcakes",
+          "url": "https://www.halfbakedharvest.com/luckys-golden-ticket-cupcakes/"
+        },
+        {
+          "name": "Chocolate, Chocolate Celebration Cupcakes",
+          "url": "https://www.halfbakedharvest.com/chocolate-celebration-cupcakes/"
+        },
+        {
+          "name": "Chocolate Bourbon Chai Latte Cupcakes with Butter Pecan Frosting",
+          "url": "https://www.halfbakedharvest.com/chocolate-bourbon-chai-latte-cupcakes/"
+        }
+      ]
+    },
+    {
+      "name": "holiday punch",
+      "count": 2,
+      "percentage": "0.1%",
+      "recipes": [
+        {
+          "name": "Sparkling Mistletoe Cosmo",
+          "url": "https://www.halfbakedharvest.com/mistletoe-cosmo/"
+        },
+        {
+          "name": "Thanksgiving Cranberry Cobbler Punch ",
+          "url": "https://www.halfbakedharvest.com/cobbler-punch/"
+        }
+      ]
+    },
+    {
+      "name": "dinner",
+      "count": 2,
+      "percentage": "0.1%",
+      "recipes": [
+        {
+          "name": "Harissa Eggs in Whipped Goat Cheese",
+          "url": "https://www.halfbakedharvest.com/harissa-eggs/"
+        },
+        {
+          "name": "Havarti Avocado Sandwich with Spicy Mayo",
+          "url": "https://www.halfbakedharvest.com/havarti-avocado-sandwich/"
+        }
+      ]
+    },
+    {
+      "name": "Christmas cocktail",
+      "count": 2,
+      "percentage": "0.1%",
+      "recipes": [
+        {
+          "name": "Uncle Eddy's White Russian",
+          "url": "https://www.halfbakedharvest.com/white-russian/"
+        },
+        {
+          "name": "Naughty Nice Margarita",
+          "url": "https://www.halfbakedharvest.com/naughty-nice-margarita/"
+        }
+      ]
+    },
+    {
+      "name": "pie",
+      "count": 2,
+      "percentage": "0.1%",
+      "recipes": [
+        {
+          "name": "Brown Sugar Strawberry Cobbler",
+          "url": "https://www.halfbakedharvest.com/brown-sugar-strawberry-cobbler/"
+        },
+        {
+          "name": "Crinkly Salted Caramel Snickerdoodle Pie",
+          "url": "https://www.halfbakedharvest.com/caramel-snickerdoodle-pie/"
+        }
+      ]
+    },
+    {
+      "name": "brownies",
+      "count": 2,
+      "percentage": "0.1%",
+      "recipes": [
+        {
+          "name": "Coffee Chocolate Chip Blondies",
+          "url": "https://www.halfbakedharvest.com/coffee-chocolate-chip-blondies/"
+        },
+        {
+          "name": "Fudgy Chocolate Peanut Butter Bars",
+          "url": "https://www.halfbakedharvest.com/fudgy-chocolate-peanut-butter-bars/"
+        }
+      ]
+    },
+    {
+      "name": "hot chocolate",
+      "count": 2,
+      "percentage": "0.1%",
+      "recipes": [
+        {
+          "name": "Rich and Creamy Tahini Hot Chocolate",
+          "url": "https://www.halfbakedharvest.com/tahini-hot-chocolate/"
+        },
+        {
+          "name": "Asher's 5 Minute Creamy Vanilla Hot Cocoa",
+          "url": "https://www.halfbakedharvest.com/vanilla-bean-hot-cocoa/"
+        }
+      ]
+    },
+    {
+      "name": "Cheese",
+      "count": 2,
+      "percentage": "0.1%",
+      "recipes": [
+        {
+          "name": "The Best Jalapeño Queso",
+          "url": "https://www.halfbakedharvest.com/the-best-jalapeno-queso/"
+        },
+        {
+          "name": "The Lighter Cheese Board",
+          "url": "https://www.halfbakedharvest.com/lighter-cheese-board/"
+        }
+      ]
+    },
+    {
+      "name": "Gift",
+      "count": 2,
+      "percentage": "0.1%",
+      "recipes": [
+        {
+          "name": "Christmas Cookie Decorating Kit.",
+          "url": "https://www.halfbakedharvest.com/christmas-cookie-decorating-kit/"
+        },
+        {
+          "name": "Homemade Holiday Gifts: Easy Double Chocolate Vanilla Bean Hot Cocoa Mugs + Marshmallows",
+          "url": "https://www.halfbakedharvest.com/homemade-holiday-gifts-easy-double-chocolate-vanilla-bean-hot-cocoa-mugs-marshmallows/"
+        }
+      ]
+    },
+    {
+      "name": "breakfast for dinner",
+      "count": 1,
+      "percentage": "0.0%",
+      "recipes": [
+        {
+          "name": "Smashed Raspberry Dutch Baby",
+          "url": "https://www.halfbakedharvest.com/raspberry-dutch-baby/"
+        }
+      ]
+    },
+    {
+      "name": "picnic",
+      "count": 1,
+      "percentage": "0.0%",
+      "recipes": [
+        {
+          "name": "The Italian Salad Sandwich",
+          "url": "https://www.halfbakedharvest.com/italian-salad-sandwich/"
+        }
+      ]
+    },
+    {
+      "name": "punch",
+      "count": 1,
+      "percentage": "0.0%",
+      "recipes": [
+        {
+          "name": "Spicy Jalapeño Ginger Moscow Mule",
+          "url": "https://www.halfbakedharvest.com/jalapeno-ginger-moscow-mule-with-mocktail/"
+        }
+      ]
+    },
+    {
+      "name": "holiday appetizer",
+      "count": 1,
+      "percentage": "0.0%",
+      "recipes": [
+        {
+          "name": "Prosciutto Wrapped Baked Brie in Pastry",
+          "url": "https://www.halfbakedharvest.com/prosciutto-wrapped-baked-brie/"
+        }
+      ]
+    },
+    {
+      "name": "tortillas",
+      "count": 1,
+      "percentage": "0.0%",
+      "recipes": [
+        {
+          "name": "Easy Homemade Flour Tortillas",
+          "url": "https://www.halfbakedharvest.com/homemade-flour-tortillas/"
+        }
+      ]
+    },
+    {
+      "name": "honey and garlic",
+      "count": 1,
+      "percentage": "0.0%",
+      "recipes": [
+        {
+          "name": "Honey Garlic Korean BBQ Grilled Shrimp",
+          "url": "https://www.halfbakedharvest.com/honey-garlic-korean-bbq-grilled-shrimp/"
+        }
+      ]
+    },
+    {
+      "name": "shrimp main course",
+      "count": 1,
+      "percentage": "0.0%",
+      "recipes": [
+        {
+          "name": "Honey Garlic Korean BBQ Grilled Shrimp",
+          "url": "https://www.halfbakedharvest.com/honey-garlic-korean-bbq-grilled-shrimp/"
+        }
+      ]
+    },
+    {
+      "name": "fragrance",
+      "count": 1,
+      "percentage": "0.0%",
+      "recipes": [
+        {
+          "name": "Homemade Holidays: Let’s Make the House Smell Like Christmas.",
+          "url": "https://www.halfbakedharvest.com/homemade-holidays-lets-make-house-smell-like-christmas/"
+        }
+      ]
+    },
+    {
+      "name": "Cereal",
+      "count": 1,
+      "percentage": "0.0%",
+      "recipes": [
+        {
+          "name": "Gingerbread Man Granola",
+          "url": "https://www.halfbakedharvest.com/gingerbread-boy-granola/"
+        }
+      ]
+    },
+    {
+      "name": "fruit",
+      "count": 1,
+      "percentage": "0.0%",
+      "recipes": [
+        {
+          "name": "How I Deseed My Pomegranates (In Pictures!)",
+          "url": "https://www.halfbakedharvest.com/deseed-pomegranate-pictures/"
+        }
+      ]
+    }
+  ],
+  "mealTypes": [
+    {
+      "name": "dinner",
+      "count": 1063,
+      "percentage": "32.5%",
+      "recipes": [
+        {
+          "name": "Strawberry Feta Salad with Candied Pecans",
+          "url": "https://www.halfbakedharvest.com/strawberry-feta-salad/"
+        },
+        {
+          "name": "Sheet Pan Dijon Salmon and Sesame Panko Potatoes",
+          "url": "https://www.halfbakedharvest.com/dijon-salmon-and-panko-potatoes/"
+        },
+        {
+          "name": "Sheet Pan Sun-Dried Tomato Chicken Bowls",
+          "url": "https://www.halfbakedharvest.com/sun-dried-tomato-chicken-bowls/"
+        },
+        {
+          "name": "Smashed Raspberry Dutch Baby",
+          "url": "https://www.halfbakedharvest.com/raspberry-dutch-baby/"
+        },
+        {
+          "name": "Crockpot Chuck Roast Tinga Tacos",
+          "url": "https://www.halfbakedharvest.com/chuck-roast-tinga-tacos/"
+        },
+        {
+          "name": "Skillet Mexican Beef and Rice",
+          "url": "https://www.halfbakedharvest.com/skillet-mexican-beef-and-rice/"
+        },
+        {
+          "name": "Chipotle Pineapple Chicken with Bang Bang Sauce",
+          "url": "https://www.halfbakedharvest.com/chipotle-pineapple-chicken/"
+        },
+        {
+          "name": "Crispy Wonton Rotisserie Chicken Salad",
+          "url": "https://www.halfbakedharvest.com/wonton-chicken-salad/"
+        },
+        {
+          "name": "Sheet Pan Spinach Dip Pizza",
+          "url": "https://www.halfbakedharvest.com/spinach-artichoke-dip-pizza/"
+        },
+        {
+          "name": "Spicy Honey Mustard Salmon Bowls",
+          "url": "https://www.halfbakedharvest.com/honey-mustard-salmon-bowls/"
+        }
+      ]
+    },
+    {
+      "name": "other",
+      "count": 1045,
+      "percentage": "32.0%",
+      "recipes": [
+        {
+          "name": "Chocolate Chip Zucchini Pecan Bread",
+          "url": "https://www.halfbakedharvest.com/chocolate-chip-zucchini-pecan-bread/"
+        },
+        {
+          "name": "Creamy Tuscan White Bean Lemon Soup",
+          "url": "https://www.halfbakedharvest.com/white-bean-lemon-soup/"
+        },
+        {
+          "name": "30 Minute Crispy Thai Peanut Chicken Ramen",
+          "url": "https://www.halfbakedharvest.com/peanut-chicken-ramen/"
+        },
+        {
+          "name": "The Best (easiest) No Knead Bread",
+          "url": "https://www.halfbakedharvest.com/easiest-no-knead-bread/"
+        },
+        {
+          "name": "Double Chocolate Chip Zucchini Bread",
+          "url": "https://www.halfbakedharvest.com/double-chocolate-chip-zucchini-bread/"
+        },
+        {
+          "name": "Quick Poblano Pineapple Shrimp Tacos with Cilantro Jalapeño Ranch",
+          "url": "https://www.halfbakedharvest.com/poblano-pineapple-shrimp-tacos/"
+        },
+        {
+          "name": "Sesame Ginger Orange Chicken Salad...with crispy fried wontons",
+          "url": "https://www.halfbakedharvest.com/orange-chicken-salad/"
+        },
+        {
+          "name": "Christmas Salad with Honey Mustard Dressing",
+          "url": "https://www.halfbakedharvest.com/christmas-salad/"
+        },
+        {
+          "name": "Soft and Fluffy Christmas Cinnamon Rolls with Caramel Cream Cheese Icing",
+          "url": "https://www.halfbakedharvest.com/christmas-cinnamon-rolls/"
+        },
+        {
+          "name": "Easy Gruyère Croissants",
+          "url": "https://www.halfbakedharvest.com/gruyere-croissants/"
+        }
+      ]
+    },
+    {
+      "name": "dessert",
+      "count": 616,
+      "percentage": "18.8%",
+      "recipes": [
+        {
+          "name": "Bursting Blueberry Ricotta Pudding Cake",
+          "url": "https://www.halfbakedharvest.com/blueberry-ricotta-pudding-cake/"
+        },
+        {
+          "name": "Easy Lemon Fritter Cake",
+          "url": "https://www.halfbakedharvest.com/lemon-fritter-cake/"
+        },
+        {
+          "name": "Raspberry White Chocolate Magic Cookies",
+          "url": "https://www.halfbakedharvest.com/raspberry-white-chocolate-cookies/"
+        },
+        {
+          "name": "Crinkle Top Lemon Blondies",
+          "url": "https://www.halfbakedharvest.com/lemon-blondies/"
+        },
+        {
+          "name": "Blueberry Muffin Bread",
+          "url": "https://www.halfbakedharvest.com/blueberry-muffin-bread/"
+        },
+        {
+          "name": "Strawberry Oatmeal Cookie Cobbler",
+          "url": "https://www.halfbakedharvest.com/strawberry-oatmeal-cookie-cobbler/"
+        },
+        {
+          "name": "Homemade Baked Frosted Chocolate Donuts",
+          "url": "https://www.halfbakedharvest.com/baked-frosted-chocolate-donuts/"
+        },
+        {
+          "name": "Divine 6 Ingredient Magic Cookie Bars",
+          "url": "https://www.halfbakedharvest.com/6-ingredient-magic-cookie-bars/"
+        },
+        {
+          "name": "5 Ingredient Magic Cookies",
+          "url": "https://www.halfbakedharvest.com/5-ingredient-magic-cookies/"
+        },
+        {
+          "name": "Double Chocolate Muffins",
+          "url": "https://www.halfbakedharvest.com/double-chocolate-muffins/"
+        }
+      ]
+    },
+    {
+      "name": "appetizer",
+      "count": 599,
+      "percentage": "18.3%",
+      "recipes": [
+        {
+          "name": "Blueberry Muffin Bread",
+          "url": "https://www.halfbakedharvest.com/blueberry-muffin-bread/"
+        },
+        {
+          "name": "Crispy Turmeric Chicken Tenders",
+          "url": "https://www.halfbakedharvest.com/turmeric-chicken-tenders/"
+        },
+        {
+          "name": "Crockpot Hearty Chicken and Rice Soup",
+          "url": "https://www.halfbakedharvest.com/chicken-and-rice-soup/"
+        },
+        {
+          "name": "20 Minute Potstickers in Red Curry Garlic Oil",
+          "url": "https://www.halfbakedharvest.com/potstickers-in-red-curry-garlic-broth/"
+        },
+        {
+          "name": "5 Ingredient Magic Cookies",
+          "url": "https://www.halfbakedharvest.com/5-ingredient-magic-cookies/"
+        },
+        {
+          "name": "Buffalo Chicken Dip Sliders",
+          "url": "https://www.halfbakedharvest.com/buffalo-chicken-dip-sliders/"
+        },
+        {
+          "name": "Double Chocolate Muffins",
+          "url": "https://www.halfbakedharvest.com/double-chocolate-muffins/"
+        },
+        {
+          "name": "Cinnamon Crunch Swirled Coffee Cake",
+          "url": "https://www.halfbakedharvest.com/cinnamon-crunch-yogurt-coffee-cake/"
+        },
+        {
+          "name": "30 Minute Peanut Beef Rolls",
+          "url": "https://www.halfbakedharvest.com/peanut-beef-rolls/"
+        },
+        {
+          "name": "Brown Butter Oatmeal Chocolate Chip Cookie Bars",
+          "url": "https://www.halfbakedharvest.com/brown-butter-oatmeal-chocolate-chip-cookie-bars/"
+        }
+      ]
+    },
+    {
+      "name": "breakfast",
+      "count": 157,
+      "percentage": "4.8%",
+      "recipes": [
+        {
+          "name": "Smashed Raspberry Dutch Baby",
+          "url": "https://www.halfbakedharvest.com/raspberry-dutch-baby/"
+        },
+        {
+          "name": "Blueberry Muffin Bread",
+          "url": "https://www.halfbakedharvest.com/blueberry-muffin-bread/"
+        },
+        {
+          "name": "Big and Fluffy Overnight Cinnamon Rolls ",
+          "url": "https://www.halfbakedharvest.com/overnight-cinnamon-rolls/"
+        },
+        {
+          "name": "Pumpkin Butter Cinnamon Rolls with Coffee Icing",
+          "url": "https://www.halfbakedharvest.com/pumpkin-butter-cinnamon-rolls/"
+        },
+        {
+          "name": "Baked Cinnamon Crunch Apple Cider Doughnuts",
+          "url": "https://www.halfbakedharvest.com/cinnamon-crunch-apple-cider-doughnuts/"
+        },
+        {
+          "name": "Pumpkin Spice Pecan Latte",
+          "url": "https://www.halfbakedharvest.com/pumpkin-spice-pecan-latte/"
+        },
+        {
+          "name": "Cinnamon Crunch Swirled Banana Bread",
+          "url": "https://www.halfbakedharvest.com/cinnamon-crunch-swirled-banana-bread/"
+        },
+        {
+          "name": "Blueberry Cinnamon Rolls with Maple Icing",
+          "url": "https://www.halfbakedharvest.com/blueberry-cinnamon-rolls/"
+        },
+        {
+          "name": "Muffin Top Strawberry Shortcakes",
+          "url": "https://www.halfbakedharvest.com/muffin-top-strawberry-shortcakes/"
+        },
+        {
+          "name": "Strawberry Caramel Muffins",
+          "url": "https://www.halfbakedharvest.com/strawberry-caramel-muffins/"
+        }
+      ]
+    },
+    {
+      "name": "drink",
+      "count": 147,
+      "percentage": "4.5%",
+      "recipes": [
+        {
+          "name": "Spicy Ginger Pomegranate Mule",
+          "url": "https://www.halfbakedharvest.com/pomegranate-moscow-mule/"
+        },
+        {
+          "name": "Sparkling Mistletoe Cosmo",
+          "url": "https://www.halfbakedharvest.com/mistletoe-cosmo/"
+        },
+        {
+          "name": "Christmas White Russian",
+          "url": "https://www.halfbakedharvest.com/christmas-white-russian/"
+        },
+        {
+          "name": "Smoky Apple Cider Paloma (with mocktail)",
+          "url": "https://www.halfbakedharvest.com/apple-cider-paloma/"
+        },
+        {
+          "name": "Thanksgiving Cranberry Cobbler Punch ",
+          "url": "https://www.halfbakedharvest.com/cobbler-punch/"
+        },
+        {
+          "name": "Autumn Aperol Apple Cider Margarita (+Mocktail)",
+          "url": "https://www.halfbakedharvest.com/aperol-apple-cider-margarita/"
+        },
+        {
+          "name": "Smoky Black Pomegranate Cocktail",
+          "url": "https://www.halfbakedharvest.com/black-pomegranate-cocktail/"
+        },
+        {
+          "name": "Ghostly Ginger Cocktail",
+          "url": "https://www.halfbakedharvest.com/ghostly-ginger-cocktail/"
+        },
+        {
+          "name": "Pumpkin Spice Pecan Latte",
+          "url": "https://www.halfbakedharvest.com/pumpkin-spice-pecan-latte/"
+        },
+        {
+          "name": "Peach Thyme Smash",
+          "url": "https://www.halfbakedharvest.com/peach-thyme-smash/"
+        }
+      ]
+    },
+    {
+      "name": "side",
+      "count": 143,
+      "percentage": "4.4%",
+      "recipes": [
+        {
+          "name": "Strawberry Feta Salad with Candied Pecans",
+          "url": "https://www.halfbakedharvest.com/strawberry-feta-salad/"
+        },
+        {
+          "name": "Roasted Asparagus and Potatoes with Sesame Breadcrumbs and Burrata",
+          "url": "https://www.halfbakedharvest.com/roasted-asparagus-and-potatoes/"
+        },
+        {
+          "name": "Creamy Lentil Sun-dried Tomato Soup",
+          "url": "https://www.halfbakedharvest.com/lentil-tomato-soup/"
+        },
+        {
+          "name": "Salsa Verde Tortilla Soup",
+          "url": "https://www.halfbakedharvest.com/salsa-verde-tortilla-soup/"
+        },
+        {
+          "name": "Honey Butter Soft Pretzel Candy Canes",
+          "url": "https://www.halfbakedharvest.com/soft-pretzel-candy-canes/"
+        },
+        {
+          "name": "Creamy Spicy Chicken Gnocchi Soup",
+          "url": "https://www.halfbakedharvest.com/chicken-gnocchi-soup/"
+        },
+        {
+          "name": "Crockpot Creamy Sun-Dried Tomato Lasagna Soup",
+          "url": "https://www.halfbakedharvest.com/sun-dried-tomato-lasagna-soup/"
+        },
+        {
+          "name": "Crockpot Fondue Mashed Potatoes",
+          "url": "https://www.halfbakedharvest.com/fondue-mashed-potatoes/"
+        },
+        {
+          "name": "Salted Sage Honey Butter Brioche Rolls",
+          "url": "https://www.halfbakedharvest.com/honey-butter-brioche-rolls/"
+        },
+        {
+          "name": "Brown Sugar Roasted Honeynut Squash",
+          "url": "https://www.halfbakedharvest.com/oasted-honeynut-squash/"
+        }
+      ]
+    },
+    {
+      "name": "lunch",
+      "count": 91,
+      "percentage": "2.8%",
+      "recipes": [
+        {
+          "name": "Honey Mustard Chicken, Bacon, and Avocado Melts",
+          "url": "https://www.halfbakedharvest.com/chicken-bacon-avocado-melt/"
+        },
+        {
+          "name": "Crispy Turmeric Chicken Tenders",
+          "url": "https://www.halfbakedharvest.com/turmeric-chicken-tenders/"
+        },
+        {
+          "name": "Crockpot Hearty Chicken and Rice Soup",
+          "url": "https://www.halfbakedharvest.com/chicken-and-rice-soup/"
+        },
+        {
+          "name": "Creamy Lentil Sun-dried Tomato Soup",
+          "url": "https://www.halfbakedharvest.com/lentil-tomato-soup/"
+        },
+        {
+          "name": "20 Minute Honey Garlic Chicken Udon Noodles",
+          "url": "https://www.halfbakedharvest.com/garlic-chicken-udon-noodles/"
+        },
+        {
+          "name": "Sesame Peanut Chicken Katsu Ramen",
+          "url": "https://www.halfbakedharvest.com/peanut-chicken-katsu-ramen/"
+        },
+        {
+          "name": "Ham and Cheese Sliders",
+          "url": "https://www.halfbakedharvest.com/crispy-prosciutto-and-cheese-sliders/"
+        },
+        {
+          "name": "Creamy Homestyle Chicken Noodle Soup",
+          "url": "https://www.halfbakedharvest.com/creamy-homestyle-chicken-noodle-soup/"
+        },
+        {
+          "name": "Open Face Tomato Bacon Sandwich",
+          "url": "https://www.halfbakedharvest.com/open-face-tomato-bacon-sandwich/"
+        },
+        {
+          "name": "Grilled Buffalo Chicken Sub Sandwich",
+          "url": "https://www.halfbakedharvest.com/grilled-buffalo-chicken-subs/"
+        }
+      ]
+    }
+  ]
+}

@@ -1,74 +1,155 @@
-// js/parser/ingredient-analyzer.js
+// js/parser/category-analyzer.js
 const fs = require('fs');
 const path = require('path');
 
 // Config
 const inputPath = path.join(__dirname, '../../rawRecipes.ndjson');
-const outputPath = path.join(__dirname, '../../data/ingredient-analysis.json');
+const outputPath = path.join(__dirname, '../../data/category-analysis.json');
 
-async function analyzeIngredients() {
+async function analyzeCategories() {
     try {
         // Read the NDJSON file
         const content = await fs.promises.readFile(inputPath, 'utf8');
         const lines = content.split('\n').filter(line => line.trim());
         
-        // Track all ingredients and their frequency
-        const ingredientMap = new Map();
+        // Track all categories and their frequency
+        const categoryMap = new Map();
+        const mealTypeMap = new Map(); // For breakfast, lunch, dinner, dessert, etc.
         let totalRecipes = 0;
+        let uncategorizedCount = 0;
+        
+        // Common meal types to look for in categories and keywords
+        const mealTypes = {
+            breakfast: ['breakfast', 'brunch', 'morning'],
+            lunch: ['lunch', 'sandwiches', 'wraps'],
+            dinner: ['dinner', 'main course', 'entree', 'main dish'],
+            appetizer: ['appetizer', 'starter', 'snack', 'hors d\'oeuvre'],
+            side: ['side dish', 'side', 'accompaniment'],
+            dessert: ['dessert', 'sweet', 'cake', 'cookie', 'pie'],
+            drink: ['drink', 'beverage', 'cocktail', 'smoothie']
+        };
         
         // Process each recipe
         for (const line of lines) {
             try {
-                const { data } = JSON.parse(line);
-                if (!data || !data.recipeIngredient || !Array.isArray(data.recipeIngredient)) {
-                    continue;
-                }
+                const { url, data } = JSON.parse(line);
+                if (!data) continue;
                 
                 totalRecipes++;
                 
-                // Extract key words from each ingredient
-                data.recipeIngredient.forEach(ingredient => {
-                    // Clean up the ingredient text
-                    const cleanIngredient = ingredient.toLowerCase()
-                        .replace(/[\d\s./+]+(?:\s*(?:cup|tablespoon|teaspoon|pound|ounce|oz|tbsp|tsp|lb|g|ml|cups|tablespoons|teaspoons|pounds|ounces))?/g, '')
-                        .trim();
-                    
-                    // Extract potential ingredient name (last word often contains the main ingredient)
-                    const words = cleanIngredient.split(/\s+/);
-                    let mainIngredient = words[words.length - 1];
-                    
-                    // Some ingredients have descriptors after the main ingredient
-                    if (words.length > 1 && (mainIngredient === 'powder' || mainIngredient === 'flakes' || 
-                        mainIngredient === 'fresh' || mainIngredient === 'dried')) {
-                        mainIngredient = words[words.length - 2] + ' ' + mainIngredient;
-                    }
-                    
-                    // Update ingredient count
-                    if (!ingredientMap.has(mainIngredient)) {
-                        ingredientMap.set(mainIngredient, {
-                            count: 1,
-                            examples: [ingredient]
+                // Get categories from recipeCategory field
+                const categories = data.recipeCategory || [];
+                
+                if (categories.length === 0) {
+                    uncategorizedCount++;
+                    const entry = categoryMap.get('Uncategorized') || { count: 0, recipes: [] };
+                    entry.count++;
+                    if (entry.recipes.length < 10) {
+                        entry.recipes.push({
+                            name: data.name || 'Unknown Recipe',
+                            url
                         });
-                    } else {
-                        const entry = ingredientMap.get(mainIngredient);
+                    }
+                    categoryMap.set('Uncategorized', entry);
+                } else {
+                    // Update category counts
+                    categories.forEach(category => {
+                        const entry = categoryMap.get(category) || { count: 0, recipes: [] };
                         entry.count++;
-                        if (entry.examples.length < 5 && !entry.examples.includes(ingredient)) {
-                            entry.examples.push(ingredient);
+                        if (entry.recipes.length < 10) {
+                            entry.recipes.push({
+                                name: data.name || 'Unknown Recipe',
+                                url
+                            });
+                        }
+                        categoryMap.set(category, entry);
+                    });
+                }
+                
+                // Analyze for meal type
+                let mealTypeFound = false;
+                
+                // Check categories for meal types
+                if (categories.length > 0) {
+                    for (const [mealType, keywords] of Object.entries(mealTypes)) {
+                        if (categories.some(category => 
+                            keywords.some(keyword => 
+                                category.toLowerCase().includes(keyword)
+                            )
+                        )) {
+                            const entry = mealTypeMap.get(mealType) || { count: 0, recipes: [] };
+                            entry.count++;
+                            if (entry.recipes.length < 10) {
+                                entry.recipes.push({
+                                    name: data.name || 'Unknown Recipe',
+                                    url
+                                });
+                            }
+                            mealTypeMap.set(mealType, entry);
+                            mealTypeFound = true;
                         }
                     }
-                });
+                }
+                
+                // If no meal type found in categories, try keywords
+                if (!mealTypeFound && data.keywords) {
+                    const keywords = typeof data.keywords === 'string' 
+                        ? data.keywords.split(',').map(k => k.trim().toLowerCase())
+                        : [];
+                    
+                    for (const [mealType, mealKeywords] of Object.entries(mealTypes)) {
+                        if (keywords.some(keyword => 
+                            mealKeywords.some(mk => keyword.includes(mk))
+                        )) {
+                            const entry = mealTypeMap.get(mealType) || { count: 0, recipes: [] };
+                            entry.count++;
+                            if (entry.recipes.length < 10) {
+                                entry.recipes.push({
+                                    name: data.name || 'Unknown Recipe',
+                                    url
+                                });
+                            }
+                            mealTypeMap.set(mealType, entry);
+                            mealTypeFound = true;
+                            break;
+                        }
+                    }
+                }
+                
+                // If still no meal type found, categorize as 'other'
+                if (!mealTypeFound) {
+                    const entry = mealTypeMap.get('other') || { count: 0, recipes: [] };
+                    entry.count++;
+                    if (entry.recipes.length < 10) {
+                        entry.recipes.push({
+                            name: data.name || 'Unknown Recipe',
+                            url
+                        });
+                    }
+                    mealTypeMap.set('other', entry);
+                }
+                
             } catch (err) {
                 console.error(`Error processing recipe line:`, err);
             }
         }
         
-        // Convert the map to an array of ingredients sorted by frequency
-        const ingredientStats = Array.from(ingredientMap.entries())
-            .map(([name, { count, examples }]) => ({
+        // Convert the maps to arrays sorted by frequency
+        const categoryStats = Array.from(categoryMap.entries())
+            .map(([name, { count, recipes }]) => ({
                 name,
                 count,
-                frequency: (count / totalRecipes).toFixed(4),
-                examples
+                percentage: ((count / totalRecipes) * 100).toFixed(1) + '%',
+                recipes
+            }))
+            .sort((a, b) => b.count - a.count);
+        
+        const mealTypeStats = Array.from(mealTypeMap.entries())
+            .map(([name, { count, recipes }]) => ({
+                name,
+                count,
+                percentage: ((count / totalRecipes) * 100).toFixed(1) + '%',
+                recipes
             }))
             .sort((a, b) => b.count - a.count);
         
@@ -77,20 +158,28 @@ async function analyzeIngredients() {
             outputPath, 
             JSON.stringify({
                 totalRecipes,
-                totalUniqueIngredients: ingredientStats.length,
-                ingredients: ingredientStats
+                categorizedRecipes: totalRecipes - uncategorizedCount,
+                uncategorizedRecipes: uncategorizedCount,
+                uniqueCategories: categoryStats.length - (uncategorizedCount > 0 ? 1 : 0),
+                categories: categoryStats,
+                mealTypes: mealTypeStats
             }, null, 2)
         );
         
-        console.log(`Analyzed ${totalRecipes} recipes with ${ingredientStats.length} unique ingredients.`);
-        console.log(`Top 20 most common ingredients:`);
-        ingredientStats.slice(0, 20).forEach(ing => {
-            console.log(`- ${ing.name}: ${ing.count} occurrences (${(ing.frequency * 100).toFixed(1)}%)`);
+        console.log(`Analyzed ${totalRecipes} recipes with ${categoryStats.length - (uncategorizedCount > 0 ? 1 : 0)} unique categories.`);
+        console.log(`${uncategorizedCount} recipes (${((uncategorizedCount / totalRecipes) * 100).toFixed(1)}%) have no category.`);
+        console.log(`\nCategory distribution (top 10):`);
+        categoryStats.slice(0, 10).forEach(category => {
+            console.log(`- ${category.name}: ${category.count} recipes (${category.percentage})`);
+        });
+        
+        console.log(`\nMeal type distribution:`);
+        mealTypeStats.forEach(mealType => {
+            console.log(`- ${mealType.name}: ${mealType.count} recipes (${mealType.percentage})`);
         });
     } catch (err) {
-        console.error('Error analyzing ingredients:', err);
+        console.error('Error analyzing categories:', err);
     }
 }
 
-// Run the script
-analyzeIngredients();
+analyzeCategories();
