@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     
     // Create loading indicator in body (safer initial loading)
-    const loadingIndicator = domHelpers.createElement('div', {
+    const bodyLoadingIndicator = domHelpers.createElement('div', {
         className: 'loading-indicator',
         style: 'position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: white; z-index: 9999; display: flex; flex-direction: column; justify-content: center; align-items: center;',
         innerHTML: `
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             <p>Loading recipes...</p>
         `
     });
-    document.body.appendChild(loadingIndicator);
+    document.body.appendChild(bodyLoadingIndicator);
 
     // Error-resilient element getters
     const getElement = (selector, defaultValue = null) => {
@@ -67,9 +67,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     };
     
-    // Create loading indicator in main content
+    // Get main content reference without clearing it
     const mainContent = document.querySelector('main');
-    showLoading(mainContent, "Loading recipes...");
     
     // Default filter values - setting mealType to 'dinner' by default
     const defaultFilters = {
@@ -94,6 +93,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     updateFilterChips(filtersToApply);
     
     if (!filteredRecipes || !filteredRecipes.length) {
+        // Remove body loading indicator first
+        if (bodyLoadingIndicator && bodyLoadingIndicator.parentNode) {
+            bodyLoadingIndicator.parentNode.removeChild(bodyLoadingIndicator);
+        }
+        
         const noRecipesMessage = domHelpers.createElement('div', {
             className: 'empty-list-message',
             innerHTML: `
@@ -112,14 +116,17 @@ document.addEventListener('DOMContentLoaded', async () => {
         return;
     }
     
-    // Remove loading indicator by clearing the main content
-    domHelpers.clearElement(mainContent);
-    
-    // Initialize managers with FILTERED recipes
+    // IMPORTANT: Initialize managers BEFORE clearing mainContent
+    // This allows the managers to find the DOM elements they need
     CarouselManager.init(filteredRecipes);
     MealPlanManager.init();
     GroceryListManager.init();
     FavoritesManager.init();
+    
+    // Now remove the loading indicator
+    if (bodyLoadingIndicator && bodyLoadingIndicator.parentNode) {
+        bodyLoadingIndicator.parentNode.removeChild(bodyLoadingIndicator);
+    }
     
     // Setup infinite scroll functionality
     const setupInfiniteScroll = () => {
@@ -142,7 +149,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
         };
         
-        // Function to load more recipes
         // Function to load more recipes with error handling
         const loadMoreRecipes = async () => {
             isLoadingMore = true;
