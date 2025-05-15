@@ -709,6 +709,10 @@ main {
     right: 12px;
 }
 
+.carousel-nav svg {
+    stroke: var(--accent-primary);
+}
+
 /* --------------------
    Weekly Plan
    -------------------- */
