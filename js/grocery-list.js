@@ -112,12 +112,20 @@ const GroceryListManager = (() => {
     
     // Add manual item to grocery list
     const addManualItem = () => {
-        if (!elements.manualItemInput || !elements.manualItemCategory) return;
+        if (!elements.manualItemInput || !elements.manualItemCategory) {
+            console.error('Manual item form elements not found');
+            return;
+        }
         
         const itemName = elements.manualItemInput.value.trim();
         const category = elements.manualItemCategory.value;
         
-        if (!itemName) return;
+        if (!itemName) {
+            console.log('No item name entered');
+            return;
+        }
+        
+        console.log(`Adding manual item: ${itemName} in category ${category}`);
         
         // Add to manual items
         state.manualItems.push({
@@ -133,7 +141,8 @@ const GroceryListManager = (() => {
         elements.manualItemInput.value = '';
         
         // Re-generate list
-        generateGroceryList();
+        processManualItems();
+        renderGroceryList();
     };
     
     // Save manual items to storage
@@ -395,7 +404,7 @@ const GroceryListManager = (() => {
     // Render the grocery list
     const renderGroceryList = () => {
         if (!elements.groceryList) return;
-
+    
         // Clear the current list
         domHelpers.clearElement(elements.groceryList);
         
@@ -403,10 +412,30 @@ const GroceryListManager = (() => {
         const manualItemForm = renderManualItemForm();
         elements.groceryList.appendChild(manualItemForm);
         
+        // Update references to the new form elements after they're added to the DOM
+        elements.manualItemForm = document.getElementById('manual-item-form');
+        elements.manualItemInput = document.getElementById('manual-item-input');
+        elements.manualItemCategory = document.getElementById('manual-item-category');
+        elements.addManualItemBtn = document.getElementById('add-manual-item');
+        
+        // Re-attach event listeners to the new elements
+        if (elements.manualItemForm) {
+            elements.manualItemForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                addManualItem();
+            });
+        }
+        
+        if (elements.addManualItemBtn) {
+            elements.addManualItemBtn.addEventListener('click', () => {
+                addManualItem();
+            });
+        }
+        
         // Check if we have any items
         const hasItems = Object.keys(state.groceryItems).length > 0;
         
-        if (!hasItems) {
+        if (!hasItems && state.manualItems.length === 0) {
             const emptyMessage = domHelpers.createElement('div', {
                 className: 'empty-list-message',
                 textContent: 'Your grocery list is empty. Add recipes to your meal plan first or add items manually.'
@@ -414,12 +443,12 @@ const GroceryListManager = (() => {
             elements.groceryList.appendChild(emptyMessage);
             return;
         }
-
+    
         // Create the grocery list
         const listContainer = domHelpers.createElement('div', {
             className: 'grocery-list-content'
         });
-
+    
         // Define category order (using the values from CATEGORIES)
         const categoryOrder = Object.values(CATEGORIES);
         
@@ -429,6 +458,9 @@ const GroceryListManager = (() => {
             if (!state.groceryItems[category] || Object.keys(state.groceryItems[category]).length === 0) {
                 return;
             }
+            
+            // Process and display the category items
+            // [Rest of the existing rendering code...]
             
             // Create category heading
             const categoryHeading = domHelpers.createElement('h3', {

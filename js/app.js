@@ -393,6 +393,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         };
         
         const finishSearch = (searchResults) => {
+            // Get the carousel container to remove loading indicator
+            const carouselContainer = document.querySelector('.carousel-container');
+            
             // Update carousel with filtered recipes
             CarouselManager.updateRecipes(searchResults);
             
@@ -404,23 +407,20 @@ document.addEventListener('DOMContentLoaded', async () => {
             StorageManager.saveFilters(currentFilters);
             
             // Add feedback for empty results
-            if (searchResults.length === 0) {
-                const carouselContainer = document.querySelector('.carousel-container');
-                if (carouselContainer) {
-                    const emptyMessage = domHelpers.createElement('div', {
-                        className: 'empty-list-message',
-                        innerHTML: `
-                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <circle cx="11" cy="11" r="8"></circle>
-                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                            </svg>
-                            <p>No recipes found matching "${currentFilters.searchQuery}"</p>
-                            <p class="subtitle">Try a different search term</p>
-                        `
-                    });
-                    domHelpers.clearElement(carouselContainer);
-                    carouselContainer.appendChild(emptyMessage);
-                }
+            if (searchResults.length === 0 && carouselContainer) {
+                const emptyMessage = domHelpers.createElement('div', {
+                    className: 'empty-list-message',
+                    innerHTML: `
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        <p>No recipes found matching "${currentFilters.searchQuery}"</p>
+                        <p class="subtitle">Try a different search term</p>
+                    `
+                });
+                domHelpers.clearElement(carouselContainer);
+                carouselContainer.appendChild(emptyMessage);
             }
             
             // Hide search after searching

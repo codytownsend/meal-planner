@@ -698,17 +698,23 @@ main {
 
 /* Recipe Details Panel */
 .recipe-details {
-    max-height: 0;
-    opacity: 0;
+    height: 0;
     overflow: hidden;
-    transition: max-height var(--transition-medium), opacity var(--transition-medium);
+    opacity: 0;
+    transition: height var(--transition-medium), opacity var(--transition-medium);
     background: var(--surface-secondary);
     transform-origin: top center;
-    position: relative;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    box-shadow: var(--card-shadow);
 }
 
 .recipe-details.open {
-    max-height: 200px;
+    height: auto;
+    position: relative;
     opacity: 1;
 }
 

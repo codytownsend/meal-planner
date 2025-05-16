@@ -204,7 +204,38 @@ const CarouselManager = (() => {
         // Add event listener for toggle
         detailsToggle.addEventListener('click', () => {
             detailsToggle.classList.toggle(CLASSES.OPEN);
-            detailsPanel.classList.toggle(CLASSES.OPEN);
+            
+            if (detailsPanel.classList.contains(CLASSES.OPEN)) {
+                // Closing the panel
+                const currentHeight = detailsPanel.scrollHeight;
+                detailsPanel.style.height = `${currentHeight}px`;
+                
+                // Force a reflow
+                detailsPanel.offsetHeight;
+                
+                // Set height to 0
+                detailsPanel.style.height = '0';
+                
+                // Remove the open class after transition
+                setTimeout(() => {
+                    detailsPanel.classList.remove(CLASSES.OPEN);
+                    detailsPanel.style.height = '';
+                }, 300); // Match this to your CSS transition time
+            } else {
+                // Opening the panel
+                detailsPanel.classList.add(CLASSES.OPEN);
+                
+                // Get the height of the content
+                const height = detailsPanel.scrollHeight;
+                
+                // Set the height to create animation
+                detailsPanel.style.height = `${height}px`;
+                
+                // Remove inline height after transition
+                setTimeout(() => {
+                    detailsPanel.style.height = '';
+                }, 300);
+            }
         });
         
         return card;
