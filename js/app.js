@@ -355,8 +355,9 @@ document.addEventListener('DOMContentLoaded', async () => {
             });
         }
         
-        const performSearch = async () => {
+        const performSearch = () => {
             const searchQuery = searchInput.value.trim().toLowerCase();
+            if (!searchQuery) return;
             
             // Show loading in carousel container
             const carouselContainer = document.querySelector('.carousel-container');
@@ -364,43 +365,66 @@ document.addEventListener('DOMContentLoaded', async () => {
                 showLoading(carouselContainer, "Searching recipes...");
             }
             
-            // Load all recipes if they aren't already loaded
-            // This ensures we search through all recipes, not just loaded ones
-            while (RecipeLoader.hasMore()) {
-                await RecipeLoader.loadMoreRecipes();
+            // Get current loaded recipes rather than loading all
+            const currentRecipes = RecipeLoader.getAllRecipes();
+            
+            // Create optimized search function for titles only
+            const searchFilter = (recipe) => {
+                return recipe.title.toLowerCase().includes(searchQuery);
+            };
+            
+            // Filter the current loaded recipes first
+            let searchResults = currentRecipes.filter(searchFilter);
+            
+            // If we have very few results, load one more batch
+            if (searchResults.length < 5 && RecipeLoader.hasMore()) {
+                RecipeLoader.loadMoreRecipes().then(newBatch => {
+                    // Add newly found results
+                    const newResults = newBatch.filter(searchFilter);
+                    searchResults = [...searchResults, ...newResults];
+                    finishSearch(searchResults);
+                }).catch(err => {
+                    console.error('Error loading more recipes for search:', err);
+                    finishSearch(searchResults);
+                });
+            } else {
+                finishSearch(searchResults);
             }
+        };
+        
+        const finishSearch = (searchResults) => {
+            // Update carousel with filtered recipes
+            CarouselManager.updateRecipes(searchResults);
             
             // Update current filters with search query
             const currentFilters = StorageManager.loadFilters() || defaultFilters;
-            currentFilters.searchQuery = searchQuery;
-            
-            // Apply search filter
-            const filteredRecipes = RecipeLoader.applyFilters(currentFilters);
-            
-            // Update carousel with filtered recipes
-            CarouselManager.updateRecipes(filteredRecipes);
+            currentFilters.searchQuery = searchInput.value.trim().toLowerCase();
             
             // Save filters
             StorageManager.saveFilters(currentFilters);
             
             // Add feedback for empty results
-            if (filteredRecipes.length === 0) {
-                const emptyMessage = domHelpers.createElement('div', {
-                    className: 'empty-list-message',
-                    innerHTML: `
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <circle cx="11" cy="11" r="8"></circle>
-                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                        </svg>
-                        <p>No recipes found matching "${searchQuery}"</p>
-                        <p class="subtitle">Try a different search term</p>
-                    `
-                });
-                domHelpers.clearElement(carouselContainer);
-                carouselContainer.appendChild(emptyMessage);
+            if (searchResults.length === 0) {
+                const carouselContainer = document.querySelector('.carousel-container');
+                if (carouselContainer) {
+                    const emptyMessage = domHelpers.createElement('div', {
+                        className: 'empty-list-message',
+                        innerHTML: `
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                            <p>No recipes found matching "${currentFilters.searchQuery}"</p>
+                            <p class="subtitle">Try a different search term</p>
+                        `
+                    });
+                    domHelpers.clearElement(carouselContainer);
+                    carouselContainer.appendChild(emptyMessage);
+                }
             }
             
             // Hide search after searching
+            const searchContainer = document.querySelector('.search-container');
             if (searchContainer) {
                 searchContainer.classList.remove('expanded');
             }
