@@ -1,3 +1,4 @@
+// js/grocery-list.js
 // Grocery List Manager with updated categories and ingredient combining
 const GroceryListManager = (() => {
     // Updated categories
@@ -46,12 +47,17 @@ const GroceryListManager = (() => {
         groceryList: null,
         generateButton: null,
         printButton: null,
-        groceryView: null
+        groceryView: null,
+        manualItemForm: null,
+        manualItemInput: null,
+        manualItemCategory: null,
+        addManualItemBtn: null
     };
 
     // State 
     const state = {
-        groceryItems: {}
+        groceryItems: {},
+        manualItems: [] // New property for manual items
     };
 
     // Initialize
@@ -61,6 +67,10 @@ const GroceryListManager = (() => {
         elements.generateButton = document.getElementById('generate-grocery-list');
         elements.printButton = document.getElementById('print-grocery-list');
         elements.groceryView = document.getElementById('grocery-view');
+        elements.manualItemForm = document.getElementById('manual-item-form');
+        elements.manualItemInput = document.getElementById('manual-item-input');
+        elements.manualItemCategory = document.getElementById('manual-item-category');
+        elements.addManualItemBtn = document.getElementById('add-manual-item');
 
         // Check if required elements exist
         if (!elements.groceryList) {
@@ -68,6 +78,9 @@ const GroceryListManager = (() => {
             return;
         }
 
+        // Load any saved manual items
+        loadManualItems();
+        
         setupEventListeners();
     };
 
@@ -82,6 +95,65 @@ const GroceryListManager = (() => {
         if (elements.printButton) {
             elements.printButton.addEventListener('click', printGroceryList);
         }
+        
+        // Manual item form
+        if (elements.manualItemForm) {
+            elements.manualItemForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                addManualItem();
+            });
+        }
+        
+        // Add manual item button
+        if (elements.addManualItemBtn) {
+            elements.addManualItemBtn.addEventListener('click', addManualItem);
+        }
+    };
+    
+    // Add manual item to grocery list
+    const addManualItem = () => {
+        if (!elements.manualItemInput || !elements.manualItemCategory) return;
+        
+        const itemName = elements.manualItemInput.value.trim();
+        const category = elements.manualItemCategory.value;
+        
+        if (!itemName) return;
+        
+        // Add to manual items
+        state.manualItems.push({
+            name: itemName,
+            category: category,
+            isManual: true
+        });
+        
+        // Save to storage
+        saveManualItems();
+        
+        // Clear input
+        elements.manualItemInput.value = '';
+        
+        // Re-generate list
+        generateGroceryList();
+    };
+    
+    // Save manual items to storage
+    const saveManualItems = () => {
+        StorageManager.saveData('manualGroceryItems', state.manualItems);
+    };
+    
+    // Load manual items from storage
+    const loadManualItems = () => {
+        const savedItems = StorageManager.loadData('manualGroceryItems');
+        if (savedItems && Array.isArray(savedItems)) {
+            state.manualItems = savedItems;
+        }
+    };
+    
+    // Delete manual item
+    const deleteManualItem = (index) => {
+        state.manualItems.splice(index, 1);
+        saveManualItems();
+        generateGroceryList();
     };
 
     // Map ingredient category to standardized category
@@ -230,6 +302,9 @@ const GroceryListManager = (() => {
                 processRecipeIngredients(recipe);
             }
         });
+        
+        // Process manual items
+        processManualItems();
 
         // Render the grocery list
         renderGroceryList();
@@ -281,6 +356,32 @@ const GroceryListManager = (() => {
             }
         });
     };
+    
+    // Process manual items
+    const processManualItems = () => {
+        state.manualItems.forEach((item, index) => {
+            const category = item.category;
+            const name = item.name;
+            const nameKey = getIngredientKey(name);
+            
+            // Initialize category if it doesn't exist
+            if (!state.groceryItems[category]) {
+                state.groceryItems[category] = {};
+            }
+            
+            // Create a unique key for the manual item
+            const itemKey = `manual-${index}-${nameKey}`;
+            
+            state.groceryItems[category][itemKey] = {
+                name: name,
+                quantity: 1,
+                unit: '',
+                isManual: true,
+                manualIndex: index,
+                recipes: ['Manually added']
+            };
+        });
+    };
 
     // Format the amount for display
     const formatAmount = (item) => {
@@ -298,13 +399,17 @@ const GroceryListManager = (() => {
         // Clear the current list
         domHelpers.clearElement(elements.groceryList);
         
+        // Render the form for adding manual items
+        const manualItemForm = renderManualItemForm();
+        elements.groceryList.appendChild(manualItemForm);
+        
         // Check if we have any items
         const hasItems = Object.keys(state.groceryItems).length > 0;
         
         if (!hasItems) {
             const emptyMessage = domHelpers.createElement('div', {
                 className: 'empty-list-message',
-                textContent: 'Your grocery list is empty. Add recipes to your meal plan first.'
+                textContent: 'Your grocery list is empty. Add recipes to your meal plan first or add items manually.'
             });
             elements.groceryList.appendChild(emptyMessage);
             return;
@@ -363,7 +468,7 @@ const GroceryListManager = (() => {
                 });
                 
                 // Format the displayed amount
-                const displayAmount = formatAmount(item);
+                const displayAmount = item.isManual ? '' : formatAmount(item);
                 
                 // Create item content
                 const itemContent = domHelpers.createElement('label', {
@@ -373,13 +478,28 @@ const GroceryListManager = (() => {
                 });
                 
                 // Show recipe names if item is used in multiple recipes
-                if (recipeCount > 1) {
+                if (recipeCount > 1 && !item.isManual) {
                     const recipesText = item.recipes.join(', ');
                     const recipesInfo = domHelpers.createElement('div', {
                         className: 'item-recipes',
                         textContent: `Used in: ${recipesText}`
                     });
                     itemContent.appendChild(recipesInfo);
+                }
+                
+                // Add delete button for manual items
+                if (item.isManual) {
+                    const deleteBtn = domHelpers.createElement('button', {
+                        className: 'delete-manual-item',
+                        innerHTML: '×',
+                        title: 'Remove item'
+                    });
+                    
+                    deleteBtn.addEventListener('click', () => {
+                        deleteManualItem(item.manualIndex);
+                    });
+                    
+                    listItem.appendChild(deleteBtn);
                 }
                 
                 listItem.appendChild(checkbox);
@@ -399,6 +519,67 @@ const GroceryListManager = (() => {
         if (elements.printButton) {
             elements.printButton.style.display = 'inline-block';
         }
+    };
+    
+    // Create form for adding manual items
+    const renderManualItemForm = () => {
+        const formContainer = domHelpers.createElement('div', {
+            className: 'manual-item-container'
+        });
+        
+        const formTitle = domHelpers.createElement('h3', {
+            className: 'manual-form-title',
+            textContent: 'Add Item Manually'
+        });
+        
+        const form = domHelpers.createElement('form', {
+            className: 'manual-item-form',
+            id: 'manual-item-form'
+        });
+        
+        const inputContainer = domHelpers.createElement('div', {
+            className: 'manual-input-container'
+        });
+        
+        const itemInput = domHelpers.createElement('input', {
+            type: 'text',
+            id: 'manual-item-input',
+            className: 'manual-item-input',
+            placeholder: 'Enter item name',
+            required: true
+        });
+        
+        const categorySelect = domHelpers.createElement('select', {
+            id: 'manual-item-category',
+            className: 'manual-item-category'
+        });
+        
+        // Add options for each category
+        Object.values(CATEGORIES).forEach(category => {
+            const option = domHelpers.createElement('option', {
+                value: category,
+                textContent: category
+            });
+            categorySelect.appendChild(option);
+        });
+        
+        const addButton = domHelpers.createElement('button', {
+            type: 'submit',
+            id: 'add-manual-item',
+            className: 'add-manual-item',
+            textContent: 'Add Item'
+        });
+        
+        inputContainer.appendChild(itemInput);
+        inputContainer.appendChild(categorySelect);
+        inputContainer.appendChild(addButton);
+        
+        form.appendChild(inputContainer);
+        
+        formContainer.appendChild(formTitle);
+        formContainer.appendChild(form);
+        
+        return formContainer;
     };
 
     // Print the grocery list
@@ -459,7 +640,7 @@ const GroceryListManager = (() => {
             
             itemKeys.forEach(itemKey => {
                 const item = items[itemKey];
-                const displayAmount = formatAmount(item);
+                const displayAmount = item.isManual ? '' : formatAmount(item);
                 
                 printContent += `
                     <li>

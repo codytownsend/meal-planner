@@ -1,3 +1,4 @@
+// js/app.js
 // DOMContentLoaded event handler
 document.addEventListener('DOMContentLoaded', async () => {
     // Function to show loading state with error handling
@@ -331,19 +332,42 @@ document.addEventListener('DOMContentLoaded', async () => {
     const setupSearch = () => {
         const searchInput = document.getElementById('recipe-search');
         const searchButton = document.getElementById('search-button');
+        const searchToggle = document.getElementById('search-toggle');
+        const searchContainer = document.querySelector('.search-container');
         
         if (!searchInput || !searchButton) {
             console.error('Search elements not found');
             return;
         }
         
-        const performSearch = () => {
+        // Toggle search visibility
+        if (searchToggle && searchContainer) {
+            searchToggle.addEventListener('click', () => {
+                searchContainer.classList.add('expanded');
+                searchInput.focus();
+            });
+            
+            // Close search when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!searchContainer.contains(e.target) && e.target !== searchToggle) {
+                    searchContainer.classList.remove('expanded');
+                }
+            });
+        }
+        
+        const performSearch = async () => {
             const searchQuery = searchInput.value.trim().toLowerCase();
             
             // Show loading in carousel container
             const carouselContainer = document.querySelector('.carousel-container');
             if (carouselContainer) {
                 showLoading(carouselContainer, "Searching recipes...");
+            }
+            
+            // Load all recipes if they aren't already loaded
+            // This ensures we search through all recipes, not just loaded ones
+            while (RecipeLoader.hasMore()) {
+                await RecipeLoader.loadMoreRecipes();
             }
             
             // Update current filters with search query
@@ -374,6 +398,11 @@ document.addEventListener('DOMContentLoaded', async () => {
                 });
                 domHelpers.clearElement(carouselContainer);
                 carouselContainer.appendChild(emptyMessage);
+            }
+            
+            // Hide search after searching
+            if (searchContainer) {
+                searchContainer.classList.remove('expanded');
             }
         };
         

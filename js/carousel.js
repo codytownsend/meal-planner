@@ -1,3 +1,4 @@
+// js/carousel.js
 // Simplified Carousel with Details Dropdown and Mobile Swipe Support
 const CarouselManager = (() => {
     // State management
@@ -88,6 +89,9 @@ const CarouselManager = (() => {
         imageSection.appendChild(image);
         imageSection.appendChild(source);
         
+        // Create main content
+        const mainContent = domHelpers.createElement('div', { className: 'recipe-main-content' });
+        
         // Create content section
         const content = domHelpers.createElement('div', { className: 'recipe-content' });
         
@@ -108,6 +112,9 @@ const CarouselManager = (() => {
                 </svg>
             `
         });
+        
+        mainContent.appendChild(content);
+        mainContent.appendChild(detailsToggle);
         
         // Create details panel (hidden by default)
         const detailsPanel = domHelpers.createElement('div', { className: 'recipe-details' });
@@ -191,8 +198,7 @@ const CarouselManager = (() => {
         
         // Assemble the card
         card.appendChild(imageSection);
-        card.appendChild(content);
-        card.appendChild(detailsToggle);
+        card.appendChild(mainContent);
         card.appendChild(detailsPanel);
         
         // Add event listener for toggle
